@@ -1,0 +1,16 @@
+@media (max-width: 991.98px) {
+  .Sale-item .small,
+  small {
+    font-size: 57%;
+  }
+}
+
+@media (max-width: 520.98px) {
+  .Sale-item:not(:last-child) {
+    margin-right: 1rem !important;
+  }
+  .Sale-item .small,
+  small {
+    font-size: 70%;
+  }
+}
