@@ -4,9 +4,45 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* Dark-Mode */
+
 .dark-mode {
-  background-color: black;
-  color: white;
+  background-color: #fff;
+  filter: invert(1);
+}
+
+.dark-mode .dropdown-menu {
+  color: #fff;
+}
+
+.dark-mode .dropdown-item:focus,
+.dark-mode .dropdown-item:hover {
+  background-color: rgb(141 220 63 / 79%);
+}
+
+.dark-mode .navbar a,
+.dark-mode .navbar button,
+.dark-mode .carousel-item,
+.dark-mode .Section-2 img,
+.dark-mode .Section-3 img,
+.dark-mode .Section-4 img,
+.dark-mode .Section-5 img,
+.dark-mode .title-price,
+.dark-mode .Section-3 .btn-link,
+.dark-mode .Section-4 .btn-link {
+  filter: invert(1);
+}
+
+.dark-mode .dark-mode-green {
+  filter: invert(1);
+  color: #fff;
+}
+
+/* Dark-Mode-End */
+
+.dropdown-menu {
+  min-width: 100%;
+  font-size: 0.7rem;
 }
 
 .bg-success {

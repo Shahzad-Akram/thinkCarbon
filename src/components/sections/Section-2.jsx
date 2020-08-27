@@ -8,7 +8,7 @@ const SectionTwo = () => (
   <Container className='Section-2 px-0 my-4'>
     <h6 className='font-weight-bold '>Flash Sale</h6>
     <div className='bg-white'>
-      <div className='row justify-content-between justify-content-md-start mx-0 px-3 py-2 align-items-baseline small border-bottom'>
+      <div className='dark-mode-green row justify-content-between justify-content-md-start mx-0 px-3 py-2 align-items-baseline small border-bottom'>
         <span className='text-green-light mr-5 text-capitalize font-weight-bold mb-2 mb-sm-0'>
           on sale now
         </span>

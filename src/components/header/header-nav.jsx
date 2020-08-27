@@ -1,4 +1,5 @@
 import React from 'react';
+import './switch.styles.css';
 
 import { Button, Navbar, Dropdown, DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -11,7 +12,7 @@ import {
 
 import Radium, { StyleRoot } from 'radium';
 
-const HeaderNav = () => {
+const HeaderNav = ({ onChange }) => {
   const styles = {
     fadeInUpBig: {
       animation: 'x 1s',
@@ -75,6 +76,14 @@ const HeaderNav = () => {
           >
             <small className='font-weight-bold'> About</small>
           </Button>
+
+          <div className='mr-2 mr-sm-5'>
+            <label className='switch my-2'>
+              <input type='checkbox' onChange={onChange} />
+              <span className='slider round'></span>
+            </label>
+            {/* <small>{dark ? 'Dark' : 'Light'}</small> */}
+          </div>
 
           <DropdownButton
             id='dropdown-basic-button'

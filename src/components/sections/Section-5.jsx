@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import CategoriesItem from '../collection-item/categories-item';
 
 const SectionFive = () => (
-  <Container className='Section-5 px-0 mb-4'>
+  <Container className='Section-5 px-0 pb-4'>
     <div className='d-flex align-items-center justify-content-between px-1 mb-2'>
       <h6 className='font-weight-bold'>Categories</h6>
     </div>
