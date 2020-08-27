@@ -11,6 +11,11 @@ body {
   filter: invert(1);
 }
 
+.dark-mode .list-group a {
+  color: #000 !important;
+  font-weight: 700;
+}
+
 .dark-mode .dropdown-menu {
   color: #fff;
 }
@@ -36,6 +41,29 @@ body {
 .dark-mode .dark-mode-green {
   filter: invert(1);
   color: #fff;
+}
+
+.dark-mode .list-group-item-action:focus,
+.dark-mode .list-group-item-action:hover {
+  background-color: rgb(179 66 193 / 90%);
+}
+
+.dark-mode .Section-2 a:hover,
+.dark-mode .Section-2 a:focus,
+.dark-mode .Section-4 .brand-container:hover,
+.dark-mode .Section-4 .brand-container:focus {
+  box-shadow: 0 0 7px 1px rgb(102 16 242);
+}
+
+.dark-mode .Section-3 .collection-box:hover,
+.dark-mode .Section-3 .collection-box:focus,
+.dark-mode .Section-5 .categories-box:hover,
+.dark-mode .Section-5 .categories-box:focus {
+  box-shadow: 0px 0px 5px rgb(102 16 242);
+}
+
+.dark-mode .bg-success {
+  background-color: rgb(186 16 242 / 56%) !important;
 }
 
 /* Dark-Mode-End */

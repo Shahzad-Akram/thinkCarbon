@@ -12,7 +12,7 @@ const Brand = ({ link, itemPhoto, brandPhoto, brandTitle, brandSubTitle }) => {
       to={link}
       className='brand-container d-flex flex-column mb-3  text-center bg-white px-0'
     >
-      <span className='brand-item mx-auto pt-3'>
+      <span className='brand-item w-100 '>
         <img src={itemPhoto} alt='Brand' className='rounded w-100 h-100' />
       </span>
       <span className='bg-success small text-capitalize'>
