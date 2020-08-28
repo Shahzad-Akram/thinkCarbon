@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactSearchBox from 'react-search-box';
 import './switch.styles.css';
 
-import { Button, Navbar, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Button, Navbar, Dropdown, DropdownButton, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {
   fadeIn,
@@ -12,7 +13,7 @@ import {
 
 import Radium, { StyleRoot } from 'radium';
 
-const HeaderNav = ({ onChange }) => {
+const HeaderNav = ({ onChange, children }) => {
   const styles = {
     fadeInUpBig: {
       animation: 'x 1s',
@@ -32,6 +33,29 @@ const HeaderNav = ({ onChange }) => {
     },
   };
 
+  const data = [
+    {
+      key: 'john',
+      value: 'John Doe',
+    },
+    {
+      key: 'jane',
+      value: 'Jane Doe',
+    },
+    {
+      key: 'mary',
+      value: 'Mary Phillips',
+    },
+    {
+      key: 'robert',
+      value: 'Robert',
+    },
+    {
+      key: 'karius',
+      value: 'Karius',
+    },
+  ];
+
   return (
     <StyleRoot className='bg-white'>
       <Navbar className='col-10 mx-auto justify-content-between px-0 py-4 bg-white'>
@@ -48,11 +72,29 @@ const HeaderNav = ({ onChange }) => {
             alt='logo'
           />
         </Navbar.Brand>
+
+        <Col md={6} className='search-container'>
+          <ReactSearchBox
+            inputBoxFontSize='12px'
+            inputBoxHeight='28px'
+            placeholder='Search for John, Jane or Mary'
+            data={data}
+            onSelect={(record) => console.log(record)}
+            onFocus={() => {
+              console.log('This function is called when is focussed');
+            }}
+            onChange={(value) => console.log(value)}
+            fuseConfigs={{
+              threshold: 0.05,
+            }}
+          />
+        </Col>
+
         <div
           className='row mx-0 justify-content-around align-items-center'
           style={styles.fadeInRightBig}
         >
-          <Button
+          {/* <Button
             className='text-capitalize mr-3'
             variant='link'
             as={Link}
@@ -75,16 +117,18 @@ const HeaderNav = ({ onChange }) => {
             to='/about'
           >
             <small className='font-weight-bold'> About</small>
-          </Button>
+          </Button> */}
 
-          <div className='mr-2 mr-sm-5'>
+          <div className='mr-2 mr-sm-5 d-flex align-items-center'>
             <label className='switch my-2'>
               <input type='checkbox' onChange={onChange} />
               <span className='slider round'></span>
             </label>
-            {/* <small>{dark ? 'Dark' : 'Light'}</small> */}
+            <small className='ml-3 text-green-light filter-invert'>
+              {children}
+            </small>
           </div>
-
+          {/* 
           <DropdownButton
             id='dropdown-basic-button'
             title='Language'
@@ -93,7 +137,7 @@ const HeaderNav = ({ onChange }) => {
           >
             <Dropdown.Item>English</Dropdown.Item>
             <Dropdown.Item>Español</Dropdown.Item>
-          </DropdownButton>
+          </DropdownButton> */}
         </div>
       </Navbar>
     </StyleRoot>

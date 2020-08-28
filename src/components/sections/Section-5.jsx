@@ -4,11 +4,11 @@ import CategoriesItem from '../collection-item/categories-item';
 
 const SectionFive = () => (
   <Container className='Section-5 px-0 pb-4'>
-    <div className='d-flex align-items-center justify-content-between px-1 mb-2'>
-      <h6 className='font-weight-bold'>Categories</h6>
+    <div className='d-flex align-items-center justify-content-between px-3 px-sm-1 mb-3'>
+      <h6 className='font-weight-bold text-white'>Categories</h6>
     </div>
 
-    <Row className='categories-container mx-0'>
+    <Row className='categories-container mx-0 bg-white'>
       <CategoriesItem
         link='/'
         product='https://static-01.daraz.pk/p/dd79b8965113c842e8270c4ab8d00aaa.jpg'

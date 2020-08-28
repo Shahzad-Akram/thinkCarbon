@@ -9,7 +9,9 @@ function App() {
 
   return (
     <div className={dark ? 'dark-mode' : 'bg-light '}>
-      <HeaderNav onChange={() => setMode(!dark)} />
+      <HeaderNav onChange={() => setMode(!dark)}>
+        {dark ? 'Dark' : 'Light'}
+      </HeaderNav>
       <Switch>
         <Route exact path='/' component={Home} />
       </Switch>

@@ -4,14 +4,14 @@ import Brand from '../brands/brand';
 import { Link } from 'react-router-dom';
 
 const SectionFour = () => (
-  <Container className='Section-4  px-0'>
-    <div className='d-flex align-items-center justify-content-between px-1 mb-2'>
-      <h6 className='font-weight-bold'>Brand Collections</h6>
+  <Container className='Section-4  px-0 mb-3'>
+    <div className='d-flex align-items-center  justify-content-between px-3 px-sm-1 mb-3'>
+      <h6 className='font-weight-bold text-white'>Brand Collections</h6>
       <Link to='/' className='btn-link text-uppercase'>
         <small>Show more</small>
       </Link>
     </div>
-    <Row className='mx-0 row-cols-2 overflow-auto flex-nowrap flex-md-wrap  justify-content-md-around justify-content-xl-between'>
+    <Row className='mx-0 bg-white px-3 px-md-0 row-cols-2 overflow-auto flex-nowrap flex-md-wrap align-items-end  justify-content-md-around justify-content-xl-between'>
       <Brand
         link='/'
         itemPhoto='https://static-01.daraz.pk/p/2cbea36afb936db253b233f7da149f37.jpg'

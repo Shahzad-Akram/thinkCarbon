@@ -13,7 +13,7 @@ const SectionOne = () => {
 
   return (
     <div
-      className='Section-1 position-relative'
+      className='Section-1 position-relative mb-3'
       onMouseLeave={() => setIsItems1(false)}
     >
       <Row
@@ -33,7 +33,7 @@ const SectionOne = () => {
         {/* Menu-Col-2 */}
         <Col md={4} lg={3} xl={4} className='px-0'>
           {isItems1 && (
-            <ListGroup className='h-100 bg-white small rounded-0'>
+            <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
               <MenuItem
                 itemName='Electronic Devices 1'
                 onMouseEnter={() => setIsLink1(true)}
@@ -48,7 +48,7 @@ const SectionOne = () => {
         {/* Menu-Col-3 */}
         <Col md={4} lg={3} xl={4} className='px-0'>
           {isLink1 && (
-            <ListGroup className='h-100 bg-white small rounded-0'>
+            <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
               <MenuItem link='/' itemName='Option-1' />
               <MenuItem link='/' itemName='Option-2' />
             </ListGroup>

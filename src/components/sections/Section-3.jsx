@@ -4,15 +4,15 @@ import CollectionItem from '../collection-item/collection-item';
 import { Link } from 'react-router-dom';
 
 const SectionThree = () => (
-  <Container className='Section-3 px-0 mb-4'>
-    <div className='d-flex align-items-center justify-content-between px-1 mb-2'>
-      <h6 className='font-weight-bold'>Collections</h6>
+  <Container className='Section-3 px-0 mb-3'>
+    <div className='d-flex align-items-center justify-content-between px-3 px-sm-1 mb-3'>
+      <h6 className='font-weight-bold text-white mb-0'>Collections</h6>
       <Link to='/' className='btn-link text-uppercase'>
         <small>Show more</small>
       </Link>
     </div>
 
-    <Row className='collection-container mx-0'>
+    <Row className='collection-container mx-0 bg-white'>
       <CollectionItem
         link='/'
         title='Storage & Organization'
@@ -46,7 +46,7 @@ const SectionThree = () => (
         productThree='https://static-01.daraz.pk/p/aa0bfdcfa23c0a4f031451c5429bfec3.jpg'
       />
     </Row>
-    <Row className='collection-container mx-0'>
+    <Row className='collection-container mx-0 bg-white'>
       <CollectionItem
         link='/'
         title='Storage & Organization'
