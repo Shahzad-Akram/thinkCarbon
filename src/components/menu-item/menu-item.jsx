@@ -13,6 +13,7 @@ const MenuItem = ({ onMouseEnter, onMouseLeave, itemName, link }) => (
     onMouseLeave={onMouseLeave}
   >
     {itemName}
+    <span className='pos-arrow-list text-green-light'>&#8250;</span>
   </ListGroup.Item>
 );
 

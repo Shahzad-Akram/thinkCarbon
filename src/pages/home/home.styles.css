@@ -50,12 +50,22 @@
   margin-right: 0.25rem !important;
 }
 
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  display: block !important;
+}
+
 @media (max-width: 520.98px) {
   .Section-3 .collection-box {
     margin-bottom: 1.5rem !important;
   }
   .Section-3 .collection-box:not(:last-child) {
     margin-right: 0 !important;
+  }
+
+  .carousel-control-next-icon,
+  .carousel-control-prev-icon {
+    display: none !important;
   }
 }
 
@@ -72,8 +82,4 @@
   height: 40px;
   width: 40px;
   box-shadow: 0px 0px 6px 0px rgb(0 255 8 / 90%);
-}
-
-.Section-7 a {
-  color: #4cef06 !important;
 }

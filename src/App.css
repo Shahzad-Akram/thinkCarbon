@@ -4,8 +4,40 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.w-10 {
+  width: 10%;
+}
+
 .nk-shadow-box-1 {
   box-shadow: -2px 3px 5px 1px rgba(92, 234, 124, 0.3);
+}
+
+.list-group-item-action:hover .pos-arrow-list {
+  opacity: 1;
+}
+
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+  background-color: rgb(0 255 8 / 20%) !important;
+}
+
+.pos-arrow-list {
+  font-size: 2rem;
+  position: absolute;
+  top: 35%;
+  right: 2%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+/* Search */
+
+.search-container div {
+  width: 100%;
+}
+
+.search-container input {
+  border-radius: 0;
 }
 
 .react-search-box-dropdown {
@@ -27,8 +59,26 @@ li.react-search-box-dropdown-list-item {
   filter: invert(1);
 }
 
+.dark-mode .logo {
+  left: 30px;
+}
+
 .dark-mode .filter-invert {
   filter: invert(1);
+}
+
+.dark-mode .search-container input,
+.dark-mode li.react-search-box-dropdown-list-item {
+  background-color: rgb(199 131 131 / 68%);
+  color: #000;
+}
+
+.dark-mode li.react-search-box-dropdown-list-item:hover {
+  background-color: rgb(222 117 165);
+}
+
+.dark-mode .search-container input::placeholder {
+  color: #000;
 }
 
 .dark-mode .bg-white {
@@ -49,8 +99,16 @@ li.react-search-box-dropdown-list-item {
 
 .dark-mode .list-group a {
   color: #000 !important;
-  background-color: rgb(255 255 255 / 0%);
+  background-color: rgb(255 255 255 / 0%) !important;
   font-weight: 700;
+}
+
+.dark-mode .list-group a:hover {
+  background-color: rgb(222 117 165) !important;
+}
+
+.dark-mode .list-group-item-action:hover .pos-arrow-list {
+  color: #000 !important;
 }
 
 .dark-mode .text-white {
@@ -109,11 +167,11 @@ li.react-search-box-dropdown-list-item {
   box-shadow: 0px 0px 5px rgb(102 16 242);
 }
 
-.dark-mode .Section-7 {
-  color: #000;
+.dark-mode .Footer-information {
+  color: #000 !important;
 }
 
-.dark-mode .Section-7 a {
+.dark-mode .Footer-information a {
   filter: invert(1);
 }
 
@@ -185,7 +243,7 @@ h5,
 .logo {
   position: absolute;
   top: 50%;
-  left: 4.5%;
+  left: 6%;
   transform: translateY(-50%);
 }
 
@@ -200,6 +258,19 @@ h5,
   background-color: rgb(0 255 8 / 20%);
   padding: 0.25rem !important;
   font-size: 1rem;
+}
+
+.Footer-information a {
+  color: #4cef06 !important;
+}
+
+@media (max-width: 780.98px) {
+  .collapse {
+    position: absolute !important;
+    top: 69px;
+    width: 100%;
+    z-index: 9999;
+  }
 }
 
 @media (max-width: 1100.98px) {

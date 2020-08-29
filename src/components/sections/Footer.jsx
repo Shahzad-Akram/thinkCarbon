@@ -2,10 +2,10 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const SectionSix = () => (
+const Footer = () => (
   <Container
     fluid
-    className='Section-6  px-0 py-4 text-white bg-success bg-success-dark'
+    className='Seciton-footer  px-0 py-4 text-white bg-success bg-success-dark'
   >
     <Row className='categories-container mx-0 justify-content-center'>
       <Col md={3}>
@@ -90,4 +90,4 @@ const SectionSix = () => (
   </Container>
 );
 
-export default SectionSix;
+export default Footer;

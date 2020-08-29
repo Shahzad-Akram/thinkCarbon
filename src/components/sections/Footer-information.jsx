@@ -2,8 +2,11 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const SectionSeven = () => (
-  <Container fluid className='Section-7 px-0 py-4 text-black-50 bg-light'>
+const FooterInformation = () => (
+  <Container
+    fluid
+    className='Footer-information px-0 py-4 text-black-50 bg-light'
+  >
     <Row className='categories-container mx-0 justify-content-center'>
       <Col md={3}>
         <div className='d-flex flex-column mb-3'>
@@ -254,4 +257,4 @@ const SectionSeven = () => (
   </Container>
 );
 
-export default SectionSeven;
+export default FooterInformation;

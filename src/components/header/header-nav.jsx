@@ -13,6 +13,10 @@ import {
 
 import Radium, { StyleRoot } from 'radium';
 
+// Icons
+import SearchIcon from '../../assets/svgs/search';
+import Cart3Icon from '../../assets/svgs/Cart3';
+
 const HeaderNav = ({ onChange, children }) => {
   const styles = {
     fadeInUpBig: {
@@ -58,87 +62,73 @@ const HeaderNav = ({ onChange, children }) => {
 
   return (
     <StyleRoot className='bg-white'>
-      <Navbar className='col-10 mx-auto justify-content-between px-0 py-4 bg-white'>
-        <Navbar.Brand
-          as={Link}
-          to='/'
-          className='ml-2 ml-sm-5 mr-0 d-none d-sm-block'
-        >
+      <Navbar
+        className='col col-lg-10 mx-auto justify-content-between px-0 py-3 bg-white'
+        expand='lg'
+      >
+        <Navbar.Brand as={Link} to='/' className='w-10 ml-2 ml-sm-5 mr-0'>
           <img
-            height={100}
+            height={85}
             style={styles.fadeIn}
             src='https://osp-server.s3.us-east-2.amazonaws.com/logo.png'
             className='d-inline-block align-top logo'
             alt='logo'
           />
         </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls='basic-navbar-nav'
+          className='mr-3 border-0'
+        />
 
-        <Col md={6} className='search-container'>
-          <ReactSearchBox
-            inputBoxFontSize='12px'
-            inputBoxHeight='28px'
-            placeholder='Search for John, Jane or Mary'
-            data={data}
-            onSelect={(record) => console.log(record)}
-            onFocus={() => {
-              console.log('This function is called when is focussed');
-            }}
-            onChange={(value) => console.log(value)}
-            fuseConfigs={{
-              threshold: 0.05,
-            }}
-          />
-        </Col>
-
-        <div
-          className='row mx-0 justify-content-around align-items-center'
-          style={styles.fadeInRightBig}
+        <Navbar.Collapse
+          id='basic-navbar-nav'
+          className='bg-white position-relative pb-3 pb-lg-0 '
         >
-          {/* <Button
-            className='text-capitalize mr-3'
-            variant='link'
-            as={Link}
-            to='/'
+          <div
+            className='row mx-0 justify-content-around align-items-center w-100'
+            style={styles.fadeInRightBig}
           >
-            <small className='font-weight-bold'> Home</small>
-          </Button>
-          <Button
-            className='text-capitalize mr-3'
-            variant='link'
-            as={Link}
-            to='/product'
-          >
-            <small className='font-weight-bold'> Product</small>
-          </Button>
-          <Button
-            className='text-capitalize mr-2 mr-sm-5'
-            variant='link'
-            as={Link}
-            to='/about'
-          >
-            <small className='font-weight-bold'> About</small>
-          </Button> */}
+            <Col
+              xs={10}
+              lg={8}
+              className='search-container d-flex align-items-center order-1 order-lg-0 px-0'
+            >
+              <ReactSearchBox
+                inputBoxFontSize='12px'
+                inputBoxHeight='28px'
+                placeholder='Search for John, Jane or Mary'
+                data={data}
+                onSelect={(record) => console.log(record)}
+                onFocus={() => {
+                  console.log('This function is called when is focussed');
+                }}
+                onChange={(value) => console.log(value)}
+                fuseConfigs={{
+                  threshold: 0.05,
+                }}
+              />
+              <Button
+                variant='success'
+                className='py-1 px-2 d-flex align-items-center rounded-0'
+              >
+                <SearchIcon />
+              </Button>
+              <Button variant='link' className='p-0 ml-4'>
+                <Cart3Icon />
+              </Button>
+            </Col>
 
-          <div className='mr-2 mr-sm-5 d-flex align-items-center'>
-            <label className='switch my-2'>
-              <input type='checkbox' onChange={onChange} />
-              <span className='slider round'></span>
-            </label>
-            <small className='ml-3 text-green-light filter-invert'>
-              {children}
-            </small>
+            <div className='d-flex align-items-center'>
+              <label className='switch my-2'>
+                <input type='checkbox' onChange={onChange} />
+                <span className='slider round'></span>
+              </label>
+              <small className='ml-3 text-green-light filter-invert'>
+                {children}
+              </small>
+            </div>
           </div>
-          {/* 
-          <DropdownButton
-            id='dropdown-basic-button'
-            title='Language'
-            variant='success'
-            className='d-inline mx-auto mr-md-5'
-          >
-            <Dropdown.Item>English</Dropdown.Item>
-            <Dropdown.Item>Español</Dropdown.Item>
-          </DropdownButton> */}
-        </div>
+        </Navbar.Collapse>
       </Navbar>
     </StyleRoot>
   );
