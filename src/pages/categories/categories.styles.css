@@ -10,6 +10,24 @@
   height: 100px;
 }
 
+.categories-side-bar .form-control-sm,
+.categories-side-bar .form-control-sm::placeholder {
+  font-size: 0.6rem;
+  padding: 0 0 0 5px;
+  height: 100%;
+}
+
+.categories-side-bar .side-bar-toggle {
+  background: rgb(26 10 10 / 78%);
+  color: #fff;
+}
+
+.categories-side-bar .form-control:focus {
+  border-color: #4cef06;
+
+  box-shadow: unset;
+}
+
 .categories-container .Sale-item {
   border: unset;
 }

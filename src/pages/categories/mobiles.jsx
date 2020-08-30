@@ -1,7 +1,7 @@
 import React from 'react';
 import './categories.styles.css';
 import { Link } from 'react-router-dom';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container, Button, Row, Col, Form } from 'react-bootstrap';
 // Icons
 
 import ChevronRightIcon from '../../assets/svgs/ChevronRight';
@@ -10,6 +10,9 @@ import StarFillIcon from '../../assets/svgs/Star-fill';
 import StarHalfFillIcon from '../../assets/svgs/Star-half-fill';
 import StarIcon from '../../assets/svgs/Star';
 import CheckBox from '../../components/check-box/check-box';
+import PlayFillIcon from '../../assets/svgs/PlayFill';
+import ToggleSideBar from '../../components/toggle/ToggleSideBar';
+import ToggleViewMore from '../../components/toggle/ToggleViewMore';
 
 const Mobiles = () => {
   return (
@@ -114,9 +117,9 @@ const Mobiles = () => {
         </Row>
       </Container>
       <Container className='px-0'>
-        <Row className='bg-white mx-0 p-3 rounded'>
-          <Col md={3} lg={2} className='px-0'>
-            <main>
+        <Row className='bg-white mx-0 rounded'>
+          <Col lg={2} className='categories-side-bar p-3 mr-1 shadow-sm'>
+            <main className='d-none d-lg-block'>
               <section className='border-bottom pb-2 mb-2'>
                 <div className='small'>
                   <small className='font-weight-bold'>Related Categories</small>
@@ -133,7 +136,7 @@ const Mobiles = () => {
               </section>
               {/* Section-Check-Box */}
               <section>
-                <main className='d-flex flex-column border-bottom pb-2 mb-2'>
+                <div className='d-flex flex-column border-bottom pb-2 mb-2'>
                   <div className='small mb-2'>
                     <small className='font-weight-bold'>Service</small>
                   </div>
@@ -145,10 +148,20 @@ const Mobiles = () => {
                   <CheckBox itemName='nokia' />
                   <CheckBox itemName='nokia' />
                   <CheckBox itemName='nokia' />
-                </main>
+                  <ToggleViewMore id='one'>
+                    <div className='d-flex flex-column'>
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                    </div>
+                  </ToggleViewMore>
+                </div>
               </section>
               <section>
-                <main className='d-flex flex-column border-bottom pb-2 mb-2'>
+                <div className='d-flex flex-column border-bottom pb-2 mb-2'>
                   <div className='small mb-2'>
                     <small className='font-weight-bold'>Location</small>
                   </div>
@@ -157,23 +170,277 @@ const Mobiles = () => {
                   <CheckBox itemName='nokia' />
                   <CheckBox itemName='nokia' />
                   <CheckBox itemName='nokia' />
-                </main>
+                </div>
               </section>
 
               <section>
-                <main className='d-flex flex-column border-bottom pb-2 mb-2'>
+                <div className='d-flex flex-column border-bottom pb-2 mb-2'>
                   <div className='small mb-2'>
                     <small className='font-weight-bold'>Brand</small>
                   </div>
                   <CheckBox itemName='nokia' />
                   <CheckBox itemName='nokia' />
                   <CheckBox itemName='nokia' />
-                </main>
+                </div>
+
+                <div className='d-flex flex-column border-bottom pb-2 mb-2'>
+                  <div className='small mb-2'>
+                    <small className='font-weight-bold'>Price</small>
+                  </div>
+                  <Form>
+                    <Row className='mx-0 justify-content-between'>
+                      <Col xs={4} className='px-0'>
+                        <Form.Control
+                          size='sm'
+                          type='number'
+                          placeholder='Min'
+                        />
+                      </Col>
+                      -
+                      <Col xs={4} className='px-0'>
+                        <Form.Control
+                          size='sm'
+                          type='number'
+                          placeholder='Max'
+                        />
+                      </Col>
+                      <Col xs={2} className='px-0'>
+                        <Button
+                          className='d-flex px-2'
+                          variant='success'
+                          type='submit'
+                        >
+                          <PlayFillIcon />
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Form>
+                </div>
+
+                <div className='d-flex flex-column pb-2 mb-2'>
+                  <div className='small mb-2'>
+                    <small className='font-weight-bold'>Rating</small>
+                  </div>
+                  <span className='d-flex align-items-baseline mb-1'>
+                    <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                    </span>
+                  </span>
+                  <span className='d-flex align-items-baseline'>
+                    <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarIcon height={13} />
+                    </span>
+                    <small>
+                      <small className='text-capitalize'>and up</small>
+                    </small>
+                  </span>
+                  <span className='d-flex align-items-baseline'>
+                    <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarIcon height={13} />
+                      <StarIcon height={13} />
+                    </span>
+                    <small>
+                      <small className='text-capitalize'>and up</small>
+                    </small>
+                  </span>
+                  <span className='d-flex align-items-baseline'>
+                    <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
+                      <StarFillIcon height={13} />
+                      <StarFillIcon height={13} />
+                      <StarIcon height={13} />
+                      <StarIcon height={13} />
+                      <StarIcon height={13} />
+                    </span>
+                    <small>
+                      <small className='text-capitalize'>and up</small>
+                    </small>
+                  </span>
+                  <span className='d-flex align-items-baseline'>
+                    <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
+                      <StarFillIcon height={13} />
+                      <StarIcon height={13} />
+                      <StarIcon height={13} />
+                      <StarIcon height={13} />
+                      <StarIcon height={13} />
+                    </span>
+                    <small>
+                      <small className='text-capitalize'>and up</small>
+                    </small>
+                  </span>
+                </div>
               </section>
               {/* Section-Check-Box-End */}
             </main>
+            {/* Toggle */}
+            <div className='d-lg-none'>
+              <ToggleSideBar
+                id='Side-bar'
+                className='d-lg-none side-bar-toggle h4 mb-0 shadow-sm ml-n3 p-2'
+              >
+                <main>
+                  {/* Section-Check-Box */}
+                  <section>
+                    <div className='d-flex flex-column border-bottom pb-2 mb-2'>
+                      <div className='small mb-2'>
+                        <small className='font-weight-bold'>Service</small>
+                      </div>
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <ToggleViewMore id='one'>
+                        <div className='d-flex flex-column'>
+                          <CheckBox itemName='nokia' />
+                          <CheckBox itemName='nokia' />
+                          <CheckBox itemName='nokia' />
+                          <CheckBox itemName='nokia' />
+                          <CheckBox itemName='nokia' />
+                          <CheckBox itemName='nokia' />
+                        </div>
+                      </ToggleViewMore>
+                    </div>
+                  </section>
+                  <section>
+                    <div className='d-flex flex-column border-bottom pb-2 mb-2'>
+                      <div className='small mb-2'>
+                        <small className='font-weight-bold'>Location</small>
+                      </div>
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                    </div>
+                  </section>
+
+                  <section>
+                    <div className='d-flex flex-column border-bottom pb-2 mb-2'>
+                      <div className='small mb-2'>
+                        <small className='font-weight-bold'>Brand</small>
+                      </div>
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                      <CheckBox itemName='nokia' />
+                    </div>
+
+                    <div className='d-flex flex-column border-bottom pb-2 mb-2'>
+                      <div className='small mb-2'>
+                        <small className='font-weight-bold'>Price</small>
+                      </div>
+                      <Form>
+                        <Row className='mx-0 justify-content-between'>
+                          <Col xs={4} className='px-0'>
+                            <Form.Control
+                              size='sm'
+                              type='number'
+                              placeholder='Min'
+                            />
+                          </Col>
+                          -
+                          <Col xs={4} className='px-0'>
+                            <Form.Control
+                              size='sm'
+                              type='number'
+                              placeholder='Max'
+                            />
+                          </Col>
+                          <Col xs={2} className='px-0'>
+                            <Button
+                              className='d-flex px-2'
+                              variant='success'
+                              type='submit'
+                            >
+                              <PlayFillIcon />
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Form>
+                    </div>
+
+                    <div className='d-flex flex-column pb-2 mb-2'>
+                      <div className='small mb-2'>
+                        <small className='font-weight-bold'>Rating</small>
+                      </div>
+                      <span className='d-flex align-items-baseline mb-1'>
+                        <span className='text-warning mr-1 w-25 d-flex justify-content-between'>
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                        </span>
+                      </span>
+                      <span className='d-flex align-items-baseline'>
+                        <span className='text-warning mr-1 w-25 d-flex justify-content-between'>
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarIcon height={13} />
+                        </span>
+                        <small>
+                          <small className='text-capitalize'>and up</small>
+                        </small>
+                      </span>
+                      <span className='d-flex align-items-baseline'>
+                        <span className='text-warning mr-1 w-25 d-flex justify-content-between'>
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarIcon height={13} />
+                          <StarIcon height={13} />
+                        </span>
+                        <small>
+                          <small className='text-capitalize'>and up</small>
+                        </small>
+                      </span>
+                      <span className='d-flex align-items-baseline'>
+                        <span className='text-warning mr-1 w-25 d-flex justify-content-between'>
+                          <StarFillIcon height={13} />
+                          <StarFillIcon height={13} />
+                          <StarIcon height={13} />
+                          <StarIcon height={13} />
+                          <StarIcon height={13} />
+                        </span>
+                        <small>
+                          <small className='text-capitalize'>and up</small>
+                        </small>
+                      </span>
+                      <span className='d-flex align-items-baseline'>
+                        <span className='text-warning mr-1 w-25 d-flex justify-content-between'>
+                          <StarFillIcon height={13} />
+                          <StarIcon height={13} />
+                          <StarIcon height={13} />
+                          <StarIcon height={13} />
+                          <StarIcon height={13} />
+                        </span>
+                        <small>
+                          <small className='text-capitalize'>and up</small>
+                        </small>
+                      </span>
+                    </div>
+                  </section>
+                  {/* Section-Check-Box-End */}
+                </main>
+              </ToggleSideBar>
+            </div>
           </Col>
-          <Col className='px-0'>
+          <Col className='p-3'>
             <div>
               <div>
                 <h5 className='mb-2'>New Mobile Prices in Pakistan 2020</h5>
