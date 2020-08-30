@@ -5,18 +5,25 @@ import Home from './pages/home/home';
 import HeaderNav from './components/header/header-nav';
 import Footer from './components/sections/Footer';
 import FooterInformation from './components/sections/Footer-information';
+import Mobiles from './pages/categories/mobiles';
 
 function App() {
   const [dark, setMode] = useState(false);
 
   return (
-    <div className={dark ? 'dark-mode' : 'bg-light '}>
+    <div
+      className={
+        dark ? 'dark-mode background-image' : 'bg-light background-image'
+      }
+    >
       <HeaderNav onChange={() => setMode(!dark)}>
         {dark ? 'Dark' : 'Light'}
       </HeaderNav>
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route exact path='/mobiles' component={Mobiles} />
       </Switch>
+
       <Footer />
       <FooterInformation />
     </div>

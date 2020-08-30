@@ -10,17 +10,24 @@ const SaleItem = ({
   price,
   priceMinus,
   priceDiscount,
+  available,
+  children,
 }) => {
   return (
     <Card as={Link} to={link} className='Sale-item'>
-      <Card.Img variant='top' src={photo} />
-      <Card.Body className='px-1'>
-        <Card.Text className='small'>{itemName}</Card.Text>
+      <Card.Img variant='top' className='Sale-item-image' src={photo} />
+      <Card.Body className='px-1 d-flex justify-content-between flex-column'>
+        <Card.Text className='small'>
+          <small>{itemName}</small>
+        </Card.Text>
         <Card.Title className='title-price'>{price}</Card.Title>
         <small className='text-muted'>
-          <span className='text-line-through'>{priceMinus}</span>
-          <cite title='Source Title'>{priceDiscount}</cite>
+          <div className='small text-info'>{available}</div>
+          <span className='text-line-through mr-1 small'>{priceMinus}</span>
+          <cite className='small'>{priceDiscount}</cite>
         </small>
+
+        {children}
       </Card.Body>
     </Card>
   );

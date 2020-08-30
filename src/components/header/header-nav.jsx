@@ -117,7 +117,7 @@ const HeaderNav = ({ onChange, children }) => {
                 <Cart3Icon />
               </Button>
             </Col>
-
+            {/* 
             <div className='d-flex align-items-center'>
               <label className='switch my-2'>
                 <input type='checkbox' onChange={onChange} />
@@ -126,7 +126,7 @@ const HeaderNav = ({ onChange, children }) => {
               <small className='ml-3 text-green-light filter-invert'>
                 {children}
               </small>
-            </div>
+            </div> */}
           </div>
         </Navbar.Collapse>
       </Navbar>

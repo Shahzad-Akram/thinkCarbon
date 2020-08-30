@@ -1,0 +1,39 @@
+.categories-nav .btn-link {
+  color: #fff !important;
+}
+
+.categories-nav .btn-link:hover {
+  color: rgb(77 255 0) !important;
+}
+
+.categories-nav-brand {
+  height: 100px;
+}
+
+.categories-container .Sale-item {
+  border: unset;
+}
+
+.categories-container .Sale-item:hover .Sale-item-btn-cart {
+  opacity: 1;
+  justify-content: center;
+}
+
+.categories-container .Sale-item-btn-cart {
+  display: flex;
+  opacity: 0;
+}
+
+.categories-container .Sale-item-image {
+  height: 200px;
+  width: 200px;
+  margin: auto;
+}
+
+@media (max-width: 780.98px) {
+  .categories-container .Sale-item-image {
+    height: 160px;
+    width: 160px;
+    margin: auto;
+  }
+}

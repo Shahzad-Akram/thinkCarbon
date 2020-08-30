@@ -35,10 +35,11 @@ const SectionOne = () => {
           {isItems1 && (
             <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
               <MenuItem
-                itemName='Electronic Devices 1'
+                link='/mobiles'
+                itemName='Mobiles'
                 onMouseEnter={() => setIsLink1(true)}
               />
-              <MenuItem itemName='Electronic Devices 2' />
+              <MenuItem link='/mobiles' itemName='Mobiles' />
               <MenuItem itemName='Electronic Devices 3' />
               <MenuItem itemName='Electronic Devices 4' />
             </ListGroup>
@@ -49,7 +50,7 @@ const SectionOne = () => {
         <Col md={4} lg={3} xl={4} className='px-0'>
           {isLink1 && (
             <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
-              <MenuItem link='/' itemName='Option-1' />
+              <MenuItem link='/mobiles' itemName='Mobiles' />
               <MenuItem link='/' itemName='Option-2' />
             </ListGroup>
           )}
