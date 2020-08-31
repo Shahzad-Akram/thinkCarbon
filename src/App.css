@@ -8,6 +8,10 @@ body {
   width: 10%;
 }
 
+.filter-brightness {
+  filter: brightness(0.5);
+}
+
 .nk-shadow-box-1 {
   box-shadow: -2px 3px 5px 1px rgba(92, 234, 124, 0.3);
 }
@@ -33,7 +37,7 @@ body {
 /* Search */
 
 .search-container div {
-  width: 100%;
+  width: 80%;
 }
 
 .search-container input {
@@ -258,6 +262,10 @@ h5,
   background-color: rgb(0 255 8 / 20%);
   padding: 0.25rem !important;
   font-size: 1rem;
+}
+
+.Seciton-footer {
+  background-color: rgb(141 107 71);
 }
 
 .Footer-information a {

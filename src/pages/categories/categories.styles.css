@@ -20,6 +20,10 @@
 .categories-side-bar .side-bar-toggle {
   background: rgb(26 10 10 / 78%);
   color: #fff;
+  top: 107px;
+  height: 29rem;
+  width: 100.6%;
+  overflow: auto;
 }
 
 .categories-side-bar .form-control:focus {

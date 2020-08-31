@@ -3,10 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Footer = () => (
-  <Container
-    fluid
-    className='Seciton-footer  px-0 py-4 text-white bg-success bg-success-dark'
-  >
+  <Container fluid className='Seciton-footer  px-0 py-4 text-white '>
     <Row className='categories-container mx-0 justify-content-center'>
       <Col md={3}>
         <div className='d-flex flex-column mb-3'>
@@ -80,6 +77,7 @@ const Footer = () => (
       <Col md={3}>
         <div>
           <img
+            className='filter-brightness'
             height='120'
             src='https://osp-server.s3.us-east-2.amazonaws.com/logo.png'
             alt='logo'

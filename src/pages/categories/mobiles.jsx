@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Select from 'react-select';
 import './categories.styles.css';
 import { Link } from 'react-router-dom';
-import { Container, Button, Row, Col, Form } from 'react-bootstrap';
+import { Container, Button, Row, Col, Form, Pagination } from 'react-bootstrap';
 // Icons
 
 import ChevronRightIcon from '../../assets/svgs/ChevronRight';
@@ -14,7 +15,15 @@ import PlayFillIcon from '../../assets/svgs/PlayFill';
 import ToggleSideBar from '../../components/toggle/ToggleSideBar';
 import ToggleViewMore from '../../components/toggle/ToggleViewMore';
 
+const data = [
+  { value: 'Best Match', label: 'Best Match' },
+  { value: 'Price low to hight', label: 'Price low to hight' },
+  { value: 'Price hight to low', label: 'Price hight to low' },
+];
+
 const Mobiles = () => {
+  const [isSearchable] = useState(false);
+
   return (
     <Container fluid className='categories-container px-0 mt-3 mb-5'>
       <Container className='px-0'>
@@ -441,12 +450,21 @@ const Mobiles = () => {
             </div>
           </Col>
           <Col className='p-3'>
-            <div>
-              <div>
-                <h5 className='mb-2'>New Mobile Prices in Pakistan 2020</h5>
-                <small>1972 items found in Mobiles</small>
-              </div>
-            </div>
+            <Row className='mx-0 mb-3  border-bottom'>
+              <Col>
+                <h5 className='mb-1 '>New Mobile Prices in Pakistan 2020</h5>
+                <small class='text-muted'>1972 items found in Mobiles</small>
+              </Col>
+              <Col className='d-flex align-items-center justify-content-end'>
+                <small class='text-muted mr-2'>Sort By:</small>
+                <Select
+                  className='w-75'
+                  defaultValue={data[1]}
+                  isSearchable={isSearchable}
+                  options={data}
+                />
+              </Col>
+            </Row>
             <Row className='Section-2 mx-0 mb-4 flex-nowrap flex-lg-wrap overflow-auto row-cols-2 row-cols-md-3'>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
@@ -1162,6 +1180,19 @@ const Mobiles = () => {
                 </SaleItem>
               </Col>
             </Row>
+            <div className='d-flex justify-content-end text-green-light'>
+              <Pagination>
+                <Pagination.Prev />
+                <Pagination.Item active>{1}</Pagination.Item>
+                <Pagination.Item>{2}</Pagination.Item>
+                <Pagination.Item>{3}</Pagination.Item>
+                <Pagination.Item>{4}</Pagination.Item>
+                <Pagination.Item>{5}</Pagination.Item>
+                <Pagination.Ellipsis />
+                <Pagination.Item>{20}</Pagination.Item>
+                <Pagination.Next />
+              </Pagination>
+            </div>
           </Col>
         </Row>
       </Container>
