@@ -191,21 +191,21 @@ li.react-search-box-dropdown-list-item {
 }
 
 .text-green-light {
-  color: #4cef06 !important;
+  color: #9a908c !important;
 }
 
 .title-price {
   font-size: 1.1rem;
-  color: #4cef06;
+  color: #9a908c;
 }
 .btn-link {
   font-weight: 400;
-  color: #4cef06 !important;
+  color: #9a908c !important;
   text-decoration: none !important;
 }
 
 .btn-link:hover {
-  color: rgba(63, 187, 9, 0.8) !important;
+  color: rgb(113, 102, 98) !important;
   text-decoration: none !important;
 }
 
@@ -264,8 +264,14 @@ h5,
   font-size: 1rem;
 }
 
+.select-container div {
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-color: #4cef06;
+}
+
 .Seciton-footer {
-  background-color: rgb(141 107 71);
+  background-color: #a8958f;
 }
 
 .Footer-information a {

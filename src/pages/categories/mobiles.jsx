@@ -450,12 +450,16 @@ const Mobiles = () => {
             </div>
           </Col>
           <Col className='p-3'>
-            <Row className='mx-0 mb-3  border-bottom'>
+            <Row className='mx-0 mb-3 pb-3  border-bottom'>
               <Col>
                 <h5 className='mb-1 '>New Mobile Prices in Pakistan 2020</h5>
                 <small class='text-muted'>1972 items found in Mobiles</small>
               </Col>
-              <Col className='d-flex align-items-center justify-content-end'>
+              <Col
+                xs={12}
+                md='auto'
+                className='select-container d-flex align-items-center justify-content-md-end pt-2 pt-md-0 mt-auto'
+              >
                 <small class='text-muted mr-2'>Sort By:</small>
                 <Select
                   className='w-75'

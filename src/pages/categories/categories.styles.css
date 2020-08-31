@@ -21,9 +21,15 @@
   background: rgb(26 10 10 / 78%);
   color: #fff;
   top: 107px;
-  height: 29rem;
+  height: 34rem;
   width: 100.6%;
   overflow: auto;
+}
+
+@media (max-width: 560.98px) {
+  .categories-side-bar .side-bar-toggle {
+    height: 40rem;
+  }
 }
 
 .categories-side-bar .form-control:focus {
