@@ -457,7 +457,7 @@ const Mobiles = () => {
               </Col>
               <Col
                 xs={12}
-                md='auto'
+                md={6}
                 className='select-container d-flex align-items-center justify-content-md-end pt-2 pt-md-0 mt-auto'
               >
                 <small class='text-muted mr-2'>Sort By:</small>
