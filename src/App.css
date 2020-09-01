@@ -186,6 +186,10 @@ li.react-search-box-dropdown-list-item {
   font-size: 0.7rem;
 }
 
+.bg-wood {
+  background-color: #a8958f;
+}
+
 .bg-success {
   background-color: rgba(92, 234, 124) !important;
 }
