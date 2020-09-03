@@ -4,6 +4,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.z-index {
+  z-index: 100;
+}
+
 .w-10 {
   width: 10%;
 }
@@ -192,6 +196,13 @@ li.react-search-box-dropdown-list-item {
 
 .bg-success {
   background-color: rgba(92, 234, 124) !important;
+}
+
+.btn-success:hover,
+.btn-success.focus,
+.btn-success:focus {
+  background-color: #4cef06;
+  border-color: #4cef06;
 }
 
 .text-green-light {

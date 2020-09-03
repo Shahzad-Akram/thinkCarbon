@@ -472,6 +472,7 @@ const Mobiles = () => {
             <Row className='Section-2 mx-0 mb-4 flex-nowrap flex-lg-wrap overflow-auto row-cols-2 row-cols-md-3'>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -514,6 +515,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/94a3abbf86a3d16248a0908ba49e31d9.jpg'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -560,6 +562,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -621,6 +624,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -668,6 +672,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -715,6 +720,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -762,6 +768,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -809,6 +816,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -856,6 +864,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -903,6 +912,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -950,6 +960,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -997,6 +1008,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -1044,6 +1056,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -1091,6 +1104,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
@@ -1138,6 +1152,7 @@ const Mobiles = () => {
               </Col>
               <Col lg={3} className='d-flex px-0  mb-3'>
                 <SaleItem
+                  link='/product-view'
                   photo='https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png'
                   itemName='Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display'
                   price='Rs.539'
