@@ -12,7 +12,7 @@ function App() {
   const [dark, setMode] = useState(false);
 
   return (
-    <div
+    <section
       className={
         dark ? 'dark-mode background-image' : 'bg-light background-image'
       }
@@ -20,15 +20,16 @@ function App() {
       <HeaderNav onChange={() => setMode(!dark)}>
         {dark ? 'Dark' : 'Light'}
       </HeaderNav>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/mobiles' component={Mobiles} />
-        <Route exact path='/product-view' component={ProductView} />
-      </Switch>
-
-      <Footer />
-      <FooterInformation />
-    </div>
+      <div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/mobiles' component={Mobiles} />
+          <Route exact path='/product-view' component={ProductView} />
+        </Switch>
+        <Footer />
+        <FooterInformation />
+      </div>
+    </section>
   );
 }
 

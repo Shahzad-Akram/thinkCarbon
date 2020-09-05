@@ -8,7 +8,7 @@
 
 .product-item-zoom {
   position: absolute;
-  width: 95%;
+  width: 93%;
 }
 
 .product-item-wrap {
@@ -26,7 +26,7 @@
   transform: translateX(-50%);
 }
 
-@media (max-width: 780.98px) {
+@media (max-width: 990.98px) {
   .product-pos {
     position: unset;
     width: 100%;

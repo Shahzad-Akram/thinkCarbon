@@ -1,0 +1,35 @@
+.menu-list {
+  position: absolute;
+  left: 23%;
+  z-index: 1050;
+}
+
+@media (max-width: 990.98px) {
+  .navbar-collapse {
+    top: 61px;
+  }
+
+  .menu-list {
+    position: absolute;
+    top: 159px;
+    left: -2%;
+    z-index: 1050;
+  }
+}
+
+@media (max-width: 780.98px) {
+  .navbar-collapse {
+    top: 71px;
+  }
+
+  .menu-list {
+    top: 116px;
+    left: -2%;
+  }
+}
+
+@media (max-width: 550.98px) {
+  .menu-list {
+    top: 145px;
+  }
+}

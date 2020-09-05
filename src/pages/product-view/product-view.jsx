@@ -490,7 +490,7 @@ const ProductView = () => {
           </div>
         </section>
         <section className='product-information mx-0 pb-4 bg-white '>
-          <h6 className='bg-light py-3 pl-4 font-weight-bold'>
+          <h6 className='bg-light py-3 pl-4 font-weight-bold mb-4'>
             Ratings of Tecno Spark 5 Pro - 6.6" Dot Display - 4GB RAM - 128GB
             ROM - 16MP AI Quad Camera - 5000 mAh Battery
           </h6>
