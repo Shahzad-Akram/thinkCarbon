@@ -8,26 +8,20 @@ import FooterInformation from './components/sections/Footer-information';
 import Mobiles from './pages/categories/mobiles';
 
 function App() {
-  const [dark, setMode] = useState(false);
+	const [ dark, setMode ] = useState(false);
 
-  return (
-    <div
-      className={
-        dark ? 'dark-mode background-image' : 'bg-light background-image'
-      }
-    >
-      <HeaderNav onChange={() => setMode(!dark)}>
-        {dark ? 'Dark' : 'Light'}
-      </HeaderNav>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/mobiles' component={Mobiles} />
-      </Switch>
+	return (
+		<div className={dark ? 'dark-mode background-image' : 'bg-light background-image'}>
+			<HeaderNav onChange={() => setMode(!dark)}>{dark ? 'Dark' : 'Light'}</HeaderNav>
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route exact path="/mobiles/:id" component={Mobiles} />
+			</Switch>
 
-      <Footer />
-      <FooterInformation />
-    </div>
-  );
+			<Footer />
+			<FooterInformation />
+		</div>
+	);
 }
 
 export default App;
