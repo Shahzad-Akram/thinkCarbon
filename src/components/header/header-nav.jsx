@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactSearchBox from 'react-search-box';
 import './switch.styles.css';
+import './menu-list.styles.css';
 
-import { Button, Navbar, Dropdown, DropdownButton, Col } from 'react-bootstrap';
+import { Button, Navbar, Col, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {
   fadeIn,
@@ -16,8 +17,13 @@ import Radium, { StyleRoot } from 'radium';
 // Icons
 import SearchIcon from '../../assets/svgs/search';
 import Cart3Icon from '../../assets/svgs/Cart3';
+import MenuItem from '../menu-item/menu-item';
 
 const HeaderNav = ({ onChange, children }) => {
+  const [isItems1, setIsItems1] = useState(false);
+  const [isItems2, setIsItems2] = useState(false);
+  const [isLink1, setIsLink1] = useState(false);
+
   const styles = {
     fadeInUpBig: {
       animation: 'x 1s',
@@ -75,6 +81,7 @@ const HeaderNav = ({ onChange, children }) => {
             alt='logo'
           />
         </Navbar.Brand>
+
         <Navbar.Toggle
           aria-controls='basic-navbar-nav'
           className='mr-3 border-0'
@@ -82,12 +89,19 @@ const HeaderNav = ({ onChange, children }) => {
 
         <Navbar.Collapse
           id='basic-navbar-nav'
-          className='bg-white position-relative pb-3 pb-lg-0 '
+          className='bg-white position-relative py-2 py-lg-0 '
         >
           <div
-            className='row mx-0 justify-content-around align-items-center w-100'
+            className='row mx-0 px-2 px-sm-0 justify-content-sm-around align-items-center w-100'
             style={styles.fadeInRightBig}
           >
+            <Button
+              variant='outline-success'
+              className='py-0 px-2 d-flex order-last order-sm-first mt-2 mt-sm-0'
+              onMouseEnter={() => setIsItems1(true)}
+            >
+              <small> Categories</small>
+            </Button>
             <Col
               xs={10}
               lg={8}
@@ -130,6 +144,52 @@ const HeaderNav = ({ onChange, children }) => {
           </div>
         </Navbar.Collapse>
       </Navbar>
+      {isItems1 && (
+        <Row
+          className='menu-list mx-0  col col-md-10 col-lg-9 col-xl-6'
+          onMouseLeave={() => setIsItems1(false)}
+        >
+          <Col xs={6} md={4} lg={3} xl={4} className='px-0'>
+            <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
+              <MenuItem
+                itemName='Electronic Devices 1'
+                onMouseEnter={() => setIsItems2(true)}
+              />
+            </ListGroup>
+          </Col>
+
+          {/* Menu-Col-1-End */}
+          {/* Menu-Col-2 */}
+          <Col xs={6} md={4} lg={3} xl={4} className='px-0'>
+            {isItems2 && (
+              <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
+                <MenuItem
+                  link='/mobiles'
+                  itemName='Mobiles'
+                  onMouseEnter={() => setIsLink1(true)}
+                />
+                <MenuItem link='/mobiles' itemName='Mobiles' />
+                <MenuItem itemName='Electronic Devices 3' />
+                <MenuItem itemName='Electronic Devices 4' />
+              </ListGroup>
+            )}
+          </Col>
+          {/* Menu-Col-2-End */}
+          {/* Menu-Col-3 */}
+          <Col xs={6} md={4} lg={3} xl={4} className='px-0 mt-1 mt-md-0'>
+            {isLink1 && (
+              <ListGroup
+                className='h-100 bg-white small rounded-0 nk-shadow-box-1'
+                onMouseLeave={() => setIsLink1(false)}
+              >
+                <MenuItem link='/mobiles' itemName='Mobiles' />
+                <MenuItem link='/' itemName='Option-2' />
+              </ListGroup>
+            )}
+          </Col>
+          {/* Menu-Col-3-End */}
+        </Row>
+      )}
     </StyleRoot>
   );
 };

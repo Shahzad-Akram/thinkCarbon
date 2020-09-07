@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Select from 'react-select';
 import './categories.styles.css';
 import { Link, useParams } from 'react-router-dom';
-import { Container, Button, Row, Col, Form } from 'react-bootstrap';
+import { Container, Button, Row, Col, Form, Pagination } from 'react-bootstrap';
 // Icons
 
 import ChevronRightIcon from '../../assets/svgs/ChevronRight';
@@ -13,28 +14,25 @@ import CheckBox from '../../components/check-box/check-box';
 import PlayFillIcon from '../../assets/svgs/PlayFill';
 import ToggleSideBar from '../../components/toggle/ToggleSideBar';
 import ToggleViewMore from '../../components/toggle/ToggleViewMore';
+import { useQuery } from 'react-query';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductstype } from '../../actions';
-import {useQuery} from 'react-query';
+import { getProducts, getProductstype } from '../../actions';
+
+const data1 = [
+	{ value: 'Best Match', label: 'Best Match' },
+	{ value: 'Price low to hight', label: 'Price low to hight' },
+	{ value: 'Price hight to low', label: 'Price hight to low' }
+];
 
 const Mobiles = () => {
-
 	const param = useParams();
-	const dispatch = useDispatch();
-	const {data,status,error} = useQuery(['products',param.id],getProductstype, dispatch);
-	
-
-	// dispatch({
-	// 	type: 'GET_PRODUCT_BY_TYPE',
-	// 	payload: data
-	// })
-
-	
-
-
+	console.log(param);
+	const [ isSearchable ] = useState(false);
+	const { status, error, data } = useQuery([ 'product', param.id ], getProductstype);
+	console.log(status, data, error);
 
 	return (
-
 		<Container fluid className="categories-container px-0 mt-3 mb-5">
 			<Container className="px-0">
 				<div className="d-flex align-items-baseline categories-nav border-bottom pb-2">
@@ -135,8 +133,8 @@ const Mobiles = () => {
 					</Col>
 				</Row>
 			</Container>
-			<Container className="px-0">
-				<Row className="bg-white mx-0 rounded">
+			<Container className="px-0 ">
+				<Row className="bg-white  mx-0 rounded">
 					<Col lg={2} className="categories-side-bar p-3 mr-1 shadow-sm">
 						<main className="d-none d-lg-block">
 							<section className="border-bottom pb-2 mb-2">
@@ -429,25 +427,33 @@ const Mobiles = () => {
 							</ToggleSideBar>
 						</div>
 					</Col>
-					{status === 'loading' ? (
-						<h1>LOADING ...</h1>
-					) : (
-						<Col className="p-3">
-							<div>
-								<div>
-									<h5 className="mb-2">New Mobile Prices in Pakistan 2020</h5>
-									<small>1972 items found in Mobiles</small>
-								</div>
-							</div>
-							<Row className="Section-2 mx-0 mb-4 flex-nowrap flex-lg-wrap overflow-auto row-cols-2 row-cols-md-3">
-								
-									
-									{data.data.products.map((products) =>
-									<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-									photo={products.images[0]}
-									itemName={products.name}
-									price={products.price}
+					<Col className="p-3 ">
+						<Row className="mx-0 mb-3 pb-3  border-bottom">
+							<Col>
+								<h5 className="mb-1 ">New Mobile Prices in Pakistan 2020</h5>
+								<small class="text-muted">1972 items found in Mobiles</small>
+							</Col>
+							<Col
+								xs={12}
+								md={6}
+								className="select-container d-flex align-items-center justify-content-md-end pt-2 pt-md-0 mt-auto"
+							>
+								<small class="text-muted mr-2">Sort By:</small>
+								<Select
+									className="w-75"
+									defaultValue={data1[1]}
+									isSearchable={isSearchable}
+									options={data1}
+								/>
+							</Col>
+						</Row>
+						<Row className="Section-2 mx-0 mb-4 flex-nowrap flex-lg-wrap overflow-auto row-cols-2 row-cols-md-3">
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
 									priceMinus="Rs.11,445"
 									priceDiscount="-83%"
 								>
@@ -480,628 +486,651 @@ const Mobiles = () => {
 										<small>ADD TO CART</small>
 									</Button>
 								</SaleItem>
-								</Col>
-									)}
-									
-								
-								{/* <Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/94a3abbf86a3d16248a0908ba49e31d9.jpg"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/94a3abbf86a3d16248a0908ba49e31d9.jpg"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col>
-								<Col lg={3} className="d-flex px-0  mb-3">
-									<SaleItem
-										photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-										itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
-										price="Rs.539"
-										available="Installment available"
-									>
-										<div className="order-first mb-2">
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
+												<small>(60)</small>
 											</span>
-											<span className="border border-success pb-1 mr-1">
-												<img
-													height={25}
-													src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
-													alt="item"
-												/>
-											</span>
-										</div>
-										<div className="text-muted small">
-											<small className="d-flex justify-content-between align-items-center">
-												<span>
-													<span className="text-warning mr-1">
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarFillIcon height={10} />
-														<StarHalfFillIcon height={10} />
-														<StarIcon height={10} />
-													</span>
-													<small>(60)</small>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+							<Col lg={3} className="d-flex px-0  mb-3">
+								<SaleItem
+									link="/product-view"
+									photo="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+									itemName="Tecno Pouvoir 4 Pro || 6GB Ram 128GB Rom || 6000mAh Battey || 7 Inch Display"
+									price="Rs.539"
+									available="Installment available"
+								>
+									<div className="order-first mb-2">
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+										<span className="border border-success pb-1 mr-1">
+											<img
+												height={25}
+												src="https://static-01.daraz.pk/p/84f5e8baec827c33bc8c4ed55ff786ee.png"
+												alt="item"
+											/>
+										</span>
+									</div>
+									<div className="text-muted small">
+										<small className="d-flex justify-content-between align-items-center">
+											<span>
+												<span className="text-warning mr-1">
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarFillIcon height={10} />
+													<StarHalfFillIcon height={10} />
+													<StarIcon height={10} />
 												</span>
-												<span>Pakistan</span>
-											</small>
-										</div>
-										<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
-											<small>ADD TO CART</small>
-										</Button>
-									</SaleItem>
-								</Col> */}
-							</Row>
-						</Col>
-					)}
+												<small>(60)</small>
+											</span>
+											<span>Pakistan</span>
+										</small>
+									</div>
+									<Button className="Sale-item-btn-cart mt-2 mx-2" variant="success" size="sm">
+										<small>ADD TO CART</small>
+									</Button>
+								</SaleItem>
+							</Col>
+						</Row>
+						<div className="d-flex justify-content-end text-green-light">
+							<Pagination>
+								<Pagination.Prev />
+								<Pagination.Item active>{1}</Pagination.Item>
+								<Pagination.Item>{2}</Pagination.Item>
+								<Pagination.Item>{3}</Pagination.Item>
+								<Pagination.Item>{4}</Pagination.Item>
+								<Pagination.Item>{5}</Pagination.Item>
+								<Pagination.Ellipsis />
+								<Pagination.Item>{20}</Pagination.Item>
+								<Pagination.Next />
+							</Pagination>
+						</div>
+					</Col>
 				</Row>
 			</Container>
 		</Container>

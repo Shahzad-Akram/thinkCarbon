@@ -15,7 +15,7 @@ const Brand = ({ link, itemPhoto, brandPhoto, brandTitle, brandSubTitle }) => {
       <span className='brand-item w-100 '>
         <img src={itemPhoto} alt='Brand' className='rounded w-100 h-100' />
       </span>
-      <span className='bg-success small text-capitalize'>
+      <span className='bg-wood text-white small text-capitalize'>
         <span className='brand-photo d-flex justify-content-center mt-n3 mb-1'>
           <img src={brandPhoto} alt='Brand' className='rounded' />
         </span>

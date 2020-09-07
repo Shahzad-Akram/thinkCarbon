@@ -1,57 +1,73 @@
 .categories-nav .btn-link {
-  color: #fff !important;
+	color: #fff !important;
 }
 
 .categories-nav .btn-link:hover {
-  color: rgb(77 255 0) !important;
+	color: rgb(77 255 0) !important;
 }
 
 .categories-nav-brand {
-  height: 100px;
+	height: 100px;
 }
 
 .categories-side-bar .form-control-sm,
 .categories-side-bar .form-control-sm::placeholder {
-  font-size: 0.6rem;
-  padding: 0 0 0 5px;
-  height: 100%;
+	font-size: 0.6rem;
+	padding: 0 0 0 5px;
+	height: 100%;
 }
 
 .categories-side-bar .side-bar-toggle {
-  background: rgb(26 10 10 / 78%);
-  color: #fff;
+	background: rgb(26 10 10 / 78%);
+	color: #fff;
+	top: 107px;
+	height: 34rem;
+	width: 100.6%;
+	overflow: auto;
+}
+
+@media (max-width: 560.98px) {
+	.categories-side-bar .side-bar-toggle {
+		height: 40rem;
+	}
 }
 
 .categories-side-bar .form-control:focus {
-  border-color: #4cef06;
+	border-color: #4cef06;
 
-  box-shadow: unset;
+	box-shadow: unset;
 }
 
 .categories-container .Sale-item {
-  border: unset;
+	border: unset;
 }
 
 .categories-container .Sale-item:hover .Sale-item-btn-cart {
-  opacity: 1;
-  justify-content: center;
+	opacity: 1;
+	justify-content: center;
 }
 
 .categories-container .Sale-item-btn-cart {
-  display: flex;
-  opacity: 0;
+	display: flex;
+	opacity: 0;
 }
 
 .categories-container .Sale-item-image {
-  height: 200px;
-  width: 200px;
-  margin: auto;
+	height: 200px;
+	width: 200px;
+	margin: auto;
 }
 
 @media (max-width: 780.98px) {
-  .categories-container .Sale-item-image {
-    height: 160px;
-    width: 160px;
-    margin: auto;
-  }
+	.categories-container .Sale-item-image {
+		height: 160px;
+		width: 160px;
+		margin: auto;
+	}
+}
+
+.background-image-1 {
+	background-image: url(https://img3.stockfresh.com/files/a/anterovium/m/67/3920478_stock-photo-old-brown-paper-crumpled.jpg);
+	background-size: contain;
+	background-attachment: fixed;
 }
