@@ -13,7 +13,11 @@ const Brand = ({ link, itemPhoto, brandPhoto, brandTitle, brandSubTitle }) => {
       className='brand-container d-flex flex-column text-center bg-white px-0  py-0 py-md-3 py-xl-0'
     >
       <span className='brand-item w-100 '>
-        <img src={itemPhoto} alt='Brand' className='rounded w-100 h-100' />
+        <img
+          src={itemPhoto}
+          alt='Brand'
+          className='object-fit-contain rounded w-100 h-100'
+        />
       </span>
       <span className='bg-wood text-white small text-capitalize'>
         <span className='brand-photo d-flex justify-content-center mt-n3 mb-1'>

@@ -15,7 +15,12 @@ const SaleItem = ({
 }) => {
   return (
     <Card as={Link} to={link} className='Sale-item'>
-      <Card.Img variant='top' className='Sale-item-image' src={photo} />
+      <Card.Img
+        variant='top'
+        height={200}
+        className='Sale-item-image object-fit-contain'
+        src={photo}
+      />
       <Card.Body className='px-1 d-flex justify-content-between flex-column'>
         <Card.Text className='small'>
           <small>{itemName}</small>

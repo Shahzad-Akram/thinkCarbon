@@ -74,7 +74,7 @@ const ProductView = () => {
                 <div>
                   <span className='product-item-sm border border-success'>
                     <img
-                      className='h-100 w-100'
+                      className='h-100 w-100 object-fit-contain'
                       src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                       alt='phone'
                     />
@@ -90,7 +90,7 @@ const ProductView = () => {
                 <div>
                   <span className='product-item-sm border border-success'>
                     <img
-                      className='h-100 w-100'
+                      className='h-100 w-100 object-fit-contain'
                       src='https://static-01.daraz.pk/p/95c2dfcde08373c07a2afa5bc198476c.png_120x120q80.jpg_.webp'
                       alt='phone'
                     />
@@ -202,25 +202,27 @@ const ProductView = () => {
                   </small>
                   <div className='d-flex mt-2'>
                     <Button
+                      variant='outline-success'
                       onClick={() => setProductItem1(true)}
                       onMouseEnter={() => setProductItem1(true)}
                       onMouseLeave={() => setProductItem2(false)}
-                      className='product-item-sm mr-3 border border-success'
+                      className='product-item-sm mr-3'
                     >
                       <img
-                        className='h-100 w-100'
+                        className='h-100 w-100 object-fit-contain'
                         src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                         alt='phone'
                       />
                     </Button>
                     <Button
+                      variant='outline-success'
                       onClick={() => setProductItem2(true)}
                       onMouseEnter={() => setProductItem2(true)}
                       onMouseLeave={() => setProductItem1(false)}
-                      className='product-item-sm mr-3 border border-success'
+                      className='product-item-sm mr-3'
                     >
                       <img
-                        className='h-100 w-100'
+                        className='h-100 w-100 object-fit-contain'
                         src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                         alt='phone'
                       />

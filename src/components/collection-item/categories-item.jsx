@@ -12,7 +12,12 @@ const CategoriesItem = ({ link, product, title }) => (
     className='categories-box bg-white border-bottom border-right text-center p-2 '
   >
     <div className='categories-box-items d-flex align-items-center justify-content-around mb-2'>
-      <Image height={100} src={product} rounded />
+      <Image
+        height={100}
+        src={product}
+        rounded
+        className='object-fit-contain'
+      />
     </div>
     <div className='categories-box-title small text-capitalize'>
       <small className='font-weight-bold'>{title}</small>

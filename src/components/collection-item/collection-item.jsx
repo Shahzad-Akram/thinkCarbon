@@ -24,11 +24,26 @@ const CollectionItem = ({
       </small>
     </div>
     <div className='collection-box-items d-flex align-items-center justify-content-around'>
-      <Image height={70} src={productOne} rounded />
+      <Image
+        height={70}
+        src={productOne}
+        rounded
+        className='object-fit-contain'
+      />
 
-      <Image height={70} src={productTwo} rounded />
+      <Image
+        height={70}
+        src={productTwo}
+        rounded
+        className='object-fit-contain'
+      />
 
-      <Image height={70} src={productThree} rounded />
+      <Image
+        height={70}
+        src={productThree}
+        rounded
+        className='object-fit-contain'
+      />
     </div>
   </Col>
 );
