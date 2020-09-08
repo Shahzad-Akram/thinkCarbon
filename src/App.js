@@ -8,6 +8,7 @@ import FooterInformation from './components/sections/Footer-information';
 import Mobiles from './pages/categories/mobiles';
 import ProductView from './pages/product-view/product-view';
 import { useDispatch, useSelector } from 'react-redux';
+import Cart from './pages/cart/cart';
 import { getProducts } from './actions';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 					<Route exact path="/" component={Home} />
 					<Route exact path="/mobiles/:id" component={Mobiles} />
 					<Route exact path="/product-view" component={ProductView} />
+					<Route exact path="/cart" component={Cart} />
 				</Switch>
 				<Footer />
 				<FooterInformation />
