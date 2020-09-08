@@ -7,24 +7,32 @@ import Footer from './components/sections/Footer';
 import FooterInformation from './components/sections/Footer-information';
 import Mobiles from './pages/categories/mobiles';
 import ProductView from './pages/product-view/product-view';
+import Cart from './pages/cart/cart';
 
 function App() {
-	const [ dark, setMode ] = useState(false);
+  const [dark, setMode] = useState(false);
 
-	return (
-		<section className={dark ? 'dark-mode background-image' : 'bg-light background-image'}>
-			<HeaderNav onChange={() => setMode(!dark)}>{dark ? 'Dark' : 'Light'}</HeaderNav>
-			<div>
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/mobiles/:id" component={Mobiles} />
-					<Route exact path="/product-view" component={ProductView} />
-				</Switch>
-				<Footer />
-				<FooterInformation />
-			</div>
-		</section>
-	);
+  return (
+    <section
+      className={
+        dark ? 'dark-mode background-image' : 'bg-light background-image'
+      }
+    >
+      <HeaderNav onChange={() => setMode(!dark)}>
+        {dark ? 'Dark' : 'Light'}
+      </HeaderNav>
+      <div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/mobiles/:id' component={Mobiles} />
+          <Route exact path='/product-view' component={ProductView} />
+          <Route exact path='/cart' component={Cart} />
+        </Switch>
+        <Footer />
+        <FooterInformation />
+      </div>
+    </section>
+  );
 }
 
 export default App;

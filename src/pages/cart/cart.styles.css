@@ -1,0 +1,19 @@
+.container-cart .checkbox {
+  margin: 0;
+}
+
+.container-cart .checkbox-title {
+  width: 200px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  top: -5px;
+}
+
+.container-cart .form-control,
+.container-cart .form-control::placeholder {
+  font-size: 0.8rem;
+}
+
+.container-cart .form-control:focus {
+  box-shadow: 0 0 0 0.05rem rgba(76, 239, 6, 0.4);
+}

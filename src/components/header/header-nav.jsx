@@ -127,7 +127,7 @@ const HeaderNav = ({ onChange, children }) => {
               >
                 <SearchIcon />
               </Button>
-              <Button variant='link' className='p-0 ml-4'>
+              <Button as={Link} to='/cart' variant='link' className='p-0 ml-4'>
                 <Cart3Icon />
               </Button>
             </Col>
