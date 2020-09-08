@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Carousel, Button, Row, Col, ListGroup } from 'react-bootstrap';
 import MenuItem from '../menu-item/menu-item';
 
@@ -8,6 +9,20 @@ const SectionOne = () => {
 
 	// Link Col
 	const [ isLink1, setIsLink1 ] = useState(false);
+
+	const products = useSelector((state) => state.products);
+	let categories = [];
+	let selected = [];
+
+	if (products !== null) {
+		categories = products.data.products.map((product) => product.category);
+	}
+	for (let i = 0; i < categories.length; i++) {
+		if (selected.indexOf(categories[i]) === -1) {
+			selected.push(categories[i]);
+		}
+	}
+	console.log(selected);
 
 	return (
 		<div className="Section-1 position-relative mb-3" onMouseLeave={() => setIsItems1(false)}>
@@ -23,10 +38,17 @@ const SectionOne = () => {
 				<Col md={4} lg={3} xl={4} className="px-0">
 					{isItems1 && (
 						<ListGroup className="h-100 bg-white small rounded-0 nk-shadow-box-1">
-							<MenuItem link="/mobiles/solar" itemName="Solar" onMouseEnter={() => setIsLink1(true)} />
+							{selected.map((category) => (
+								<MenuItem
+									link={`/mobiles/${category}`}
+									itemName={category}
+									onMouseEnter={() => setIsLink1(true)}
+								/>
+							))}
+							{/* <MenuItem link="/mobiles/solar" itemName="Solar" onMouseEnter={() => setIsLink1(true)} />
 							<MenuItem link="/mobiles" itemName="Mobiles" />
 							<MenuItem itemName="Electronic Devices 3" />
-							<MenuItem itemName="Electronic Devices 4" />
+							<MenuItem itemName="Electronic Devices 4" /> */}
 						</ListGroup>
 					)}
 				</Col>

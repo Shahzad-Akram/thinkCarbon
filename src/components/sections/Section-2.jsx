@@ -5,16 +5,18 @@ import SaleItem from '../saleItem/saleItem';
 import Countdown from 'react-countdown';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts, getProductstype } from '../../actions';
+import { getProductslimit } from '../../actions';
+import { useQuery } from 'react-query';
 
 const SectionTwo = () => {
 	const products = useSelector((state) => state);
 	const dispatch = useDispatch();
-	console.log(products);
 
-	useEffect(() => {
-		getProducts(dispatch);
-	}, []);
+	const { status, error, data } = useQuery([ 'product', 5 ], getProductslimit);
+	console.log(status, error, data);
+	// useEffect(() => {
+	// 	getProducts(dispatch);
+	// }, []);
 
 	return (
 		<Container className="Section-2 px-0 mb-3">
@@ -35,7 +37,20 @@ const SectionTwo = () => {
 					</Button>
 				</div>
 				<CardDeck className="row-cols-2  d-flex overflow-auto pt-3 pb-0 pb-md-3 mx-3 mx-md-0">
-					<SaleItem
+					{status == 'loading' ? (
+						<h1>loading</h1>
+					) : (
+						data.data.products.map((product) => (
+							<SaleItem
+								photo={product.images}
+								itemName={product.name}
+								price={product.price}
+								priceMinus="Rs.11,445"
+								priceDiscount="-83%"
+							/>
+						))
+					)}
+					{/* <SaleItem
 						photo="https://static-01.daraz.pk/p/fbfb1ecbb185f2bc0b2ed698676b0978.jpg"
 						itemName="Wiresto TWS Wireless Bluetooth V5.0 Headset for iPhone Xiaomi"
 						price="Rs.539"
@@ -68,7 +83,7 @@ const SectionTwo = () => {
 						price="Rs.539"
 						priceMinus="Rs.11,445"
 						priceDiscount="-83%"
-					/>
+					/> */}
 				</CardDeck>
 			</div>
 		</Container>
