@@ -12,30 +12,36 @@ import Cart from './pages/cart/cart';
 import { getProducts } from './actions';
 
 function App() {
-	const [ dark, setMode ] = useState(false);
-	const dispatch = useDispatch();
-	const products = useSelector((state) => state);
-	console.log(products);
+  const [dark, setMode] = useState(false);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state);
+  console.log(products);
 
-	useEffect(() => {
-		getProducts(dispatch);
-	}, []);
+  useEffect(() => {
+    getProducts(dispatch);
+  }, []);
 
-	return (
-		<section className={dark ? 'dark-mode background-image' : 'bg-light background-image'}>
-			<HeaderNav onChange={() => setMode(!dark)}>{dark ? 'Dark' : 'Light'}</HeaderNav>
-			<div>
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/mobiles/:id" component={Mobiles} />
-					<Route exact path="/product-view" component={ProductView} />
-					<Route exact path="/cart" component={Cart} />
-				</Switch>
-				<Footer />
-				<FooterInformation />
-			</div>
-		</section>
-	);
+  return (
+    <section
+      className={
+        dark ? 'dark-mode background-image' : 'bg-light background-image'
+      }
+    >
+      <HeaderNav onChange={() => setMode(!dark)}>
+        {dark ? 'Dark' : 'Light'}
+      </HeaderNav>
+      <div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/mobiles/:id' component={Mobiles} />
+          <Route exact path='/product-view' component={ProductView} />
+          <Route exact path='/cart' component={Cart} />
+        </Switch>
+        <Footer />
+        <FooterInformation />
+      </div>
+    </section>
+  );
 }
 
 export default App;

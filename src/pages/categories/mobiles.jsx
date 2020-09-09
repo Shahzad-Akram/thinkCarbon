@@ -514,7 +514,7 @@ const Mobiles = () => {
 								))
 							)}
 						</Row>
-						<div className="d-flex justify-content-end text-green-light">
+						<div className="d-flex justify-content-center text-green-light">
 							<Pagination>
 								<Pagination.Prev />
 								<Pagination.Item active>{1}</Pagination.Item>

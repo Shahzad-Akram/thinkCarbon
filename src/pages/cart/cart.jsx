@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import './cart.styles.css';
 
@@ -10,6 +10,10 @@ import TrashIcon from '../../assets/svgs/Trash';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
+  const [count1, setCount1] = useState(1);
+  const [count2, setCount2] = useState(1);
+  const [count3, setCount3] = useState(1);
+  const [count4, setCount4] = useState(1);
   return (
     <Form className='container-cart container px-0'>
       <Row className='mx-0 my-3'>
@@ -46,14 +50,15 @@ const Cart = () => {
             </Button>
           </section>
           <section className='bg-white rounded'>
-            <Row className='mx-0 py-2 pl-2 pr-2 pr-md-4 border-bottom'>
-              <Col md={6} className='d-flex px-0 order-last order-md-first'>
+            <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+              <Col md={6} className='d-flex px-0 order-0 order-md-first'>
                 <span>
                   <CheckBox />
                 </span>
                 <Link to='/product-view' className='mx-2'>
                   <img
-                    height={50}
+                    className='object-fit-contain'
+                    height={80}
                     src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                     alt='phone'
                   />
@@ -71,9 +76,9 @@ const Cart = () => {
                   </div>
                 </div>
               </Col>
-              <div className='col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex d-md-block'>
-                <div>Rs. 20,897</div>
-                <div>
+              <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
+                <div className='text-success'>Rs. 20,897</div>
+                <div className='text-line-through'>
                   <small>Rs. 22,000</small>
                 </div>
                 <div>
@@ -92,19 +97,33 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mb-0 small'>
-                <span className='text-black-50'>Qty:</span>
-                <span>1</span>
+              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+                <Button
+                  variant='light'
+                  className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount1(count1 - 1)}
+                >
+                  -
+                </Button>
+                <h6 className='mb-0 mx-3'> {count1} </h6>
+                <Button
+                  variant='light'
+                  className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount1(count1 + 1)}
+                >
+                  +
+                </Button>
               </div>
             </Row>
-            <Row className='mx-0 py-2 pl-2 pr-2 pr-md-4 border-bottom'>
-              <Col md={6} className='d-flex px-0 order-last order-md-first'>
+            <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+              <Col md={6} className='d-flex px-0 order-0 order-md-first'>
                 <span>
                   <CheckBox />
                 </span>
                 <Link to='/product-view' className='mx-2'>
                   <img
-                    height={50}
+                    className='object-fit-contain'
+                    height={80}
                     src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                     alt='phone'
                   />
@@ -122,9 +141,9 @@ const Cart = () => {
                   </div>
                 </div>
               </Col>
-              <div className='col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex d-md-block'>
-                <div>Rs. 20,897</div>
-                <div>
+              <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
+                <div className='text-success'>Rs. 20,897</div>
+                <div className='text-line-through'>
                   <small>Rs. 22,000</small>
                 </div>
                 <div>
@@ -143,19 +162,33 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mb-0 small'>
-                <span className='text-black-50'>Qty:</span>
-                <span>1</span>
+              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+                <Button
+                  variant='light'
+                  className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount2(count2 - 1)}
+                >
+                  -
+                </Button>
+                <h6 className='mb-0 mx-3'> {count2} </h6>
+                <Button
+                  variant='light'
+                  className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount2(count2 + 1)}
+                >
+                  +
+                </Button>
               </div>
             </Row>
-            <Row className='mx-0 py-2 pl-2 pr-2 pr-md-4 border-bottom'>
-              <Col md={6} className='d-flex px-0 order-last order-md-first'>
+            <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+              <Col md={6} className='d-flex px-0 order-0 order-md-first'>
                 <span>
                   <CheckBox />
                 </span>
                 <Link to='/product-view' className='mx-2'>
                   <img
-                    height={50}
+                    className='object-fit-contain'
+                    height={80}
                     src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                     alt='phone'
                   />
@@ -173,9 +206,9 @@ const Cart = () => {
                   </div>
                 </div>
               </Col>
-              <div className='col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex d-md-block'>
-                <div>Rs. 20,897</div>
-                <div>
+              <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
+                <div className='text-success'>Rs. 20,897</div>
+                <div className='text-line-through'>
                   <small>Rs. 22,000</small>
                 </div>
                 <div>
@@ -194,19 +227,33 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mb-0 small'>
-                <span className='text-black-50'>Qty:</span>
-                <span>1</span>
+              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+                <Button
+                  variant='light'
+                  className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount3(count3 - 1)}
+                >
+                  -
+                </Button>
+                <h6 className='mb-0 mx-3'> {count3} </h6>
+                <Button
+                  variant='light'
+                  className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount3(count3 + 1)}
+                >
+                  +
+                </Button>
               </div>
             </Row>
-            <Row className='mx-0 py-2 pl-2 pr-2 pr-md-4 border-bottom'>
-              <Col md={6} className='d-flex px-0 order-last order-md-first'>
+            <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+              <Col md={6} className='d-flex px-0 order-0 order-md-first'>
                 <span>
                   <CheckBox />
                 </span>
                 <Link to='/product-view' className='mx-2'>
                   <img
-                    height={50}
+                    className='object-fit-contain'
+                    height={80}
                     src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
                     alt='phone'
                   />
@@ -224,9 +271,9 @@ const Cart = () => {
                   </div>
                 </div>
               </Col>
-              <div className='col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex d-md-block'>
-                <div>Rs. 20,897</div>
-                <div>
+              <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
+                <div className='text-success'>Rs. 20,897</div>
+                <div className='text-line-through'>
                   <small>Rs. 22,000</small>
                 </div>
                 <div>
@@ -245,9 +292,22 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mb-0 small'>
-                <span className='text-black-50'>Qty:</span>
-                <span>1</span>
+              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+                <Button
+                  variant='light'
+                  className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount4(count4 - 1)}
+                >
+                  -
+                </Button>
+                <h6 className='mb-0 mx-3'> {count4} </h6>
+                <Button
+                  variant='light'
+                  className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                  onClick={() => setCount4(count4 + 1)}
+                >
+                  +
+                </Button>
               </div>
             </Row>
           </section>
