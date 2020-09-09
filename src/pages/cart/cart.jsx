@@ -15,7 +15,7 @@ const Cart = () => {
   const [count3, setCount3] = useState(1);
   const [count4, setCount4] = useState(1);
   return (
-    <Form className='container-cart container px-0'>
+    <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-center justify-content-center  my-5'>
       <Row className='mx-0 my-3'>
         <Col>
           <section className='bg-white rounded pl-3 pb-2 mb-3'>
@@ -97,7 +97,7 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+              <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
                 <Button
                   variant='light'
                   className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
@@ -162,7 +162,7 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+              <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
                 <Button
                   variant='light'
                   className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
@@ -227,7 +227,7 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+              <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
                 <Button
                   variant='light'
                   className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
@@ -292,7 +292,7 @@ const Cart = () => {
                   </Button>
                 </span>
               </div>
-              <div className='mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+              <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
                 <Button
                   variant='light'
                   className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
