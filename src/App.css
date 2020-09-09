@@ -266,7 +266,7 @@ h5,
 .logo {
   position: absolute;
   top: 50%;
-  left: 6%;
+  left: 30px;
   transform: translateY(-50%);
 }
 
