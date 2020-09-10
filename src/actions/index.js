@@ -38,3 +38,15 @@ export const getProductslimit = (key, limit) => {
 			console.log(err);
 		});
 };
+
+export const getSingleProduct = (key, id) => {
+	return axios
+		.get(`https://think-carbon-neutral-shop.herokuapp.com/product/${id}`)
+		.then((res) => {
+			return res;
+		})
+		.catch((err) => {
+			// handle error
+			console.log(err);
+		});
+};

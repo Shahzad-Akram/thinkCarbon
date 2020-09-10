@@ -13,10 +13,14 @@ const SectionTwo = () => {
 	const dispatch = useDispatch();
 
 	const { status, error, data } = useQuery([ 'product', 5 ], getProductslimit);
-	console.log(status, error, data);
-	// useEffect(() => {
-	// 	getProducts(dispatch);
-	// }, []);
+	
+
+	if (status !== 'loading') {
+		dispatch({
+			type: 'GET_PRODUCT_BY_LIMIT',
+			payload: data
+		});
+	}
 
 	return (
 		<Container className="Section-2 px-0 mb-3">
