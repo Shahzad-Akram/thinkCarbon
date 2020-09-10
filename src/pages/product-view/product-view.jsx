@@ -174,7 +174,7 @@ const ProductView = () => {
 										<CalendarWeekIcon height={13} />
 									</span>
 									Up to 12 months, as low as Rs. 1,792 per month.
-								</span>
+								</span>	
 							</div>
 						</section>
 						<section className="position-relative">

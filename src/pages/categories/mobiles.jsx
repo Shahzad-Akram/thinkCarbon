@@ -472,7 +472,7 @@ const Mobiles = () => {
 								data.data.products.map((product, key = product.id) => (
 									<Col lg={3} className="d-flex px-0  mb-3">
 										<SaleItem
-											link={`/product-view/${product._id}`}
+											// link={`/product-view/${product._id}`}
 											photo={product.images}
 											itemName={product.name}
 											price={product.price}
