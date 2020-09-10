@@ -41,9 +41,10 @@ const Mobiles = () => {
 	}
 
 	const handleClick = (product) => {
-		setSelected([ ...selected, product ]);
+		setSelected((selected) => [ ...selected, product ]);
 
-		console.log(selected);
+		localStorage.setItem('purchases', JSON.stringify(selected));
+
 		localStorage.setItem('purchases', JSON.stringify(selected));
 		var user = JSON.parse(localStorage.getItem('purchases'));
 		console.log('onclick working', localStorage, user);
@@ -471,7 +472,7 @@ const Mobiles = () => {
 								data.data.products.map((product, key = product.id) => (
 									<Col lg={3} className="d-flex px-0  mb-3">
 										<SaleItem
-											// link="/product-view"
+											link={`/product-view/${product._id}`}
 											photo={product.images}
 											itemName={product.name}
 											price={product.price}
