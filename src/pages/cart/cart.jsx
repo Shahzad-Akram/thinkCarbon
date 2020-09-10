@@ -15,8 +15,8 @@ const Cart = () => {
   const [count3, setCount3] = useState(1);
   const [count4, setCount4] = useState(1);
   return (
-    <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-center justify-content-center  my-5'>
-      <Row className='mx-0 my-3'>
+    <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
+      <Row className='mx-0 my-3 w-100'>
         <Col>
           <section className='bg-white rounded pl-3 pb-2 mb-3'>
             <small>
