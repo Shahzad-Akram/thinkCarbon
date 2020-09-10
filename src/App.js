@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Home from './pages/home/home';
 import HeaderNav from './components/header/header-nav';
 import Footer from './components/sections/Footer';
@@ -11,14 +11,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cart from './pages/cart/cart';
 import { getProducts } from './actions';
 
-function App() {
-	const [ dark, setMode ] = useState(false);
-	const dispatch = useDispatch();
-	const products = useSelector((state) => state);
+function App({ location }) {
+  const [dark, setMode] = useState(false);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state);
+  console.log(products);
 
-	useEffect(() => {
-		getProducts(dispatch);
-	}, []);
+  useEffect(() => {
+    getProducts(dispatch);
+  }, []);
 
 	return (
 		<section className={dark ? 'dark-mode background-image' : 'bg-light background-image'}>
@@ -31,10 +32,11 @@ function App() {
 					<Route exact path="/cart" component={Cart} />
 				</Switch>
 				<Footer />
-				<FooterInformation />
+				
+				<FooterInformation location={location} />
 			</div>
 		</section>
 	);
 }
 
-export default App;
+export default withRouter(App);

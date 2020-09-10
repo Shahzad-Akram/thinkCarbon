@@ -69,7 +69,7 @@ const HeaderNav = ({ onChange, children }) => {
   return (
     <StyleRoot className='bg-white'>
       <Navbar
-        className='col col-lg-10 mx-auto justify-content-between px-0 py-3 bg-white'
+        className='container px-0 mx-auto justify-content-between px-0 py-3 bg-white'
         expand='lg'
       >
         <Navbar.Brand as={Link} to='/' className='w-10 ml-2 ml-sm-5 mr-0'>
