@@ -56,6 +56,7 @@ const CartCheckout = () => {
                   <Form.Control
                     as='select'
                     defaultValue='Please choose your province'
+                    custom
                   >
                     <option disabled>Please choose your province</option>
                     <option>...</option>
@@ -67,6 +68,7 @@ const CartCheckout = () => {
                   <Form.Control
                     as='select'
                     defaultValue='Please choose your city'
+                    custom
                   >
                     <option disabled>Please choose your city</option>
                     <option>...</option>
@@ -78,6 +80,7 @@ const CartCheckout = () => {
                   <Form.Control
                     as='select'
                     defaultValue='Please choose your area'
+                    custom
                   >
                     <option disabled>Please choose your area</option>
                     <option>...</option>

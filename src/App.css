@@ -12,6 +12,11 @@ body {
   object-fit: contain;
 }
 
+select,
+option {
+  font-size: 0.8rem !important;
+}
+
 .tr-vh-100 {
   height: 100vh;
 }
