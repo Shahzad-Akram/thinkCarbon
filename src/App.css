@@ -241,7 +241,7 @@ li.react-search-box-dropdown-list-item {
 }
 
 a {
-  color: unset !important;
+  color: unset;
 }
 
 a small {
