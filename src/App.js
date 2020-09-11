@@ -32,9 +32,9 @@ function App({ location }) {
       </HeaderNav>
       <div>
         <Switch>
-          <Route exact path='/product-view/:id' component={Home} />
+          <Route exact path='/' component={Home} />
           <Route exact path='/mobiles/:id' component={Mobiles} />
-          <Route exact path='/' component={ProductView} />
+          <Route exact path='/product-view/:id' component={ProductView} />
           <Route exact path='/cart' component={Cart} />
         </Switch>
         <Footer />
