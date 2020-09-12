@@ -6,7 +6,7 @@ import ChevronRightIcon from '../../assets/svgs/ChevronRight';
 
 const ModelCart = ({ show, onHide, onClick }) => {
   return (
-    <Modal show={show} onHide={onHide} backdrop='static' size='lg'>
+    <Modal show={show} onHide={onHide} backdrop='static' size='lg' centered>
       <Modal.Header className='py-2' closeButton></Modal.Header>
       <Modal.Body className='p-0'>
         <Row>
