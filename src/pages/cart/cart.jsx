@@ -37,7 +37,6 @@ const Cart = () => {
 
  
 
-
   return (
     <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
       <Row className='mx-0 my-3 w-100'>
@@ -173,7 +172,13 @@ const Cart = () => {
             </small>
 
             <div className='mt-3'>
-              <Button variant='success' type='submit' block>
+              <Button
+                as={Link}
+                to='/cart-checkout'
+                variant='success'
+                type='submit'
+                block
+              >
                 <small>PROCEED TO CHECKOUT</small>
               </Button>
             </div>
