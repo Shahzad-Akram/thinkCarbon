@@ -96,7 +96,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(242, 242, 242)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner1} alt='First slide' />
             </Button>
           </div>
@@ -108,7 +111,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(11, 95, 131)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner2} alt='Third slide' />
             </Button>
           </div>
@@ -120,7 +126,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(237, 246, 251)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner3} alt='Third slide' />
             </Button>
           </div>
@@ -132,7 +141,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(78, 62, 55)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner4} alt='slide' />
             </Button>
           </div>
@@ -144,7 +156,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(124, 132, 51)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner5} alt='slide' />
             </Button>
           </div>
@@ -156,7 +171,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(247, 247, 247)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner6} alt='slide' />
             </Button>
           </div>
@@ -168,7 +186,10 @@ const SectionOne = () => {
               backgroundColor: `RGB(105, 129, 68)`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner7} alt='slide' />
             </Button>
           </div>
@@ -180,7 +201,10 @@ const SectionOne = () => {
               backgroundColor: `#105304`,
             }}
           >
-            <Button variant='link' className='mx-auto p-0 col-xl-3'>
+            <Button
+              variant='link'
+              className='mx-auto p-0 d-flex w-75 justify-content-end'
+            >
               <img className='image-size' src={Banner8} alt='slide' />
             </Button>
           </div>
