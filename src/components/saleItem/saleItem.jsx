@@ -14,13 +14,15 @@ const SaleItem = ({
   children,
 }) => {
   return (
-    <Card as={Link} to={link} className='Sale-item'>
+    <Card  className='Sale-item shadow-sm'>
+      <Link to={link}>
       <Card.Img
         variant='top'
         height={200}
         className='Sale-item-image object-fit-contain'
         src={photo}
       />
+      </Link>
       <Card.Body className='px-1 d-flex justify-content-between flex-column'>
         <Card.Text className='small'>
           <small>{itemName}</small>

@@ -29,7 +29,7 @@ const SectionOne = () => {
       selected.push(categories[i]);
     }
   }
-  console.log(selected);
+  
 
   return (
     <div className='Section-1 mb-3' onMouseLeave={() => setIsItems1(false)}>

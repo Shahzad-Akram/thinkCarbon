@@ -9,6 +9,7 @@ import {createStore,compose, applyMiddleware} from 'redux'
 import allReducers from './reducers/index'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
+import { CartProvider } from "react-use-cart";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(allReducers, composeEnhancer(applyMiddleware(thunk)),);
@@ -17,7 +18,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Provider store={store}>
+    <CartProvider>
       <App />
+      </CartProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

@@ -15,7 +15,7 @@ function App({ location }) {
   const [dark, setMode] = useState(false);
   const dispatch = useDispatch();
   const products = useSelector((state) => state);
-  console.log(products);
+
 
   useEffect(() => {
     getProducts(dispatch);

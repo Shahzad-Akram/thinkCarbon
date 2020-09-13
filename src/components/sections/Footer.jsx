@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Footer = () => (
-  <Container fluid className='Seciton-footer  px-0 py-4 text-white '>
+  <Container fluid className='Seciton-footer  px-0 py-4 text-white  '>
     <Row className='categories-container mx-0 justify-content-center'>
       <Col md={3}>
         <div className='d-flex flex-column mb-3'>
@@ -74,10 +74,10 @@ const Footer = () => (
           <small>STRN Number : 1700401211818</small>
         </div>
       </Col>
-      <Col md={3}>
+      <Col md={3} className='align-items-center col-md-3 d-flex justify-content-center'>
         <div>
           <img
-            className='filter-brightness'
+            // className='filter-brightness'
             height='120'
             src='https://osp-server.s3.us-east-2.amazonaws.com/logo.png'
             alt='logo'

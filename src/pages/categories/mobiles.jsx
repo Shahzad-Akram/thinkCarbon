@@ -18,6 +18,7 @@ import { useQuery } from 'react-query';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, getProductstype } from '../../actions';
+import { useCart } from "react-use-cart";
 
 const data1 = [
 	{ value: 'Best Match', label: 'Best Match' },
@@ -30,6 +31,12 @@ const Mobiles = () => {
 	const param = useParams();
 	const [ isSearchable ] = useState(false);
 	const { status, error, data } = useQuery([ 'product', param.id ], getProductstype);
+	const {addItem, items, inCart} = useCart();
+
+	
+
+	console.log(items)
+
 
 	const dispatch = useDispatch();
 
@@ -41,14 +48,16 @@ const Mobiles = () => {
 	}
 
 	const handleClick = (product) => {
-		setSelected((selected) => [ ...selected, product ]);
-
-		localStorage.setItem('purchases', JSON.stringify(selected));
-
-		localStorage.setItem('purchases', JSON.stringify(selected));
-		var user = JSON.parse(localStorage.getItem('purchases'));
-		console.log('onclick working', localStorage, user);
+		const productWithId ={
+			...product,
+			id: product._id
+		}
+		
+		addItem(productWithId)
+	
 	};
+
+
 
 	return (
 		<Container fluid className="categories-container px-0 mt-3 mb-5">
@@ -466,24 +475,32 @@ const Mobiles = () => {
 							</Col>
 						</Row>
 						<Row className="Section-2 mx-0 mb-4 flex-nowrap flex-lg-wrap overflow-auto row-cols-2 row-cols-md-3">
-							{status == 'loading' ? (
+							{status === 'loading' ? (
 								<h1>loading...</h1>
 							) : (
-								data.data.products.map((product, key = product.id) => (
-									<Col lg={3} className="d-flex px-0  mb-3">
+								data.data.products.map((product, key = product._id) =>{
+									const alreadyAdded = inCart(product._id)
+									
+									return(
+									
+									<Col lg={3} className="d-flex px-0  mb-3"  >
+								
 										<SaleItem
-											// link={`/product-view/${product._id}`}
+											link={`/product-view/${product._id}`}
 											photo={product.images}
 											itemName={product.name}
 											price={product.price}
 											priceMinus="Rs.11,445"
 											priceDiscount="-83%"
 										>
-											<div className="order-first mb-2">
+										
+									
+											<div className="order-first mb-2" >
 												<span className="border border-success pb-1 mr-1">
 													<img height={25} src={product.images} alt="item" />
 												</span>
 											</div>
+										
 											<div className="text-muted small">
 												<small className="d-flex justify-content-between align-items-center">
 													<span>
@@ -499,20 +516,22 @@ const Mobiles = () => {
 													<span>Pakistan</span>
 												</small>
 											</div>
-
 											<Button
+												
 												className="Sale-item-btn-cart mt-2 mx-2"
 												variant="success"
 												size="sm"
-												onClick={() => {
-													handleClick(product);
-												}}
+												onClick={() => handleClick(product)}
 											>
-												<small>ADD TO CART</small>
+												{alreadyAdded ? <small>ADD AGAIN </small> : <small>ADD TO CART </small> }  
+												
+												
 											</Button>
+											
+											
 										</SaleItem>
 									</Col>
-								))
+								)})
 							)}
 						</Row>
 						<div className="d-flex justify-content-center text-green-light">

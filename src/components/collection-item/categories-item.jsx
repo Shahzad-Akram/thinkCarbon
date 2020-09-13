@@ -9,7 +9,7 @@ const CategoriesItem = ({ link, product, title }) => (
     lg={2}
     as={Link}
     to={link}
-    className='categories-box bg-white border-bottom border-right text-center p-2 '
+    className='categories-box bg-white shadow-sm text-center p-2 '
   >
     <div className='categories-box-items d-flex align-items-center justify-content-around mb-2'>
       <Image
