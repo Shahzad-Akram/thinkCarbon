@@ -10,6 +10,16 @@ import {
 } from 'react-bootstrap';
 import MenuItem from '../menu-item/menu-item';
 
+//  Banners
+import Banner1 from '../../assets/banners/banner-1.jpeg';
+import Banner2 from '../../assets/banners/banner-2.jpeg';
+import Banner3 from '../../assets/banners/banner-3.jpeg';
+import Banner4 from '../../assets/banners/banner-4.jpg';
+import Banner5 from '../../assets/banners/banner-5.jpg';
+import Banner6 from '../../assets/banners/banner-6.jpg';
+import Banner7 from '../../assets/banners/banner-7.jpg';
+import Banner8 from '../../assets/banners/banner-8.jpg';
+
 const SectionOne = () => {
   //  Item Col
   const [isItems1, setIsItems1] = useState(false);
@@ -29,7 +39,6 @@ const SectionOne = () => {
       selected.push(categories[i]);
     }
   }
-  
 
   return (
     <div className='Section-1 mb-3' onMouseLeave={() => setIsItems1(false)}>
@@ -84,15 +93,11 @@ const SectionOne = () => {
           <div
             className='d-flex'
             style={{
-              backgroundColor: `rgb(126, 200, 246)`,
+              backgroundColor: `RGB(242, 242, 242)`,
             }}
           >
             <Button variant='link' className='mx-auto p-0'>
-              <img
-                className='image-size'
-                src='https://laz-img-cdn.alicdn.com/images/ims-web/TB1_JCBRRr0gK0jSZFnXXbRRXXa.png_2200x2200Q100.jpg_.webp'
-                alt='First slide'
-              />
+              <img className='image-size' src={Banner1} alt='First slide' />
             </Button>
           </div>
         </Carousel.Item>
@@ -100,15 +105,11 @@ const SectionOne = () => {
           <div
             className='d-flex'
             style={{
-              backgroundColor: `rgb(60, 127, 184)`,
+              backgroundColor: `RGB(11, 95, 131)`,
             }}
           >
             <Button variant='link' className='mx-auto p-0'>
-              <img
-                className='image-size'
-                src='https://laz-img-cdn.alicdn.com/images/ims-web/TB10HWBRRr0gK0jSZFnXXbRRXXa.png_2200x2200Q100.jpg_.webp'
-                alt='Third slide'
-              />
+              <img className='image-size' src={Banner2} alt='Third slide' />
             </Button>
           </div>
         </Carousel.Item>
@@ -116,15 +117,71 @@ const SectionOne = () => {
           <div
             className='d-flex'
             style={{
-              backgroundColor: `rgb(251, 200, 2)`,
+              backgroundColor: `RGB(237, 246, 251)`,
             }}
           >
             <Button variant='link' className='mx-auto p-0'>
-              <img
-                className='image-size'
-                src='https://laz-img-cdn.alicdn.com/images/ims-web/TB1m6H9d9slXu8jSZFuXXXg7FXa.jpg_2200x2200Q100.jpg_.webp'
-                alt='Third slide'
-              />
+              <img className='image-size' src={Banner3} alt='Third slide' />
+            </Button>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div
+            className='d-flex'
+            style={{
+              backgroundColor: `RGB(78, 62, 55)`,
+            }}
+          >
+            <Button variant='link' className='mx-auto p-0'>
+              <img className='image-size' src={Banner4} alt='slide' />
+            </Button>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div
+            className='d-flex'
+            style={{
+              backgroundColor: `RGB(124, 132, 51)`,
+            }}
+          >
+            <Button variant='link' className='mx-auto p-0'>
+              <img className='image-size' src={Banner5} alt='slide' />
+            </Button>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div
+            className='d-flex'
+            style={{
+              backgroundColor: `RGB(247, 247, 247)`,
+            }}
+          >
+            <Button variant='link' className='mx-auto p-0'>
+              <img className='image-size' src={Banner6} alt='slide' />
+            </Button>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div
+            className='d-flex'
+            style={{
+              backgroundColor: `RGB(105, 129, 68)`,
+            }}
+          >
+            <Button variant='link' className='mx-auto p-0'>
+              <img className='image-size' src={Banner7} alt='slide' />
+            </Button>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div
+            className='d-flex'
+            style={{
+              backgroundColor: `#105304`,
+            }}
+          >
+            <Button variant='link' className='mx-auto p-0'>
+              <img className='image-size' src={Banner8} alt='slide' />
             </Button>
           </div>
         </Carousel.Item>

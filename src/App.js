@@ -17,7 +17,6 @@ function App({ location }) {
   const dispatch = useDispatch();
   const products = useSelector((state) => state);
 
-
   useEffect(() => {
     getProducts(dispatch);
   }, []);
