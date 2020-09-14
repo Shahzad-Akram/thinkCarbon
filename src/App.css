@@ -283,8 +283,14 @@ h5,
 
 .image-size {
   height: 350px;
-  width: 800px;
+  width: 100%;
   border-radius: 0.3rem;
+}
+
+.carousel-caption {
+  right: unset;
+  bottom: unset;
+  left: unset;
 }
 
 .countdown span {
@@ -312,12 +318,13 @@ h5,
   color: #4cef06 !important;
 }
 
-@media (max-width: 780.98px) {
+@media (max-width: 998.98px) {
   .collapse {
     position: absolute !important;
-    top: 69px;
-    width: 100%;
-    z-index: 9999;
+  }
+
+  .carousel-caption {
+    position: unset !important;
   }
 }
 
