@@ -96,28 +96,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(242, 242, 242)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner1} alt='First slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#000',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner1} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -127,28 +133,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(11, 95, 131)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner2} alt='Third slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#f9fcfd',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner2} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -158,28 +170,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(237, 246, 251)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner3} alt='Third slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#000',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner3} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -189,28 +207,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(78, 62, 55)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner4} alt='slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#f9fcfd',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner4} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -220,28 +244,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(124, 132, 51)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner5} alt='slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#f9fcfd',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner5} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -251,28 +281,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(247, 247, 247)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner6} alt='slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#000',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner6} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -282,28 +318,34 @@ const SectionOne = () => {
               backgroundColor: `RGB(105, 129, 68)`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner7} alt='slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#f9fcfd',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner7} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -313,28 +355,34 @@ const SectionOne = () => {
               backgroundColor: `#105304`,
             }}
           >
-            <Button
-              variant='link'
-              className='mx-auto p-0 d-flex w-75 justify-content-end'
-            >
-              <img className='image-size' src={Banner8} alt='slide' />
-              <Carousel.Caption
-                className='text-right w-25 ml-auto  p-3 rounded-lg'
-                style={{
-                  backgroundColor: `rgb(0 0 0 / 20%)`,
-                  color: '#f9fcfd',
-                }}
-              >
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-                <Button variant='success' className='mt-3 py-2 px-5'>
-                  Button
-                </Button>
-              </Carousel.Caption>
-            </Button>
+            <Col lg={9} className='ml-auto p-0 d-flex justify-content-end'>
+              <Container className='d-flex flex-column-reverse flex-lg-row px-0'>
+                <Col lg={4} className='px-0'>
+                  <Carousel.Caption
+                    className='text-center d-flex flex-column justify-content-center h-100 p-3 mb-5 mb-lg-0 rounded-lg'
+                    style={{
+                      backgroundColor: `rgb(0 0 0 / 20%)`,
+                      color: '#f9fcfd',
+                    }}
+                  >
+                    <h3>Third slide label</h3>
+                    <p>
+                      Praesent commodo cursus magna, vel scelerisque nisl
+                      consectetur.
+                    </p>
+                    <Button
+                      variant='success'
+                      className='mt-3 mb-3 mb-lg-0 py-2 w-50 mx-auto'
+                    >
+                      Button
+                    </Button>
+                  </Carousel.Caption>
+                </Col>
+                <Col className='px-0'>
+                  <img className='image-size' src={Banner8} alt='slide' />
+                </Col>
+              </Container>
+            </Col>
           </div>
         </Carousel.Item>
       </Carousel>
