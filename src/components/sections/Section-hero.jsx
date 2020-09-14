@@ -4,7 +4,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 const SectionHero = () => {
   return (
     <Container className='px-0 mb-3'>
-      <Row className='mx-0 bg-white'>
+      <Row className='mx-0 ' style={{backgroundColor: "#FFFFFF"}}>
         <Col lg={5} className='pl-0'>
           <div
             className='d-flex justify-content-center align-items-center mb-4'
@@ -16,18 +16,18 @@ const SectionHero = () => {
           >
             <Col
               xs={9}
-              className='p-3 border border-primary text-center text-primary'
+              className='p-3 border  text-center text-white '
               style={{
                 backgroundColor: `rgb(1 14 27 / 50%)`,
               }}
             >
-              <h4 className='font-weight-bold border-bottom border-primary pb-2'>
+              <h4 className='font-weight-bold border-bottom  pb-2'>
                 GREEN SHOPPING
               </h4>
               <h6 className='mb-3'>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               </h6>
-              <Button variant='outline-primary' className='font-weight-bold'>
+              <Button variant='outline-light' className='font-weight-bold'>
                 Show Now
               </Button>
             </Col>
@@ -42,7 +42,7 @@ const SectionHero = () => {
           >
             <Col
               xs={9}
-              className='p-3 border border-primary text-center text-primary'
+              className='p-3 border border-light text-center text-white '
               style={{
                 backgroundColor: `rgb(1 14 27 / 50%)`,
               }}
@@ -50,7 +50,7 @@ const SectionHero = () => {
               <h5 className='font-weight-bold mb-3'>GREEN SHOPPING</h5>
 
               <Button
-                variant='outline-primary'
+                variant='outline-light'
                 className='font-weight-bold py-0'
               >
                 Show Now

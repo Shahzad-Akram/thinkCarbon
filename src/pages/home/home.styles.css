@@ -1,6 +1,7 @@
 .background-image {
+  background-image: url('../../assets/backgrounds/b11.jpg');
   /* background-image:url('http://kodeforest.net/html/eco-friendly/images/eco-services-bg-img.jpg'); */
-  background-image: url('https://image.freepik.com/free-vector/white-textured-paper_53876-86282.jpg');
+  /* background-image: url('https://image.freepik.com/free-vector/white-textured-paper_53876-86282.jpg'); */
   background-repeat: no-repeat;
   /* background-image: url(https://images.unsplash.com/photo-1522173096622-763cc9d35a3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9); */
   background-size: cover;
