@@ -95,14 +95,20 @@ const SectionOne = () => {
             style={{
               backgroundColor: `RGB(242, 242, 242)`,
             }}
-          >
+          >                     
             <Button
               variant='link'
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner1} alt='First slide' />
+              <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      <Button> Button </Button>
+    </Carousel.Caption>
             </Button>
           </div>
+          
         </Carousel.Item>
         <Carousel.Item>
           <div
@@ -116,6 +122,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner2} alt='Third slide' />
+                    <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
@@ -131,6 +141,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner3} alt='Third slide' />
+                    <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
@@ -146,6 +160,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner4} alt='slide' />
+                    <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
@@ -161,6 +179,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner5} alt='slide' />
+                    <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
@@ -176,6 +198,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner6} alt='slide' />
+                    <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
@@ -191,6 +217,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner7} alt='slide' />
+                    <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
@@ -206,6 +236,10 @@ const SectionOne = () => {
               className='mx-auto p-0 d-flex w-75 justify-content-end'
             >
               <img className='image-size' src={Banner8} alt='slide' />
+              <Carousel.Caption className='text-body text-right'>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
             </Button>
           </div>
         </Carousel.Item>
