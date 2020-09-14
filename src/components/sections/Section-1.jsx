@@ -102,8 +102,9 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner1} alt='First slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto p-3 rounded-lg'
                 style={{
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
                   color: '#000',
                 }}
               >
@@ -132,9 +133,10 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner2} alt='Third slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
-                  color: '#000',
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
+                  color: '#f9fcfd',
                 }}
               >
                 <h3>Third slide label</h3>
@@ -162,8 +164,9 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner3} alt='Third slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
                   color: '#000',
                 }}
               >
@@ -192,9 +195,10 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner4} alt='slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
-                  color: '#000',
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
+                  color: '#f9fcfd',
                 }}
               >
                 <h3>Third slide label</h3>
@@ -222,9 +226,10 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner5} alt='slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
-                  color: '#000',
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
+                  color: '#f9fcfd',
                 }}
               >
                 <h3>Third slide label</h3>
@@ -252,8 +257,9 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner6} alt='slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
                   color: '#000',
                 }}
               >
@@ -282,9 +288,10 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner7} alt='slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
-                  color: '#000',
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
+                  color: '#f9fcfd',
                 }}
               >
                 <h3>Third slide label</h3>
@@ -312,9 +319,10 @@ const SectionOne = () => {
             >
               <img className='image-size' src={Banner8} alt='slide' />
               <Carousel.Caption
-                className='text-right w-25 ml-auto p-0'
+                className='text-right w-25 ml-auto  p-3 rounded-lg'
                 style={{
-                  color: '#000',
+                  backgroundColor: `rgb(0 0 0 / 20%)`,
+                  color: '#f9fcfd',
                 }}
               >
                 <h3>Third slide label</h3>
