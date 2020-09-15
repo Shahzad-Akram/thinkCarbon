@@ -44,47 +44,43 @@ const SectionOne = () => {
     <div className='Section-1 mb-3' onMouseLeave={() => setIsItems1(false)}>
       <Container className='px-0 position-relative d-none d-md-flex'>
         <Row
-          className='mx-0 menu-container '
+          className='mx-0 menu-container'
           onMouseLeave={() => setIsLink1(false)}
         >
           {/* Menu-Col-1 */}
-          <Col md={4} lg={3} xl={4} className='px-0'>
-            <ListGroup className='h-100 bg-white small rounded-0'>
-              <MenuItem
-                itemName='Electronic Devices 1'
-                onMouseEnter={() => setIsItems1(true)}
-              />
-            </ListGroup>
-          </Col>
+
+          <ListGroup className='h-100 bg-white small rounded-0 border-right'>
+            <MenuItem
+              itemName='Electronic Devices 1'
+              onMouseEnter={() => setIsItems1(true)}
+            />
+          </ListGroup>
+
           {/* Menu-Col-1-End */}
           {/* Menu-Col-2 */}
-          <Col md={4} lg={3} xl={4} className='px-0'>
-            {isItems1 && (
-              <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
-                {selected.map((category) => (
-                  <MenuItem
-                    link={`/mobiles/${category}`}
-                    itemName={category}
-                    onMouseEnter={() => setIsLink1(true)}
-                  />
-                ))}
-                {/* <MenuItem link="/mobiles/solar" itemName="Solar" onMouseEnter={() => setIsLink1(true)} />
-							<MenuItem link="/mobiles" itemName="Mobiles" />
-							<MenuItem itemName="Electronic Devices 3" />
-							<MenuItem itemName="Electronic Devices 4" /> */}
-              </ListGroup>
-            )}
-          </Col>
+
+          {isItems1 && (
+            <ListGroup className='h-100 bg-white small rounded-0 border-right'>
+              {selected.map((category) => (
+                <MenuItem
+                  link={`/mobiles/${category}`}
+                  itemName={category}
+                  onMouseEnter={() => setIsLink1(true)}
+                />
+              ))}
+            </ListGroup>
+          )}
+
           {/* Menu-Col-2-End */}
           {/* Menu-Col-3 */}
-          <Col md={4} lg={3} xl={4} className='px-0'>
-            {isLink1 && (
-              <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
-                <MenuItem link='/mobiles' itemName='Mobiles' />
-                <MenuItem link='/' itemName='Option-2' />
-              </ListGroup>
-            )}
-          </Col>
+
+          {isLink1 && (
+            <ListGroup className='h-100 bg-white small rounded-0 border-right'>
+              <MenuItem link='/mobiles' itemName='Mobiles' />
+              <MenuItem link='/' itemName='Option-2' />
+            </ListGroup>
+          )}
+
           {/* Menu-Col-3-End */}
         </Row>
       </Container>

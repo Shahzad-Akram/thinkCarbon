@@ -12,13 +12,15 @@
   position: absolute;
   z-index: 1030;
   height: 350px;
-  width: 50%;
+}
+
+.Section-1 .menu-container .list-group {
+  width: 190px;
 }
 
 @media (max-width: 1200.98px) {
   .Section-1 .menu-container {
     height: 100%;
-    width: 75%;
   }
 }
 

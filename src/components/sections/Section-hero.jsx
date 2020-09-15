@@ -4,13 +4,14 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 const SectionHero = () => {
   return (
     <Container className='px-0 mb-3'>
-      <Row className='mx-0 bg-white'>
-        <Col lg={5} className='pl-0'>
+      <Row className='mx-0 bg-white flex-column-reverse flex-lg-row'>
+        <Col lg={5} className='px-0'>
           <div
             className='d-flex justify-content-center align-items-center mb-4'
             style={{
               backgroundImage: `url(https://image.freepik.com/free-photo/solar-panel-with-blue-sky-sunset-concept-clean-energy-electric-alternative-power-nature_34152-1985.jpg)`,
               backgroundSize: `cover`,
+              backgroundPosition: `center`,
               height: '400px',
             }}
           >
@@ -37,6 +38,7 @@ const SectionHero = () => {
             style={{
               backgroundImage: `url(https://image.freepik.com/free-photo/solar-panel-with-blue-sky-sunset-concept-clean-energy-electric-alternative-power-nature_34152-1985.jpg)`,
               backgroundSize: `cover`,
+              backgroundPosition: `center`,
               height: '200px',
             }}
           >
@@ -58,13 +60,14 @@ const SectionHero = () => {
             </Col>
           </div>
         </Col>
-        <Col className='pr-0'>
+        <Col className='pl-0 pl-lg-4 pr-0 mb-4 mb-lg-0'>
           <div
             className='d-flex justify-content-center align-items-end pb-5'
             style={{
               backgroundImage: `url(https://osp-server.s3.us-east-2.amazonaws.com/hydro.jpg)`,
               backgroundSize: `cover`,
-              height: '100%',
+              backgroundPosition: `center`,
+              height: '625px',
             }}
           >
             <Col
