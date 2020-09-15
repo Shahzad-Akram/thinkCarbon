@@ -1,9 +1,23 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 const SectionGallery = () => {
   return (
     <Container className='px-0 mb-3'>
+      {/* <h6 className='font-weight-bold text-white text-capitalize  my-3 px-3 px-sm-1'>
+        Categories
+      </h6> */}
+      <div className='bg-white'>
+        <div className='dark-mode-green row justify-content-between mx-0 px-3 py-2 align-items-baseline small border-bottom'>
+          <span className='mr-5 text-capitalize text-green-light font-weight-bold mb-2 mb-sm-0'>
+            Categories
+          </span>
+
+          <Button variant='outline-success' size='sm' className='d-flex'>
+            <small className='text-uppercase'> Shop More</small>
+          </Button>
+        </div>
+      </div>
       <Row className='row-cols-2 row-cols-lg-3 mx-0 bg-white text-center py-3'>
         <Col>
           <span>

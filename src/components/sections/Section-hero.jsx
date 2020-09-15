@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 const SectionHero = () => {
   return (
-    <Container className='px-0 mb-3'>
+    <Container className='px-0 my-4'>
       <Row className='mx-0 bg-white flex-column-reverse flex-lg-row'>
         <Col lg={5} className='px-0'>
           <div
