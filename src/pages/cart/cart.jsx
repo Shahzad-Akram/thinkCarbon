@@ -8,11 +8,10 @@ import CheckBox from '../../components/check-box/check-box';
 import SuitHeart from '../../assets/svgs/SuitHeart';
 import TrashIcon from '../../assets/svgs/Trash';
 import { Link } from 'react-router-dom';
-import { useCart } from "react-use-cart";
+import { useCart } from 'react-use-cart';
 
 const Cart = () => {
-  
-  const [purchase, setPurchase] = useState([])
+  const [purchase, setPurchase] = useState([]);
   const items1 = JSON.parse(localStorage.getItem('purchases'));
   const {
     isEmpty,
@@ -21,25 +20,22 @@ const Cart = () => {
     items,
     updateItemQuantity,
     removeItem,
-    emptyCart
+    emptyCart,
   } = useCart();
 
   useEffect(() => {
+    setPurchase(items1);
+  }, []);
 
-    setPurchase(items1)
-  },[])
-
-  const handleDelete = e => {
-    setPurchase((purchase.slice(purchase.indexOf(e.target, 1))))
-    localStorage.setItem('purchase', purchase)
-    console.log(purchase, localStorage)
-  }
-
- 
+  const handleDelete = (e) => {
+    setPurchase(purchase.slice(purchase.indexOf(e.target, 1)));
+    localStorage.setItem('purchase', purchase);
+    console.log(purchase, localStorage);
+  };
 
   return (
     <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
-      <Row className='mx-0 my-3 w-100'>
+      <Row className='mx-0 my-3 w-100 h-100'>
         <Col>
           <section className='bg-white rounded pl-3 pb-2 mb-3'>
             <small>
@@ -65,86 +61,109 @@ const Cart = () => {
             <span className='text-muted'>
               <CheckBox itemName='SELECT ALL (1 ITEM(S))' />
             </span>
-            <Button className='p-0' variant='link' onClick ={emptyCart}>
+            <Button className='p-0' variant='link' onClick={emptyCart}>
               <span className='mr-1'>
                 <TrashIcon height={15} />
               </span>
               <small>DELETE</small>
             </Button>
           </section>
-          <section className='bg-white rounded'>
-            {isEmpty ? <p>Cart is Empty</p>:items.map(purchase=> 
-            <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
-            <Col md={6} className='d-flex px-0 order-0 order-md-first'>
-              <span>
-                <CheckBox />
-              </span>
-              <Link to='/product-view' className='mx-2'>
-                <img
-                  className='object-fit-contain'
-                  height={80}
-                  src={purchase.images}
-                  alt='phone'
-                />
-              </Link>
-              <div>
-                <Link to='/product-view' className='btn-link small'>
-                  <div className='font-weight-bold'>
-                    {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery - 13MP
-                    Triple Camera
+          <section className='bg-white rounded h-25 scrollbox'>
+            {isEmpty ? (
+              <p>Cart is Empty</p>
+            ) : (
+              items.map((purchase) => (
+                <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+                  <Col md={6} className='d-flex px-0 order-0 order-md-first'>
+                    <span>
+                      <CheckBox />
+                    </span>
+                    <Link to='/product-view' className='mx-2'>
+                      <img
+                        className='object-fit-contain'
+                        height={80}
+                        src={purchase.images}
+                        alt='phone'
+                      />
+                    </Link>
+                    <div>
+                      <Link to='/product-view' className='btn-link small'>
+                        <div className='font-weight-bold'>
+                          {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery
+                          - 13MP Triple Camera
+                        </div>
+                        <div>
+                          Huawei, Storage Capacity:64GB, Color Family:GREEN
+                        </div>
+                      </Link>
+                      <div className='small'>
+                        {purchase.quantity === purchase.stockQuantity ? (
+                          <span className='text-danger font-weight-bold text-capitalize'>
+                            out of stock
+                          </span>
+                        ) : (
+                          <small>
+                            Only {purchase.stockQuantity - purchase.quantity}{' '}
+                            item(s) in stock
+                          </small>
+                        )}
+                      </div>
+                    </div>
+                  </Col>
+                  <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
+                    <div className='text-success'>Rs. {purchase.price}</div>
+                    <div className='text-line-through'>
+                      <small>Rs. 22,000</small>
+                    </div>
+                    <div>
+                      <small>-5%</small>
+                    </div>
+                    <span>
+                      <Button className='p-0' variant='link'>
+                        <span className='mr-2'>
+                          <SuitHeart height={15} />
+                        </span>
+                      </Button>
+                      <Button
+                        className='p-0'
+                        variant='link'
+                        onClick={() => removeItem(purchase._id)}
+                      >
+                        <span>
+                          <TrashIcon height={15} />
+                        </span>
+                      </Button>
+                    </span>
                   </div>
-                  <div>Huawei, Storage Capacity:64GB, Color Family:GREEN</div>
-                </Link>
-                <div className='small'>
-                  {purchase.quantity === purchase.stockQuantity ? <span className="text-danger font-weight-bold text-capitalize">out of stock</span> : <small>Only {purchase.stockQuantity - purchase.quantity } item(s) in stock</small>  }
-                  
-                </div>
-              </div>
-            </Col>
-            <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
-            <div className='text-success'>Rs. {purchase.price}</div>
-              <div className='text-line-through'>
-                <small>Rs. 22,000</small>
-              </div>
-              <div>
-                <small>-5%</small>
-              </div>
-              <span>
-                <Button className='p-0' variant='link'>
-                  <span className='mr-2'>
-                    <SuitHeart height={15} />
-                  </span>
-                </Button>
-                <Button className='p-0' variant='link' onClick = {() => removeItem(purchase._id)}>
-                  <span>
-                    <TrashIcon height={15} />
-                  </span>
-                </Button>
-              </span>
-            </div>
-            <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
-              <Button
-                variant='light'
-                className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
-                onClick={() => updateItemQuantity(purchase._id, purchase.quantity - 1)}
-              >
-                -
-              </Button>
-              <h6 className='mb-0 mx-3'> {purchase.quantity} </h6>
-              <Button
-                variant='light'
-                disabled = {purchase.quantity === purchase.stockQuantity ? true: false }
-                className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
-                onClick={() => updateItemQuantity(purchase._id, purchase.quantity + 1)}
-              >
-                +
-              </Button>
-            </div>
-          </Row>
-              )} 
-            
-            
-            
+                  <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
+                    <Button
+                      variant='light'
+                      className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                      onClick={() =>
+                        updateItemQuantity(purchase._id, purchase.quantity - 1)
+                      }
+                    >
+                      -
+                    </Button>
+                    <h6 className='mb-0 mx-3'> {purchase.quantity} </h6>
+                    <Button
+                      variant='light'
+                      disabled={
+                        purchase.quantity === purchase.stockQuantity
+                          ? true
+                          : false
+                      }
+                      className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                      onClick={() =>
+                        updateItemQuantity(purchase._id, purchase.quantity + 1)
+                      }
+                    >
+                      +
+                    </Button>
+                  </div>
+                </Row>
+              ))
+            )}
           </section>
         </Col>
         <Col lg={4}>
