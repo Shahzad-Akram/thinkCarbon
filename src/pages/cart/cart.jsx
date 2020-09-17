@@ -81,6 +81,7 @@ const Cart = () => {
                     <Link to='/product-view' className='mx-2'>
                       <img
                         className='object-fit-contain'
+                        width={80}
                         height={80}
                         src={purchase.images}
                         alt='phone'
