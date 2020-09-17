@@ -19,7 +19,7 @@ export const getProductstype = (key, type) => {
 	return axios
 		.get(`https://think-carbon-neutral-shop.herokuapp.com/product?category=${type}`)
 		.then((res) => {
-			return res;
+			return res.data;
 		})
 		.catch((err) => {
 			// handle error

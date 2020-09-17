@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import './categories.styles.css';
 import { Link, useParams } from 'react-router-dom';
@@ -28,35 +28,60 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, getProductstype } from '../../actions';
 import { useCart } from "react-use-cart";
 import ModelCart from '../../components/model/model-cart';
+import '../../components/check-box/check-box.styles.css'
 
 const data1 = [
-  { value: 'Best Match', label: 'Best Match' },
-  { value: 'Price low to hight', label: 'Price low to hight' },
-  { value: 'Price hight to low', label: 'Price hight to low' },
+  // { value: 'Best Match', label: '1' },
+  { value: 1, label: 'Price low to hight' },
+  { value: 2, label: 'Price hight to low' },
 ];
 
 const Mobiles = () => {
-	const [ selected, setSelected ] = useState([ {} ]);
-	const param = useParams();
+  const [show, setShow] = useState(false);
+  const [prodList, setProdList] = useState([])
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const param = useParams();
+  const [categoriesbytype, setCategoriesbytype] =useState(param.id)
 	const [ isSearchable ] = useState(false);
-	const { status, error, data } = useQuery([ 'product', param.id ], getProductstype);
-	const {addItem, items, inCart} = useCart();
-
-	
-
-	console.log(items)
-
-
+  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype], getProductstype);
+  const products = useSelector((state) => state.products);
+  const {addItem, items, inCart} = useCart();
   const dispatch = useDispatch();
 
-  if (status !== 'loading') {
-    dispatch({
-      type: 'GET_PRODUCT_BY_TYPE',
-      payload: data,
-    });
+
+
+  let categories = [];
+  let selected = [];
+
+  const categoryClick = (e) => {
+    setCategoriesbytype(e.target.name)
   }
 
-	const handleClick = (product) => {
+  if (products !== null) {
+    categories = products.data.products.map((product) => product.category);
+  }
+  for (let i = 0; i < categories.length; i++) {
+    if (selected.indexOf(categories[i]) === -1) {
+      selected.push(categories[i]);
+    }
+  }
+
+  useEffect(()=>{
+    if (!isLoading) {
+
+      // dispatch({
+      //   type: 'GET_PRODUCT_BY_TYPE',
+      //   payload: data,
+      // });
+      setProdList(data.products)
+     
+    }
+  },[isLoading])
+
+  
+
+	const handleClickCart = (product) => {
 		const productWithId ={
 			...product,
 			id: product._id
@@ -64,14 +89,17 @@ const Mobiles = () => {
 		
 		addItem(productWithId)
 	
-	};
+  };
+  
+  const handleClickPrice = () => {
+    const sorted = prodList.sort((a,b) => a.price - b.price);
+    console.log(prodList)
+    setProdList(sorted);
+  }
 
 
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  
 
   return (
     <>
@@ -183,7 +211,7 @@ const Mobiles = () => {
                 <section className='border-bottom pb-2 mb-2'>
                   <div className='small'>
                     <small className='font-weight-bold'>
-                      Related Categories
+                     Selected Category
                     </small>
                   </div>
                   <Button
@@ -193,23 +221,28 @@ const Mobiles = () => {
                     variant='link'
                     size='sm'
                   >
-                    <small>Mobiles</small>
+                    <small className="text-capitalize">{param.id}</small>
                   </Button>
                 </section>
                 {/* Section-Check-Box */}
                 <section>
                   <div className='d-flex flex-column border-bottom pb-2 mb-2'>
                     <div className='small mb-2'>
-                      <small className='font-weight-bold'>Service</small>
+                      <small className='font-weight-bold'>Category</small>
                     </div>
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
+                 {products === null ? <p>loading</p> : selected.map(category =>
+                 <label class='checkbox path'>
+                 <input type='checkbox' name={category} onChange={(e) => categoryClick(e)} />
+                          <svg viewBox='0 0 21 21'>
+                           <path d='M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186'></path>
+                             </svg>
+                         <small className='checkbox-title'>
+                 <small className='text-capitalize'>{category}</small>
+                                   </small>
+               </label>
+                   )}
+                
+                    
                     <ToggleViewMore id='one'>
                       <div className='d-flex flex-column'>
                         <CheckBox itemName='nokia' />
@@ -357,7 +390,7 @@ const Mobiles = () => {
                         <div className='small mb-2'>
                           <small className='font-weight-bold'>Service</small>
                         </div>
-                        <CheckBox itemName='nokia' />
+                        <CheckBox itemName='nokia'  onChange={(e) => console.log("clicked")} />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
@@ -515,18 +548,20 @@ const Mobiles = () => {
 							>
 								<small class="text-muted mr-2">Sort By:</small>
 								<Select
+                  onChange = {(option)=>handleClickPrice(option.value)}
 									className="w-75"
-									defaultValue={data1[1]}
-									isSearchable={isSearchable}
+									// defaultValue={data1[0]}
 									options={data1}
 								/>
 							</Col>
 						</Row>
 						<Row className="Section-2 mx-0 mb-4 flex-nowrap flex-lg-wrap overflow-auto row-cols-2 row-cols-md-3">
+            
 							{status === 'loading' ? (
 								<h1>loading...</h1>
 							) : (
-								data.data.products.map((product, key = product._id) =>{
+                
+								prodList.map((product, key = product._id) =>{
 									const alreadyAdded = inCart(product._id)
 									
 									return(
@@ -569,7 +604,7 @@ const Mobiles = () => {
 												className="Sale-item-btn-cart mt-2 mx-2"
 												variant="success"
 												size="sm"
-												onClick={() => handleClick(product)}
+												onClick={() => handleClickCart(product)}
 											>
 												{alreadyAdded ? <small>ADD AGAIN </small> : <small>ADD TO CART </small> }  
 												
