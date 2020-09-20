@@ -36,7 +36,7 @@ const Cart = () => {
   return (
     <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
       <Row className='mx-0 my-3 w-100 h-100'>
-        <Col>
+        <Col className='h-75 px-0 px-lg-3'>
           <section className='bg-white rounded pl-3 pb-2 mb-3'>
             <small>
               <small className='font-weight-bold'>
@@ -68,7 +68,7 @@ const Cart = () => {
               <small>DELETE</small>
             </Button>
           </section>
-          <section className='bg-white rounded h-25 scrollbox'>
+          <section className='bg-white rounded h-100 scrollbox'>
             {isEmpty ? (
               <p>Cart is Empty</p>
             ) : (
@@ -167,7 +167,7 @@ const Cart = () => {
             )}
           </section>
         </Col>
-        <Col lg={4}>
+        <Col lg={4} className='px-0 px-lg-3 mt-4 mt-lg-0'>
           <section className='bg-white rounded p-3'>
             <div className='mb-1 font-weight-bold'>Order Summary</div>
             <small className='d-flex justify-content-between px-1'>
