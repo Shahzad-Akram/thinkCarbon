@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import './categories.styles.css';
 import { Link, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Brand from '../brand'
+import Rating from '../rating'
 import {
   Container,
   Button,
@@ -82,19 +86,38 @@ const Mobiles = () => {
   
 
 	const handleClickCart = (product) => {
+    toast.success('Product Added Successfully', {
+      autoClose: '1500',
+    });
 		const productWithId ={
 			...product,
 			id: product._id
 		}
-		
-		addItem(productWithId)
 	
+		addItem(productWithId)
+   
   };
   
   const handleClickPrice = () => {
     const sorted = prodList.sort((a,b) => a.price - b.price);
     console.log(prodList)
     setProdList(sorted);
+   
+  //   const cart
+  //   const body= {
+  //  "appliedCoupon":"5eaac35fa67ed4558a5d1bf4",
+  //  "orderStatus":"pending",
+  //  "email":"comingbacktolyf@gmail.com",
+  //  "orderItem":[{
+  //      "stockQuantity":123,
+  //      "quantity":4,
+  //      "_id":"5f57ead841c3f6738e565714"
+  //  }],
+  //  "message":"omer",
+  //  "subTotal":"1547",
+  //  "total":"1527"
+  //   }
+  //   axios.post('',body)
   }
 
 
@@ -103,6 +126,7 @@ const Mobiles = () => {
 
   return (
     <>
+    
       <ModelCart show={show} onClick={handleClose} onHide={handleClose} />
       <Container fluid className='categories-container px-0 mt-3 mb-5'>
         <Container className='px-0'>
@@ -123,86 +147,7 @@ const Mobiles = () => {
               <small> Mobiles</small>
             </Button>
           </div>
-          <Row className='Section-2 categories-nav-brand mx-0 mt-3 mb-4 flex-column overflow-auto'>
-            <Col
-              xs={4}
-              lg={2}
-              as={Link}
-              to='/'
-              className='px-0 d-flex justify-content-center align-items-center bg-white border rounded flex-fill'
-            >
-              <img
-                height={80}
-                src='https://static-01.daraz.pk/original/9593a960fd8c7805479ff31fa0fcc137.jpg'
-                alt='brand'
-              />
-            </Col>
-            <Col
-              xs={4}
-              lg={2}
-              as={Link}
-              to='/'
-              className='px-0 d-flex justify-content-center align-items-center bg-white border rounded flex-fill'
-            >
-              <img
-                height={80}
-                src='https://static-01.daraz.pk/original/31a613d4825ce415688502f82a14454f.jpg'
-                alt='brand'
-              />
-            </Col>
-            <Col
-              xs={4}
-              lg={2}
-              as={Link}
-              to='/'
-              className='px-0 d-flex justify-content-center align-items-center bg-white border rounded flex-fill'
-            >
-              <img
-                height={80}
-                src='https://static-01.daraz.pk/original/1de455b6b129d96edbbe9448ccd86987.jpg'
-                alt='brand'
-              />
-            </Col>
-            <Col
-              xs={4}
-              lg={2}
-              as={Link}
-              to='/'
-              className='px-0 d-flex justify-content-center align-items-center bg-white border rounded flex-fill'
-            >
-              <img
-                height={80}
-                src='https://static-01.daraz.pk/brand/nokia_504b2cdb5d6726eba6435462a10b66f8.jpg'
-                alt='brand'
-              />
-            </Col>
-            <Col
-              xs={4}
-              lg={2}
-              as={Link}
-              to='/'
-              className='px-0 d-flex justify-content-center align-items-center bg-white border rounded flex-fill'
-            >
-              <img
-                height={80}
-                src='https://static-01.daraz.pk/original/6bb7204851b28b9866cbacbc37147500.jpg'
-                alt='brand'
-              />
-            </Col>
-            <Col
-              xs={4}
-              lg={2}
-              as={Link}
-              to='/'
-              className='px-0 d-flex justify-content-center align-items-center bg-white border rounded flex-fill'
-            >
-              <img
-                height={80}
-                src='https://static-01.daraz.pk/brand/qmobile_b4f65b4bef2af085a10af3144f84cd3a.jpg'
-                alt='brand'
-              />
-            </Col>
-          </Row>
+          <Brand />
         </Container>
         <Container className='px-0 '>
           <Row className='bg-white  mx-0 rounded'>
@@ -312,68 +257,7 @@ const Mobiles = () => {
                     </Form>
                   </div>
 
-                  <div className='d-flex flex-column pb-2 mb-2'>
-                    <div className='small mb-2'>
-                      <small className='font-weight-bold'>Rating</small>
-                    </div>
-                    <span className='d-flex align-items-baseline mb-1'>
-                      <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                      </span>
-                    </span>
-                    <span className='d-flex align-items-baseline'>
-                      <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarIcon height={13} />
-                      </span>
-                      <small>
-                        <small className='text-capitalize'>and up</small>
-                      </small>
-                    </span>
-                    <span className='d-flex align-items-baseline'>
-                      <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarIcon height={13} />
-                        <StarIcon height={13} />
-                      </span>
-                      <small>
-                        <small className='text-capitalize'>and up</small>
-                      </small>
-                    </span>
-                    <span className='d-flex align-items-baseline'>
-                      <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
-                        <StarFillIcon height={13} />
-                        <StarFillIcon height={13} />
-                        <StarIcon height={13} />
-                        <StarIcon height={13} />
-                        <StarIcon height={13} />
-                      </span>
-                      <small>
-                        <small className='text-capitalize'>and up</small>
-                      </small>
-                    </span>
-                    <span className='d-flex align-items-baseline'>
-                      <span className='text-warning mr-1 w-50 d-flex justify-content-between'>
-                        <StarFillIcon height={13} />
-                        <StarIcon height={13} />
-                        <StarIcon height={13} />
-                        <StarIcon height={13} />
-                        <StarIcon height={13} />
-                      </span>
-                      <small>
-                        <small className='text-capitalize'>and up</small>
-                      </small>
-                    </span>
-                  </div>
+                  <Rating />
                 </section>
                 {/* Section-Check-Box-End */}
               </main>
@@ -561,7 +445,7 @@ const Mobiles = () => {
 								<h1>loading...</h1>
 							) : (
                 
-								prodList.map((product, key = product._id) =>{
+								data.products.map((product, key = product._id) =>{
 									const alreadyAdded = inCart(product._id)
 									
 									return(
@@ -604,14 +488,14 @@ const Mobiles = () => {
 												className="Sale-item-btn-cart mt-2 mx-2"
 												variant="success"
 												size="sm"
-												onClick={() => handleClickCart(product)}
+                        onClick={() => handleClickCart(product)}
+                        
 											>
 												{alreadyAdded ? <small>ADD AGAIN </small> : <small>ADD TO CART </small> }  
 												
 												
 											</Button>
-											
-											
+											<ToastContainer />
 										</SaleItem>
 									</Col>
 								)})
