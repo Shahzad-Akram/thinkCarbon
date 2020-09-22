@@ -97,7 +97,7 @@ const CartCheckout = () => {
             <small className='font-weight-bold'>PRICE</small>
             <small className='font-weight-bold'>QUANTITY</small>
           </section>
-          <section className='bg-white rounded'>
+          <section className='bg-white rounded h-36vh scrollbox'>
             <div className='bg-light d-flex justify-content-between p-2 small'>
               <span className='font-weight-bold'>Package 1 of 1</span>
               <span className='d-flex align-items-center'>

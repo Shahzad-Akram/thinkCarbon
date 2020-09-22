@@ -17,3 +17,7 @@
 .container-cart .form-control:focus {
   box-shadow: 0 0 0 0.05rem rgba(76, 239, 6, 0.4);
 }
+
+.h-35vh {
+  height: 35vh;
+}
