@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Button, Form } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Button,
+  Form,
+  InputGroup,
+  FormControl,
+} from 'react-bootstrap';
 import './cart.styles.css';
 
 // -----
@@ -34,7 +41,7 @@ const Cart = () => {
   };
 
   return (
-    <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
+    <Form className='container-cart container px-0 tr-vh-100 scrollbox d-flex align-items-start justify-content-center  my-5'>
       <Row className='mx-0 my-3 w-100 h-100'>
         <Col className='h-75 px-0 px-lg-3'>
           <section className='bg-white rounded pl-3 pb-2 mb-3'>
@@ -202,6 +209,95 @@ const Cart = () => {
                 <small>PROCEED TO CHECKOUT</small>
               </Button>
             </div>
+          </section>
+          <section className='bg-white rounded p-3 mt-3'>
+            <Form>
+              <Form.Group>
+                <Form.Label className='small'>Email</Form.Label>
+                <Form.Control type='email' />
+              </Form.Group>
+              <Form.Group className='mb-0'>
+                <Form.Label className='small'>Card information</Form.Label>
+                <InputGroup>
+                  <FormControl
+                    size='lg'
+                    className='border-right-0 border-bottom-0 rounded-0'
+                    placeholder='1234 1234 1234 1234'
+                    type='number'
+                  />
+                  <InputGroup.Append>
+                    <InputGroup.Text className='bg-white border-left-0 border-bottom-0 rounded-0'>
+                      <img
+                        height={22}
+                        src='https://www.flaticon.com/svg/static/icons/svg/196/196578.svg'
+                        alt='card'
+                        className='mr-2'
+                      />
+                      <img
+                        height={22}
+                        src='https://www.flaticon.com/svg/static/icons/svg/196/196561.svg'
+                        alt='card'
+                        className='mr-2'
+                      />
+                      <img
+                        height={22}
+                        src='https://www.flaticon.com/svg/static/icons/svg/196/196565.svg'
+                        alt='card'
+                        className='mr-2'
+                      />
+                      <img
+                        height={22}
+                        src='https://www.flaticon.com/svg/static/icons/svg/196/196559.svg'
+                        alt='card'
+                      />
+                    </InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form.Group>
+              <Form.Row className='mb-3 mx-0'>
+                <Col className='px-0'>
+                  <Form.Control
+                    className='rounded-0 border-right-0'
+                    placeholder='MM / YY'
+                    type='date'
+                  />
+                </Col>
+                <Col className='px-0'>
+                  <InputGroup>
+                    <Form.Control
+                      className='rounded-0 border-right-0'
+                      placeholder='CVC'
+                      type='number'
+                    />
+                    <InputGroup.Append>
+                      <InputGroup.Text className='bg-white border-left-0 rounded-0'>
+                        <img
+                          height={18}
+                          src='https://www.flaticon.com/svg/static/icons/svg/2922/2922999.svg'
+                          alt='card'
+                        />
+                      </InputGroup.Text>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Col>
+              </Form.Row>
+              <Form.Group>
+                <Form.Label className='small'>Name on card</Form.Label>
+                <Form.Control type='text' />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label className='small'>Country or region</Form.Label>
+                <Form.Control as='select' className='pl-1'>
+                  <option value='0'>Pakistan</option>
+                  <option value='1'>One</option>
+                  <option value='2'>Two</option>
+                  <option value='3'>Three</option>
+                </Form.Control>
+              </Form.Group>
+              <Button variant='success' block type='submit'>
+                <small>Pay $20.00</small>
+              </Button>
+            </Form>
           </section>
         </Col>
       </Row>
