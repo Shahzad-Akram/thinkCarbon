@@ -8,13 +8,21 @@ import CheckBox from '../../components/check-box/check-box';
 import SuitHeart from '../../assets/svgs/SuitHeart';
 import TrashIcon from '../../assets/svgs/Trash';
 import { Link } from 'react-router-dom';
+import { useCart } from 'react-use-cart';
 
 const CartCheckout = () => {
-  const [count1, setCount1] = useState(1);
-  const [count2, setCount2] = useState(1);
-  const [count3, setCount3] = useState(1);
-  const [count4, setCount4] = useState(1);
-  const purchase = JSON.parse(localStorage.getItem('purchases'));
+  const {
+    isEmpty,
+    cartTotal,
+    totalUniqueItems,
+    items,
+    updateItemQuantity,
+    removeItem,
+    emptyCart,
+    totalItems 
+
+  } = useCart();
+ 
 
   return (
     <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
@@ -126,20 +134,20 @@ const CartCheckout = () => {
                 </div>
               </Button>
             </div>
-            <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+            {items.map(purchase => <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
               <Col md={6} className='d-flex px-0 order-0 order-md-first'>
                 <Link to='/product-view' className='mx-2'>
                   <img
                     className='object-fit-contain'
                     height={50}
-                    src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
+                    src={purchase.images}
                     alt='phone'
                   />
                 </Link>
                 <div>
                   <Link to='/product-view' className='btn-link small'>
                     <div className='font-weight-bold'>
-                      Huawei Y6p - 3GB Ram - 64GB Rom - 5000mAh Battery - 13MP
+                     {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery - 13MP
                       Triple Camera
                     </div>
                     <div>Huawei, Storage Capacity:64GB, Color Family:GREEN</div>
@@ -150,12 +158,12 @@ const CartCheckout = () => {
                 </div>
               </Col>
               <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
-                <div className='text-success'>Rs. 20,897</div>
+                <div className='text-success'>{purchase.price}</div>
                 <div className='text-line-through'>
                   <small>Rs. 22,000</small>
                 </div>
                 <div>
-                  <small>-5%</small>
+                  <small>-5%</small>  
                 </div>
                 <span>
                   <Button className='p-0' variant='link'>
@@ -166,17 +174,18 @@ const CartCheckout = () => {
                 </span>
               </div>
               <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
-                Qty: 1
+                Qty: {purchase.quantity}
               </div>
-            </Row>
+            </Row> )}
+            
           </section>
         </Col>
         <Col lg={4}>
           <section className='bg-white rounded p-3'>
             <div className='mb-1 font-weight-bold'>Order Summary</div>
             <div className='d-flex justify-content-between px-1 small mb-2'>
-              <span className='text-black-50'>Subtotal (1 items)</span>
-              <span className='font-weight-bold'>Rs. 20,897</span>
+              <span className='text-black-50'>Subtotal ({totalItems} items)</span>
+              <span className='font-weight-bold'>{cartTotal} &#36;</span>
             </div>
 
             <div className='d-flex justify-content-between px-1 small mb-2'>
@@ -202,7 +211,7 @@ const CartCheckout = () => {
 
             <small className='d-flex justify-content-between px-1'>
               <span>Total</span>
-              <span className='font-weight-bold text-success'>Rs. 20,897</span>
+              <span className='font-weight-bold text-success'>{cartTotal} &#36;</span>
             </small>
 
             <div className='mt-3'>

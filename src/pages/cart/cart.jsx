@@ -21,17 +21,15 @@ const Cart = () => {
     updateItemQuantity,
     removeItem,
     emptyCart,
+    totalItems 
+
   } = useCart();
 
-  useEffect(() => {
-    setPurchase(items1);
-  }, []);
+  useEffect(()=>{
+    console.log(cartTotal,totalItems )
+  },[])
 
-  const handleDelete = (e) => {
-    setPurchase(purchase.slice(purchase.indexOf(e.target, 1)));
-    localStorage.setItem('purchase', purchase);
-    console.log(purchase, localStorage);
-  };
+ 
 
   return (
     <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
@@ -71,7 +69,7 @@ const Cart = () => {
           <section className='bg-white rounded h-100 scrollbox'>
             {isEmpty ? (
               <p>Cart is Empty</p>
-            ) : (
+              ) : (
               items.map((purchase) => (
                 <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
                   <Col md={6} className='d-flex px-0 order-0 order-md-first'>
@@ -171,8 +169,8 @@ const Cart = () => {
           <section className='bg-white rounded p-3'>
             <div className='mb-1 font-weight-bold'>Order Summary</div>
             <small className='d-flex justify-content-between px-1'>
-              <span className='text-black-50'>Subtotal (0 items)</span>
-              <span className='font-weight-bold'>Rs. 0</span>
+              <span className='text-black-50'>Subtotal ({totalItems} items)</span>
+              <span className='font-weight-bold'> {cartTotal} &#36;</span>
             </small>
 
             <Row className='mx-0 my-2'>
@@ -188,7 +186,7 @@ const Cart = () => {
 
             <small className='d-flex justify-content-between px-1'>
               <span>Total</span>
-              <span className='font-weight-bold text-success'>Rs. 0</span>
+              <span className='font-weight-bold text-success'> {cartTotal} &#36;</span>
             </small>
 
             <div className='mt-3'>
