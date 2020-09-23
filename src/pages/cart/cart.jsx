@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Button, Form } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Button,
+  Form,
+
+} from 'react-bootstrap';
 import './cart.styles.css';
 
 // -----
@@ -32,7 +38,7 @@ const Cart = () => {
  
 
   return (
-    <Form className='container-cart container px-0 tr-vh-100 d-flex align-items-start justify-content-center  my-5'>
+    <Form className='container-cart container px-0 tr-vh-100  d-flex align-items-start justify-content-center  my-5'>
       <Row className='mx-0 my-3 w-100 h-100'>
         <Col className='h-75 px-0 px-lg-3'>
           <section className='bg-white rounded pl-3 pb-2 mb-3'>
@@ -91,78 +97,78 @@ const Cart = () => {
                           {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery
                           - 13MP Triple Camera
                         </div>
-                        <div>
-                          Huawei, Storage Capacity:64GB, Color Family:GREEN
+                          <div>
+                            Huawei, Storage Capacity:64GB, Color Family:GREEN
                         </div>
-                      </Link>
-                      <div className='small'>
-                        {purchase.quantity === purchase.stockQuantity ? (
-                          <span className='text-danger font-weight-bold text-capitalize'>
-                            out of stock
+                        </Link>
+                        <div className='small'>
+                          {purchase.quantity === purchase.stockQuantity ? (
+                            <span className='text-danger font-weight-bold text-capitalize'>
+                              out of stock
                           </span>
-                        ) : (
-                          <small>
-                            Only {purchase.stockQuantity - purchase.quantity}{' '}
-                            item(s) in stock
+                          ) : (
+                              <small>
+                                Only {purchase.stockQuantity - purchase.quantity}{' '}
+                                item(s) in stock
                           </small>
-                        )}
+                            )}
+                        </div>
                       </div>
+                    </Col>
+                    <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
+                      <div className='text-success'>Rs. {purchase.price}</div>
+                      <div className='text-line-through'>
+                        <small>Rs. 22,000</small>
+                      </div>
+                      <div>
+                        <small>-5%</small>
+                      </div>
+                      <span>
+                        <Button className='p-0' variant='link'>
+                          <span className='mr-2'>
+                            <SuitHeart height={15} />
+                          </span>
+                        </Button>
+                        <Button
+                          className='p-0'
+                          variant='link'
+                          onClick={() => removeItem(purchase._id)}
+                        >
+                          <span>
+                            <TrashIcon height={15} />
+                          </span>
+                        </Button>
+                      </span>
                     </div>
-                  </Col>
-                  <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
-                    <div className='text-success'>Rs. {purchase.price}</div>
-                    <div className='text-line-through'>
-                      <small>Rs. 22,000</small>
-                    </div>
-                    <div>
-                      <small>-5%</small>
-                    </div>
-                    <span>
-                      <Button className='p-0' variant='link'>
-                        <span className='mr-2'>
-                          <SuitHeart height={15} />
-                        </span>
-                      </Button>
+                    <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
                       <Button
-                        className='p-0'
-                        variant='link'
-                        onClick={() => removeItem(purchase._id)}
+                        variant='light'
+                        className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                        onClick={() =>
+                          updateItemQuantity(purchase._id, purchase.quantity - 1)
+                        }
                       >
-                        <span>
-                          <TrashIcon height={15} />
-                        </span>
-                      </Button>
-                    </span>
-                  </div>
-                  <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
-                    <Button
-                      variant='light'
-                      className='py-0 px-3 d-flex align-items-center justify-content-center product-btn-count'
-                      onClick={() =>
-                        updateItemQuantity(purchase._id, purchase.quantity - 1)
-                      }
-                    >
-                      -
+                        -
                     </Button>
-                    <h6 className='mb-0 mx-3'> {purchase.quantity} </h6>
-                    <Button
-                      variant='light'
-                      disabled={
-                        purchase.quantity === purchase.stockQuantity
-                          ? true
-                          : false
-                      }
-                      className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
-                      onClick={() =>
-                        updateItemQuantity(purchase._id, purchase.quantity + 1)
-                      }
-                    >
-                      +
+                      <h6 className='mb-0 mx-3'> {purchase.quantity} </h6>
+                      <Button
+                        variant='light'
+                        disabled={
+                          purchase.quantity === purchase.stockQuantity
+                            ? true
+                            : false
+                        }
+                        className='py-1 px-3 d-flex align-items-center justify-content-center product-btn-count'
+                        onClick={() =>
+                          updateItemQuantity(purchase._id, purchase.quantity + 1)
+                        }
+                      >
+                        +
                     </Button>
-                  </div>
-                </Row>
-              ))
-            )}
+                    </div>
+                  </Row>
+                ))
+              )}
           </section>
         </Col>
         <Col lg={4} className='px-0 px-lg-3 mt-4 mt-lg-0'>
@@ -201,6 +207,7 @@ const Cart = () => {
               </Button>
             </div>
           </section>
+
         </Col>
       </Row>
     </Form>
