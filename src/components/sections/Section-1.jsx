@@ -63,7 +63,7 @@ const SectionOne = () => {
             <ListGroup className='h-100 bg-white small rounded-0 border-right'>
               {selected.map((category) => (
                 <MenuItem
-                  link={`/mobiles/${category}`}
+                  link={`/items/${category}`}
                   itemName={category}
                   onMouseEnter={() => setIsLink1(true)}
                 />

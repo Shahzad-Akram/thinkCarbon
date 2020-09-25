@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useForm } from "react-hook-form";
 import Select from 'react-select';
 import './categories.styles.css';
 import { Link, useParams } from 'react-router-dom';
@@ -33,6 +34,7 @@ import { getProducts, getProductstype } from '../../actions';
 import { useCart } from "react-use-cart";
 import ModelCart from '../../components/model/model-cart';
 import '../../components/check-box/check-box.styles.css'
+import Sidebar1 from './sidebar1';
 
 const data1 = [
   // { value: 'Best Match', label: '1' },
@@ -40,15 +42,17 @@ const data1 = [
   { value: 2, label: 'Price hight to low' },
 ];
 
-const Mobiles = () => {
+const ItemsPage = () => {
+  const { register, handleSubmit, watch, errors } = useForm();
   const [show, setShow] = useState(false);
   const [prodList, setProdList] = useState([])
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const param = useParams();
   const [categoriesbytype, setCategoriesbytype] =useState(param.id)
+  const [categoriesbybrand, setCategoriesbybrand] =useState()
 	const [ isSearchable ] = useState(false);
-  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype], getProductstype);
+  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand], getProductstype);
   const products = useSelector((state) => state.products);
   const {addItem, items, inCart} = useCart();
   const dispatch = useDispatch();
@@ -56,28 +60,21 @@ const Mobiles = () => {
 
 
   let categories = [];
+  let brand = []
   let selected = [];
 
   const categoryClick = (e) => {
     setCategoriesbytype(e.target.name)
+    
+  }
+  const brandClick = (e) => {
+    setCategoriesbybrand(e.target.name)
   }
 
-  if (products !== null) {
-    categories = products.data.products.map((product) => product.category);
-  }
-  for (let i = 0; i < categories.length; i++) {
-    if (selected.indexOf(categories[i]) === -1) {
-      selected.push(categories[i]);
-    }
-  }
+  
 
   useEffect(()=>{
     if (!isLoading) {
-
-      // dispatch({
-      //   type: 'GET_PRODUCT_BY_TYPE',
-      //   payload: data,
-      // });
       setProdList(data.products)
      
     }
@@ -103,23 +100,9 @@ const Mobiles = () => {
     console.log(prodList)
     setProdList(sorted);
    
-  //   const cart
-  //   const body= {
-  //  "appliedCoupon":"5eaac35fa67ed4558a5d1bf4",
-  //  "orderStatus":"pending",
-  //  "email":"comingbacktolyf@gmail.com",
-  //  "orderItem":[{
-  //      "stockQuantity":123,
-  //      "quantity":4,
-  //      "_id":"5f57ead841c3f6738e565714"
-  //  }],
-  //  "message":"omer",
-  //  "subTotal":"1547",
-  //  "total":"1527"
-  //   }
-  //   axios.post('',body)
+  
   }
-
+  const onSubmit = data => console.log(data);
 
 
   
@@ -171,66 +154,25 @@ const Mobiles = () => {
                 </section>
                 {/* Section-Check-Box */}
                 <section>
-                  <div className='d-flex flex-column border-bottom pb-2 mb-2'>
-                    <div className='small mb-2'>
-                      <small className='font-weight-bold'>Category</small>
-                    </div>
-                 {products === null ? <p>loading</p> : selected.map(category =>
-                 <label class='checkbox path'>
-                 <input type='checkbox' name={category} onChange={(e) => categoryClick(e)} />
-                          <svg viewBox='0 0 21 21'>
-                           <path d='M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186'></path>
-                             </svg>
-                         <small className='checkbox-title'>
-                 <small className='text-capitalize'>{category}</small>
-                                   </small>
-               </label>
-                   )}
-                
-                    
-                    <ToggleViewMore id='one'>
-                      <div className='d-flex flex-column'>
-                        <CheckBox itemName='nokia' />
-                        <CheckBox itemName='nokia' />
-                        <CheckBox itemName='nokia' />
-                        <CheckBox itemName='nokia' />
-                        <CheckBox itemName='nokia' />
-                        <CheckBox itemName='nokia' />
-                      </div>
-                    </ToggleViewMore>
-                  </div>
+                  <Sidebar1 handler ={categoryClick} type ="category"/>
+                 
                 </section>
                 <section>
-                  <div className='d-flex flex-column border-bottom pb-2 mb-2'>
-                    <div className='small mb-2'>
-                      <small className='font-weight-bold'>Location</small>
-                    </div>
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                  </div>
+                <Sidebar1 handler ={brandClick} type ="brand"/>
                 </section>
 
                 <section>
-                  <div className='d-flex flex-column border-bottom pb-2 mb-2'>
-                    <div className='small mb-2'>
-                      <small className='font-weight-bold'>Brand</small>
-                    </div>
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                    <CheckBox itemName='nokia' />
-                  </div>
+                  
 
                   <div className='d-flex flex-column border-bottom pb-2 mb-2'>
                     <div className='small mb-2'>
                       <small className='font-weight-bold'>Price</small>
                     </div>
-                    <Form>
+                    <Form onSubmit ={handleSubmit(onSubmit)} >
                       <Row className='mx-0 justify-content-between'>
                         <Col xs={4} className='px-0'>
                           <Form.Control
+                            ref={register}
                             size='sm'
                             type='number'
                             placeholder='Min'
@@ -274,14 +216,15 @@ const Mobiles = () => {
                         <div className='small mb-2'>
                           <small className='font-weight-bold'>Service</small>
                         </div>
-                        <CheckBox itemName='nokia'  onChange={(e) => console.log("clicked")} />
+                        <Sidebar1 type="category" />
+                        {/* <CheckBox itemName='nokia'  onChange={(e) => console.log("clicked")} />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
                         <CheckBox itemName='nokia' />
-                        <CheckBox itemName='nokia' />
+                        <CheckBox itemName='nokia' /> */}
                         <ToggleViewMore id='one'>
                           <div className='d-flex flex-column'>
                             <CheckBox itemName='nokia' />
@@ -523,4 +466,4 @@ const Mobiles = () => {
 	);
 };
 
-export default Mobiles;
+export default ItemsPage;

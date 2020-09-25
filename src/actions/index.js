@@ -15,9 +15,19 @@ export const getProducts = (dispatch) => {
 		});
 };
 
-export const getProductstype = (key, type) => {
+export const getProductstype = (key, type, brand) => {
+	const params = {}
+	
+	if(brand === null) {
+		params.category = type
+	} else  {
+		params.category =type;
+		params.brand = brand;
+	}
 	return axios
-		.get(`https://think-carbon-neutral-shop.herokuapp.com/product?category=${type}`)
+		.get(`https://think-carbon-neutral-shop.herokuapp.com/product`,{
+			params:params
+		})
 		.then((res) => {
 			return res.data;
 		})

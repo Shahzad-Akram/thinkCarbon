@@ -5,7 +5,7 @@ import Home from './pages/home/home';
 import HeaderNav from './components/header/header-nav';
 import Footer from './components/sections/Footer';
 import FooterInformation from './components/sections/Footer-information';
-import Mobiles from './pages/categories/mobiles';
+import ItemsPage from './pages/categories/itemsPage';
 import ProductView from './pages/product-view/product-view';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from './pages/cart/cart';
@@ -33,7 +33,7 @@ function App({ location }) {
       <div>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/mobiles/:id' component={Mobiles} />
+          <Route exact path='/items/:id' component={ItemsPage} />
           <Route exact path='/product-view/:id' component={ProductView} />
           <Route exact path='/cart' component={Cart} />
           <Route exact path='/cart-checkout' component={CartCheckout} />
