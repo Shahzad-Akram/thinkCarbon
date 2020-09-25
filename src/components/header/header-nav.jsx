@@ -20,21 +20,21 @@ import SearchIcon from '../../assets/svgs/search';
 import Cart3Icon from '../../assets/svgs/Cart3';
 import MenuItem from '../menu-item/menu-item';
 import { getProducts } from '../../actions/index';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 const HeaderNav = ({ onChange, children }) => {
   const products = useSelector((state) => state.products);
- 
+
   const [isItems1, setIsItems1] = useState(false);
   const [isItems2, setIsItems2] = useState(false);
   const [isLink1, setIsLink1] = useState(false);
   const [option, SetOption] = useState([
-    { value: 'chocolate'  },
-  { value: 'strawberry' },
-  { value: 'vanilla' }
+    { value: 'chocolate' },
+    { value: 'strawberry' },
+    { value: 'vanilla' }
 
-])
+  ])
 
   const styles = {
     fadeInUpBig: {
@@ -54,42 +54,42 @@ const HeaderNav = ({ onChange, children }) => {
       animationName: Radium.keyframes(fadeInLeftBig, 'fadeInLeftBig'),
     },
   };
-  
-  const formatLabel = ({value}) =>
-  {
-   const name = value;
-  
-    const label = <div> {value}   </div>
-   return label;
- }
- const customStyles = {
-  option: (provided, state) => ({
-    ...provided,
-    borderBottom: '1px dotted pink',
-    color: state.isSelected ? 'red' : 'blue',
-    padding: 20,
-  }),
-  control: () => ({
-    // none of react-select's styles are passed to <Control />
-    width: 200,
-  }),
-  singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
 
-    return { ...provided, opacity, transition };
+  const formatLabel = ({ value }) => {
+    const name = value;
+
+    const label = <div> {value}   </div>
+    return label;
   }
-}
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+      color: state.isSelected ? 'red' : 'blue',
+      padding: 20,
+    }),
+    control: () => ({
+      // none of react-select's styles are passed to <Control />
+      width: 200,
+      display: 'flex',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+
+      return { ...provided, opacity, transition };
+    }
+  }
 
   // useEffect(() => {
   //   if(products !== null){
   //     SetOption(products.data.products)
   //     console.log(option)
   //   }
-  
+
   // }, [products]);
 
- 
+
 
   return (
     <StyleRoot className='bg-white'>
@@ -133,7 +133,7 @@ const HeaderNav = ({ onChange, children }) => {
               lg={8}
               className='search-container d-flex align-items-center order-1 order-lg-0 px-0'
             >
-              <Select  options={option} styles ={customStyles} optionRenderer={ formatLabel } valueRenderer={formatLabel}  />
+              <Select options={option} styles={customStyles} optionRenderer={formatLabel} valueRenderer={formatLabel} />
               {/* <ReactSearchBox
                 inputBoxFontSize='12px'
                 inputBoxHeight='28px'

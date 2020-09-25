@@ -320,7 +320,7 @@ h5,
 
 @media (max-width: 998.98px) {
   .collapse {
-    position: absolute !important;
+    position: absolute ;
   }
 
   .carousel-caption {
