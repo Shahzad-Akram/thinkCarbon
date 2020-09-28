@@ -15,15 +15,29 @@ export const getProducts = (dispatch) => {
 		});
 };
 
-export const getProductstype = (key, type, brand) => {
+export const getProductstype = (key, type, brand, price) => {
+	
 	const params = {}
 	
-	if(brand === null) {
+	
+	if(brand === null && price === null) {
 		params.category = type
-	} else  {
-		params.category =type;
+	} else if(price === null){
+		params.category = type;
 		params.brand = brand;
 	}
+	else if(brand === null){
+		params.category = type;
+		params.gt = price.min;
+		params.lt = price.max;
+	}
+	else  {
+		params.category =type;
+		params.brand = brand;
+		params.gt = price.min;
+		params.lt = price.max;
+	}
+	
 	return axios
 		.get(`https://think-carbon-neutral-shop.herokuapp.com/product`,{
 			params:params
@@ -60,3 +74,22 @@ export const getSingleProduct = (key, id) => {
 			console.log(err);
 		});
 };
+
+export const getSearchedProducts = (key, text) => {
+	if(text === ""){
+		console.log(text)
+		return null
+	}
+	else{
+	return axios
+		.get(`https://think-carbon-neutral-shop.herokuapp.com/product?text=${text}`)
+		.then((res) => {
+			return res.data.products;
+		})
+		.catch((err) => {
+			// handle error
+			console.log(err);
+		});
+	}
+};
+

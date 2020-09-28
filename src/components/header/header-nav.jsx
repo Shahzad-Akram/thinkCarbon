@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+
 import ReactSearchBox from 'react-search-box';
-import Select from 'react-select'
+import AsyncSelect from 'react-select/async'
 import './switch.styles.css';
 import './menu-list.styles.css';
-
+import { useQuery } from 'react-query';
+import {getProductstype} from '../../actions';
 import { Button, Navbar, Col, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {
@@ -19,7 +21,7 @@ import Radium, { StyleRoot } from 'radium';
 import SearchIcon from '../../assets/svgs/search';
 import Cart3Icon from '../../assets/svgs/Cart3';
 import MenuItem from '../menu-item/menu-item';
-import { getProducts } from '../../actions/index';
+import { getSearchedProducts } from '../../actions/index';
 import {useSelector} from 'react-redux'
 
 
@@ -29,12 +31,15 @@ const HeaderNav = ({ onChange, children }) => {
   const [isItems1, setIsItems1] = useState(false);
   const [isItems2, setIsItems2] = useState(false);
   const [isLink1, setIsLink1] = useState(false);
-  const [option, SetOption] = useState([
-    { value: 'chocolate'  },
-  { value: 'strawberry' },
-  { value: 'vanilla' }
+  const [inputValue, SetInputValue] = useState({})
+  const {data, status ,isLoading } = useQuery([ 'product', inputValue ], getSearchedProducts);
 
-])
+  
+  const [option, SetOption] = useState([
+    { value: "Abe", label: "Abe", customAbbreviation: "A" },
+    { value: "John", label: "John", customAbbreviation: "J" },
+    { value: "Dustin", label: "Dustin", customAbbreviation: "D" }
+  ])
 
   const styles = {
     fadeInUpBig: {
@@ -53,33 +58,77 @@ const HeaderNav = ({ onChange, children }) => {
       animation: 'x 1.5s',
       animationName: Radium.keyframes(fadeInLeftBig, 'fadeInLeftBig'),
     },
+  }; 
+  let categories = [];
+  let selected = [];
+
+  if (products !== null) {
+    categories = products.data.products.map((product) => product.category);
+  }
+  for (let i = 0; i < categories.length; i++) {
+    if (selected.indexOf(categories[i]) === -1) {
+      selected.push(categories[i]);
+    }
+  }
+ 
+ 
+    
+    useEffect(() => {
+
+      if(data !== undefined && data !== null  ){
+        const array = data.map(data=> ({
+         label: data.name,
+         price: data.price,
+         stock: data.stockQuantity
+        }))
+        SetOption(array)
+     }
+     
+     console.log(data,option)
+    },[inputValue])
+    
+  
+
+  const filterOptions = (inputValue) => {
+    return option.filter(i =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+  const loadOptions = (inputValue, callback) => {
+    setTimeout(() => {
+     
+      callback(filterOptions(inputValue));
+    }, 1000);
   };
   
-  const formatLabel = ({value}) =>
-  {
-   const name = value;
-  
-    const label = <div> {value}   </div>
-   return label;
- }
- const customStyles = {
-  option: (provided, state) => ({
-    ...provided,
-    borderBottom: '1px dotted pink',
-    color: state.isSelected ? 'red' : 'blue',
-    padding: 20,
-  }),
-  control: () => ({
-    // none of react-select's styles are passed to <Control />
-    width: 200,
-  }),
-  singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
-
-    return { ...provided, opacity, transition };
+  const formatOptionLabel = ({
+    value, label, customAbbreviation,
+  }) => (
+    <div class='d-flex '>
+      <div class='col-md-2 d-flex justify-content-center align-items-center'>
+        <span class='bg-info p-2 b-2px text-white'>
+          {value.charAt(0).toUpperCase()}
+        </span>
+      </div>
+      <div class='col-md-10'>
+        <div class='flex-column'>
+          <div class='d-flex justify-content-between'>
+            <div>{label}</div>
+            <small>{label.toUpperCase()}</small>
+          </div>
+          <div className='d-flex justify-content-between'>
+            <div class=' small'>PKR {label}</div>
+            <div className=' small'>In Stock {label}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  const handleInputChange = (newValue) => {
+    const newInput= newValue.replace(/\W/g, '')
+    SetInputValue(newInput)
   }
-}
+
 
   // useEffect(() => {
   //   if(products !== null){
@@ -93,7 +142,7 @@ const HeaderNav = ({ onChange, children }) => {
 
   return (
     <StyleRoot className='bg-white'>
-      {console.log(option)}
+      
       <Navbar
         className='container px-0 mx-auto justify-content-between px-0 py-3 bg-white'
         expand='lg'
@@ -133,21 +182,15 @@ const HeaderNav = ({ onChange, children }) => {
               lg={8}
               className='search-container d-flex align-items-center order-1 order-lg-0 px-0'
             >
-              <Select  options={option} styles ={customStyles} optionRenderer={ formatLabel } valueRenderer={formatLabel}  />
-              {/* <ReactSearchBox
-                inputBoxFontSize='12px'
-                inputBoxHeight='28px'
-                placeholder='Search for John, Jane or Mary'
-                data={option}
-                onSelect={(record) => console.log(record)}
-                onFocus={() => {
-                  console.log('This function is called when is focussed');
-                }}
-                onChange={(value) => console.log(value)}
-                fuseConfigs={{
-                  threshold: 0.05,
-                }}
-              /> */}
+            
+              <AsyncSelect
+              cacheOptions
+              defaultOptions
+            formatOptionLabel={formatOptionLabel}
+            loadOptions={loadOptions}
+             onInputChange={handleInputChange}
+             />
+              
               <Button
                 variant='success'
                 className='py-1 px-2 d-flex align-items-center rounded-0'
@@ -158,16 +201,7 @@ const HeaderNav = ({ onChange, children }) => {
                 <Cart3Icon />
               </Button>
             </Col>
-            {/* 
-            <div className='d-flex align-items-center'>
-              <label className='switch my-2'>
-                <input type='checkbox' onChange={onChange} />
-                <span className='slider round'></span>
-              </label>
-              <small className='ml-3 text-green-light filter-invert'>
-                {children}
-              </small>
-            </div> */}
+            
           </div>
         </Navbar.Collapse>
       </Navbar>
@@ -190,14 +224,13 @@ const HeaderNav = ({ onChange, children }) => {
           <Col xs={6} md={4} lg={3} xl={4} className='px-0'>
             {isItems2 && (
               <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
+                {selected.map((category) => (
                 <MenuItem
-                  link='/mobiles'
-                  itemName='Mobiles'
+                  link={`/items/${category}`}
+                  itemName={category}
                   onMouseEnter={() => setIsLink1(true)}
                 />
-                <MenuItem link='/mobiles' itemName='Mobiles' />
-                <MenuItem itemName='Electronic Devices 3' />
-                <MenuItem itemName='Electronic Devices 4' />
+              ))}
               </ListGroup>
             )}
           </Col>

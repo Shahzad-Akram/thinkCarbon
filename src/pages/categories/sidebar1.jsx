@@ -3,8 +3,7 @@ import {useSelector} from 'react-redux'
 
 const Sidebar1 =(props) => {
     const products = useSelector(state => state.products);
-    console.log(props)
-    
+
     let categories = [];
     let selectedCat = [];
     let brand = []
@@ -54,11 +53,7 @@ const Sidebar1 =(props) => {
                           </small>
       </label>
           ) }
-    
-    
-   
-       
-      </div>
+</div>
       
       </>
     )

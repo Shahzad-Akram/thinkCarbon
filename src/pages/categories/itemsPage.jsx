@@ -51,18 +51,18 @@ const ItemsPage = () => {
   const param = useParams();
   const [categoriesbytype, setCategoriesbytype] =useState(param.id)
   const [categoriesbybrand, setCategoriesbybrand] =useState()
+  const [categoriesbyprice, setCategoriesbyprice] =useState()
 	const [ isSearchable ] = useState(false);
-  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand], getProductstype);
+  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand,categoriesbyprice ], getProductstype);
   const products = useSelector((state) => state.products);
   const {addItem, items, inCart} = useCart();
   const dispatch = useDispatch();
 
 
-
+console.log(categoriesbyprice)
   let categories = [];
   let brand = []
   let selected = [];
-
   const categoryClick = (e) => {
     setCategoriesbytype(e.target.name)
     
@@ -102,7 +102,8 @@ const ItemsPage = () => {
    
   
   }
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {setCategoriesbyprice(data)
+  };
 
 
   
@@ -176,14 +177,17 @@ const ItemsPage = () => {
                             size='sm'
                             type='number'
                             placeholder='Min'
+                            name = 'min'
                           />
                         </Col>
                         -
                         <Col xs={4} className='px-0'>
                           <Form.Control
+                          ref ={register}
                             size='sm'
                             type='number'
                             placeholder='Max'
+                            name = 'max'
                           />
                         </Col>
                         <Col xs={2} className='px-0'>
