@@ -24,6 +24,8 @@
   height: 34rem;
   width: 100.6%;
   overflow: auto;
+  position: relative;
+  z-index: 9999999;
 }
 
 @media (max-width: 560.98px) {

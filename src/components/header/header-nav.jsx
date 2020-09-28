@@ -27,7 +27,7 @@ import {useSelector} from 'react-redux'
 
 const HeaderNav = ({ onChange, children }) => {
   const products = useSelector((state) => state.products);
- 
+
   const [isItems1, setIsItems1] = useState(false);
   const [isItems2, setIsItems2] = useState(false);
   const [isLink1, setIsLink1] = useState(false);
@@ -135,10 +135,10 @@ const HeaderNav = ({ onChange, children }) => {
   //     SetOption(products.data.products)
   //     console.log(option)
   //   }
-  
+
   // }, [products]);
 
- 
+
 
   return (
     <StyleRoot className='bg-white'>

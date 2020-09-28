@@ -27,15 +27,15 @@ const Cart = () => {
     updateItemQuantity,
     removeItem,
     emptyCart,
-    totalItems 
+    totalItems
 
   } = useCart();
 
-  useEffect(()=>{
-    console.log(cartTotal,totalItems )
-  },[])
+  useEffect(() => {
+    console.log(cartTotal, totalItems)
+  }, [])
 
- 
+
 
   return (
     <Form className='container-cart container px-0 tr-vh-100  d-flex align-items-start justify-content-center  my-5'>
@@ -74,28 +74,33 @@ const Cart = () => {
           </section>
           <section className='bg-white rounded h-100 scrollbox'>
             {isEmpty ? (
-              <p>Cart is Empty</p>
-              ) : (
-              items.map((purchase) => (
-                <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
-                  <Col md={6} className='d-flex px-0 order-0 order-md-first'>
-                    <span>
-                      <CheckBox />
-                    </span>
-                    <Link to='/product-view' className='mx-2'>
-                      <img
-                        className='object-fit-contain'
-                        width={80}
-                        height={80}
-                        src={purchase.images}
-                        alt='phone'
-                      />
-                    </Link>
-                    <div>
-                      <Link to='/product-view' className='btn-link small'>
-                        <div className='font-weight-bold'>
-                          {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery
-                          - 13MP Triple Camera
+              <div className='h-100 d-flex flex-column justify-content-center align-items-center py-5 py-md-0'>
+                <small className='font-weight-bold'>There are no items in this cart</small>
+                <Button variant='outline-success' className='d-flex mt-3 px-5'>
+                  <small>CONTINUE SHOPPING</small>
+                </Button>
+              </div>
+            ) : (
+                items.map((purchase) => (
+                  <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
+                    <Col md={6} className='d-flex px-0 order-0 order-md-first'>
+                      <span>
+                        <CheckBox />
+                      </span>
+                      <Link to='/product-view' className='mx-2'>
+                        <img
+                          className='object-fit-contain'
+                          width={80}
+                          height={80}
+                          src={purchase.images}
+                          alt='phone'
+                        />
+                      </Link>
+                      <div>
+                        <Link to='/product-view' className='btn-link small'>
+                          <div className='font-weight-bold'>
+                            {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery
+                            - 13MP Triple Camera
                         </div>
                           <div>
                             Huawei, Storage Capacity:64GB, Color Family:GREEN
