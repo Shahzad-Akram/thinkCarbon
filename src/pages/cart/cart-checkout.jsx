@@ -11,25 +11,83 @@ import { Link } from 'react-router-dom';
 import { useCart } from 'react-use-cart';
 import ChevronDownIcon from '../../assets/svgs/ChevronDown';
 import ChevronUpIcon from '../../assets/svgs/ChevronUp';
+import CartItems from './cart-items';
+import { useForm } from "react-hook-form";
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const CartCheckout = () => {
+  const stripe = useStripe()
+
   const {
-    isEmpty,
     cartTotal,
-    totalUniqueItems,
+    totalItems,
     items,
-    updateItemQuantity,
-    removeItem,
-    emptyCart,
-    totalItems
+    emptyCart
 
   } = useCart();
 
   const [open, setOpen] = useState(false);
+  const [loading, setIsLoading] = useState(false)
+  const { handleSubmit, register, errors } = useForm();
+  const elements = useElements();
+  
+  const onSubmit = async (data) => {
+    setIsLoading(true)
+    const {
+      name,
+      area,
+      city,
+      email,
+      number,
+      province,
+      voucher,
+      address,
+      county
+    } = data
+   
+    
+    
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+        type: 'card',
+        card: elements.getElement(CardElement)
+    })
+    if(!error) {
+      const {id} = paymentMethod;
+
+      try{
+        const response = await axios.post('https://think-carbon-neutral-shop.herokuapp.com/order',{total:cartTotal, name , email , number , county ,area,
+        city, voucher, address,  orderItem: items, stripeToken: id} ).then(
+          emptyCart(),
+          setIsLoading(false),
+          toast.success('Purchase Successful', {
+            autoClose: '1500',
+          })   
+        ).catch(err => {
+          setIsLoading(false);
+          toast.danger('Purchase Successful', {
+            autoClose: '1500',
+          })  
+        })
+      }
+      catch(error)
+      {
+        console.log(error)
+        
+      }
+    }
+
+  }
 
   return (
     <>
-      <Form className='container-cart container px-0 d-flex align-items-start justify-content-center  my-5'>
+    
+      <Form onSubmit={handleSubmit(onSubmit)} className='container-cart container px-0 d-flex align-items-start justify-content-center  my-5'>
         <Row className='mx-0 my-3 w-100'>
           <Col>
             <section className='bg-white rounded px-4 py-2 mb-3'>
@@ -68,13 +126,21 @@ const CartCheckout = () => {
                         <Form.Label>Full name</Form.Label>
                         <Form.Control
                           type='text'
+                          name = 'name'
+                          ref={register ({required: true, })}
                           placeholder='Enter your first and last name'
                         />
+                        {errors.name && (
+        <p style={{ color: "red" }}>Oops. Name Required.</p>
+    )}
+                        
                       </Form.Group>
 
                       <Form.Group>
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control
+                         name = 'number'
+                         ref={register}
                           type='text'
                           placeholder='Please enter your phone number'
                         />
@@ -83,55 +149,51 @@ const CartCheckout = () => {
                       <Form.Group>
                         <Form.Label>Address</Form.Label>
                         <Form.Control
+                        name = 'address'
+                        ref={register ({required: true, })}
                           type='text'
                           placeholder='For Example: House# 123, Street# 123, ABC Road'
                         />
+                       {errors.address && ( <p style={{ color: "red" }}>Oops. Address Required.</p>)}
                       </Form.Group>
                     </Col>
 
                     <Col>
                       <Form.Group>
-                        <Form.Label>Province</Form.Label>
+                        <Form.Label>County</Form.Label>
                         <Form.Control
-                          as='select'
-                          defaultValue='Please choose your province'
-                          custom
-                        >
-                          <option disabled>Please choose your province</option>
-                          <option>...</option>
-                        </Form.Control>
+                        name = 'county'
+                        ref={register({required: true})}
+                          type='text'
+                          placeholder='For Example: House# 123, Street# 123, ABC Road'
+                        />
+                          {errors.county && ( <p style={{ color: "red" }}>Oops. County Required.</p>)}
                       </Form.Group>
 
                       <Form.Group>
                         <Form.Label>City</Form.Label>
                         <Form.Control
-                          as='select'
-                          defaultValue='Please choose your city'
-                          custom
-                        >
-                          <option disabled>Please choose your city</option>
-                          <option>...</option>
-                        </Form.Control>
+                        name = 'city'
+                        ref={register({required: true})}
+                          type='text'
+                          placeholder='For Example: House# 123, Street# 123, ABC Road'
+                        />
+                         {errors.city && ( <p style={{ color: "red" }}>Oops. City Required.</p>)}
                       </Form.Group>
 
                       <Form.Group>
                         <Form.Label>Area</Form.Label>
                         <Form.Control
-                          as='select'
-                          defaultValue='Please choose your area'
-                          custom
-                        >
-                          <option disabled>Please choose your area</option>
-                          <option>...</option>
-                        </Form.Control>
+                        name = 'area'
+                        ref={register({required: true})}
+                          type='text'
+                          placeholder='For Example: House# 123, Street# 123, ABC Road'
+                        />
                       </Form.Group>
+                      {errors.county && ( <p style={{ color: "red" }}>Oops. City Required.</p>)}
                     </Col>
                   </Form.Row>
-                  <div className='my-3'>
-                    <Button variant='success' className='d-flex ml-auto px-5'>
-                      <small className='font-weight-bold'>Save</small>
-                    </Button>
-                  </div>
+                  
                 </div>
               </Collapse>
 
@@ -170,49 +232,7 @@ const CartCheckout = () => {
                   </div>
                 </Button>
               </div>
-              {items.map(purchase => <Row className='mx-0 py-3 pl-2 pr-2 pr-md-4 border-bottom'>
-                <Col md={6} className='d-flex px-0 order-0 order-md-first'>
-                  <Link to='/product-view' className='mx-2'>
-                    <img
-                      className='object-fit-contain'
-                      height={50}
-                      src={purchase.images}
-                      alt='phone'
-                    />
-                  </Link>
-                  <div>
-                    <Link to='/product-view' className='btn-link small'>
-                      <div className='font-weight-bold'>
-                        {purchase.name} - 3GB Ram - 64GB Rom - 5000mAh Battery - 13MP
-                         Triple Camera
-                    </div>
-                      <div>Huawei, Storage Capacity:64GB, Color Family:GREEN</div>
-                    </Link>
-                    <div className='small'>
-                      <small>Only 1 item(s) in stock</small>
-                    </div>
-                  </div>
-                </Col>
-                <div className='order-first order-md-2 col-9 col-md-auto px-0 justify-content-between mr-auto mx-md-auto mb-2 mb-md-0 d-flex flex-md-column'>
-                  <div className='text-success'>{purchase.price}</div>
-                  <div className='text-line-through'>
-                    <small>Rs. 22,000</small>
-                  </div>
-                  <div>
-                    <small>-5%</small>
-                  </div>
-                  <span>
-                    <Button className='p-0' variant='link'>
-                      <span>
-                        <TrashIcon height={15} />
-                      </span>
-                    </Button>
-                  </span>
-                </div>
-                <div className='order-md-3 mt-2 mt-md-0 mb-0 small d-flex align-items-center align-self-baseline'>
-                  Qty: {purchase.quantity}
-                </div>
-              </Row>)}
+              <CartItems />
 
             </section>
           </Col>
@@ -236,7 +256,7 @@ const CartCheckout = () => {
 
               <Row className='mx-0 my-2'>
                 <Col className='px-0'>
-                  <Form.Control placeholder='Enter Voucher Code' />
+                  <Form.Control placeholder='Enter Voucher Code' name='voucher' ref={register} />
                 </Col>
                 <Col xs={5} md={4} className=' pr-0'>
                   <Button variant='success' type='submit' block className='py-1'>
@@ -250,83 +270,24 @@ const CartCheckout = () => {
                 <span className='font-weight-bold text-success'>{cartTotal} &#36;</span>
               </small>
 
-              <div className='mt-3'>
-                <Button variant='success' type='submit' block>
-                  <small className='font-weight-bold'>  Proceed to Pay</small>
-                </Button>
-              </div>
+             
             </section>
             <section className='bg-white rounded p-3 mt-3'>
               <Form>
                 <Form.Group>
                   <Form.Label className='small'>Email</Form.Label>
-                  <Form.Control type='email' />
+                  <Form.Control type='email'name='email' ref={register({required: true})} />
+                  {errors.email && ( <p style={{ color: "red" }}>Oops. Email Required.</p>)}
                 </Form.Group>
-                <Form.Group className='mb-0'>
-                  <Form.Label className='small'>Card information</Form.Label>
-                  <InputGroup>
-                    <FormControl
-                      size='lg'
-                      className='border-right-0 border-bottom-0 rounded-0'
-                      placeholder='1234 1234 1234 1234'
-                      type='number'
-                    />
-                    <InputGroup.Append>
-                      <InputGroup.Text className='bg-white border-left-0 border-bottom-0 rounded-0'>
-                        <img
-                          height={22}
-                          src='https://www.flaticon.com/svg/static/icons/svg/196/196578.svg'
-                          alt='card'
-                          className='mr-2'
-                        />
-                        <img
-                          height={22}
-                          src='https://www.flaticon.com/svg/static/icons/svg/196/196561.svg'
-                          alt='card'
-                          className='mr-2'
-                        />
-                        <img
-                          height={22}
-                          src='https://www.flaticon.com/svg/static/icons/svg/196/196565.svg'
-                          alt='card'
-                          className='mr-2'
-                        />
-                        <img
-                          height={22}
-                          src='https://www.flaticon.com/svg/static/icons/svg/196/196559.svg'
-                          alt='card'
-                        />
-                      </InputGroup.Text>
-                    </InputGroup.Append>
-                  </InputGroup>
+                <Form.Label className='small'>Card Information</Form.Label>
+                <Form.Group className='mb-0'style={{maxWidht: '400px',  height: '33px', border: '1px solid #00000026', padding: '8px', borderRadius:'3px'}}>
+                  <CardElement 
+                   />
+                  
                 </Form.Group>
-                <Form.Row className='mb-3 mx-0'>
-                  <Col className='px-0'>
-                    <Form.Control
-                      className='rounded-0 border-right-0'
-                      placeholder='MM / YY'
-                      type='date'
-                    />
-                  </Col>
-                  <Col className='px-0'>
-                    <InputGroup>
-                      <Form.Control
-                        className='rounded-0 border-right-0'
-                        placeholder='CVC'
-                        type='number'
-                      />
-                      <InputGroup.Append>
-                        <InputGroup.Text className='bg-white border-left-0 rounded-0'>
-                          <img
-                            height={18}
-                            src='https://www.flaticon.com/svg/static/icons/svg/2922/2922999.svg'
-                            alt='card'
-                          />
-                        </InputGroup.Text>
-                      </InputGroup.Append>
-                    </InputGroup>
-                  </Col>
-                </Form.Row>
+               
+               
+                
                 <Form.Group>
                   <Form.Label className='small'>Name on card</Form.Label>
                   <Form.Control type='text' />
@@ -339,15 +300,17 @@ const CartCheckout = () => {
                     <option value='2'>Two</option>
                     <option value='3'>Three</option>
                   </Form.Control>
-                </Form.Group>
-                <Button variant='success' block type='submit'>
-                  <small className='font-weight-bold'>Pay $20.00</small>
+                </Form.Group> 
+                <Button variant='success' block type='submit' disabled ={loading === true ? true: false}>
+                  <small className='font-weight-bold'>Pay &#36;{cartTotal}</small>
                 </Button>
+                <ToastContainer />
               </Form>
             </section>
           </Col>
         </Row>
       </Form>
+     
     </>
   );
 };

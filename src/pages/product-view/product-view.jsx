@@ -54,7 +54,7 @@ const ProductView = () => {
     ['product', id.id],
     getSingleProduct
   );
-  console.log(status, error, data);
+
 
   if (status !== 'loading') {
     dispatch({
@@ -70,7 +70,7 @@ const ProductView = () => {
 
   return (
     <>
-      <ModelCart show={show} onClick={handleClose} onHide={handleClose} />
+      <ModelCart data={data} show={show} onClick={handleClose} onHide={handleClose} />
       <Container className='px-0 mt-2 mb-4'>
         <div className='d-flex flex-column flex-md-row  px-2 px-md-0 align-items-baseline categories-nav border-bottom pb-2'>
           <Button variant='link' as={Link} className='p-0' to='/'>

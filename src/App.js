@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cart from './pages/cart/cart';
 import { getProducts } from './actions';
 import CartCheckout from './pages/cart/cart-checkout';
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js'
+
+const stripePromise = loadStripe("pk_test_ZlweN3nPeZpk6GMsvEdprEJd00ao6w8ieU")
 
 function App({ location }) {
   const [dark, setMode] = useState(false);
@@ -36,7 +40,9 @@ function App({ location }) {
           <Route exact path='/items/:id' component={ItemsPage} />
           <Route exact path='/product-view/:id' component={ProductView} />
           <Route exact path='/cart' component={Cart} />
+          <Elements stripe = {stripePromise}>
           <Route exact path='/cart-checkout' component={CartCheckout} />
+          </Elements>
         </Switch>
         <Footer />
 

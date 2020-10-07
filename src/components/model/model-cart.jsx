@@ -3,12 +3,16 @@ import { Modal, Button, Row, Col } from 'react-bootstrap';
 import CheckSquareIcon from '../../assets/svgs/CheckSquare';
 import { Link } from 'react-router-dom';
 import ChevronRightIcon from '../../assets/svgs/ChevronRight';
+import { useCart } from "react-use-cart";
 
-const ModelCart = ({ show, onHide, onClick }) => {
+
+const ModelCart = ({data, show, onHide, onClick }) => {
+  const { addItem, totalUniqueItems,cartTotal } = useCart();
   return (
     <Modal show={show} onHide={onHide} backdrop='static' size='lg' centered>
       <Modal.Header className='py-2' closeButton></Modal.Header>
       <Modal.Body className='p-0'>
+      {data === undefined ? <p>loading ...</p>: 
         <Row>
           <Col className='border-right'>
             <section className='p-2'>
@@ -16,30 +20,31 @@ const ModelCart = ({ show, onHide, onClick }) => {
                 <span className='mr-2'>
                   <CheckSquareIcon height={15} />
                 </span>
-                <span>1 new item(s) have been added to your cart</span>
+                <span>1 new item has been added to your cart</span>
               </div>
               <div className='d-flex small'>
                 <Link className='p-0 mr-3'>
                   <img
                     height={40}
                     className='object-fit-contain'
-                    src='https://static-01.daraz.pk/p/f6a744878b530ad89586d090975aa153.png'
+                    src={data.data.images}
                     alt='phone'
                   />
                 </Link>
+               
                 <div>
                   <div className='mb-1'>
-                    Infinix NOTE 7 4GB + 64GB 48MP Video Camera 5000 mAh battery
+                    {data.data.name} 4GB + 64GB 48MP Video Camera 5000 mAh battery
                     Helio G70
                   </div>
                   <small className='text-black-50'>
-                    Storage Capacity:64GB, Color Family:Aether Black
+                   {data.data.details}
                   </small>
-                  <div className='text-success mt-1'>Rs. 23,999</div>
+                  <div className='text-success mt-1'> &#36;	{data.data.price}</div>
                   <div className='d-flex justify-content-between'>
                     <div>
                       <span className='text-line-through text-black-50 mr-2'>
-                        Rs. 24,999
+                      &#36;	{data.data.price}
                       </span>
                       <span>-4%</span>
                     </div>
@@ -56,7 +61,7 @@ const ModelCart = ({ show, onHide, onClick }) => {
             <section className='py-2 small'>
               <div className='mb-1 px-3'>
                 <span className='mr-2'> My Shopping Cart</span>
-                <small className='text-black-50'>(3 items)</small>
+                <small className='text-black-50'>({totalUniqueItems} items)</small>
               </div>
               <div className='d-flex justify-content-between mb-1 px-3'>
                 <span className='small'>
@@ -65,7 +70,7 @@ const ModelCart = ({ show, onHide, onClick }) => {
                     <ChevronRightIcon />
                   </span>
                 </span>
-                <span>Rs. 23,999</span>
+                    <span>&#36; {cartTotal}</span>
               </div>
               <div className='d-flex justify-content-between mb-1 px-3'>
                 <span className='small'>
@@ -74,7 +79,7 @@ const ModelCart = ({ show, onHide, onClick }) => {
                     <ChevronRightIcon />
                   </span>
                 </span>
-                <span>Rs. 119</span>
+                <span>&#36; 119</span>
               </div>
               <div className='d-flex justify-content-between mb-1 px-3 small'>
                 <span>
@@ -85,16 +90,16 @@ const ModelCart = ({ show, onHide, onClick }) => {
                     <ChevronRightIcon />
                   </span>
                 </span>
-                <span>-Rs. 119</span>
+                <span>&#36; 119</span>
               </div>
               <div className='d-flex justify-content-between mb-1 px-3'>
                 <span>Total</span>
-                <span className='text-success'>Rs. 23,999</span>
+                <span className='text-success'>&#36; {cartTotal}</span>
               </div>
               <div className='d-flex justify-content-center my-3'>
                 <Button
                   as={Link}
-                  to='/'
+                  to='/cart'
                   size='sm'
                   variant='outline-success'
                   className='d-flex mr-2'
@@ -103,7 +108,7 @@ const ModelCart = ({ show, onHide, onClick }) => {
                 </Button>
                 <Button
                   as={Link}
-                  to='/'
+                  to='/cart-checkout'
                   size='sm'
                   variant='success'
                   className='d-flex'
@@ -114,6 +119,7 @@ const ModelCart = ({ show, onHide, onClick }) => {
             </section>
           </Col>
         </Row>
+}
       </Modal.Body>
     </Modal>
   );

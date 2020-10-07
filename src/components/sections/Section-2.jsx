@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProductslimit } from '../../actions';
 import { useQuery } from 'react-query';
 
+
 const SectionTwo = () => {
   const products = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const SectionTwo = () => {
           ) : (
             data.data.products.map((product) => (
               <SaleItem
+              link={`/product-view/${product._id}`}
                 photo={product.images}
                 itemName={product.name}
                 price={product.price}

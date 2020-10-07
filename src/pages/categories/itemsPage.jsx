@@ -13,7 +13,8 @@ import {
   Row,
   Col,
   Form,
-  Pagination,
+  Pagination
+
 
 } from 'react-bootstrap';
 // Icons
@@ -32,6 +33,10 @@ import ModelCart from '../../components/model/model-cart';
 import '../../components/check-box/check-box.styles.css'
 import Sidebar1 from './sidebar1';
 import Filter from './filter';
+import Topbar from './topbar'
+
+
+
 
 const data1 = [
   // { value: 'Best Match', label: '1' },
@@ -41,43 +46,49 @@ const data1 = [
 
 const ItemsPage = () => {
   const { register, handleSubmit, watch, errors } = useForm();
+  const [ page, setPage ] = useState( 1 );
   const [show, setShow] = useState(false);
   const [prodList, setProdList] = useState([])
+  const [loading, setLoading] = useState(false)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const param = useParams();
   const [categoriesbytype, setCategoriesbytype] =useState(param.id)
   const [categoriesbybrand, setCategoriesbybrand] =useState()
   const [categoriesbyprice, setCategoriesbyprice] =useState()
-	const [ isSearchable ] = useState(false);
-  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand,categoriesbyprice ], getProductstype);
+  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand,categoriesbyprice, page ], getProductstype);
   const products = useSelector((state) => state.products);
   const { addItem, items, inCart } = useCart();
   const dispatch = useDispatch();
 
 
-console.log(categoriesbyprice)
+
   let categories = [];
   let brand = []
   let selected = [];
   const categoryClick = (e) => {
+    setLoading(true)
     setCategoriesbytype(e.target.name)
 
   }
   const brandClick = (e) => {
+    
     setCategoriesbybrand(e.target.name)
   }
 
 
 
   useEffect(() => {
+    setLoading(true)
     if (!isLoading) {
+      console.log(status)
       setProdList(data.products)
 
     }
-  }, [isLoading])
+    setLoading(false)
+  }, [loading,isLoading,setCategoriesbybrand,setCategoriesbyprice,setCategoriesbytype])
 
-
+  console.log(prodList)
 
   const handleClickCart = (product) => {
     toast.success('Product Added Successfully', {
@@ -91,43 +102,37 @@ console.log(categoriesbyprice)
     addItem(productWithId)
 
   };
-
-  const handleClickPrice = () => {
-    const sorted = prodList.sort((a, b) => a.price - b.price);
-    console.log(prodList)
-    setProdList(sorted);
+  
 
 
+  useEffect(()=> {
+    console.log('object')
+  },[setProdList])
+
+  const handleClickPrice = (value) => {
+   
+    let sorted
+    if(value === 2){
+       sorted = prodList.sort((a, b) => b.price - a.price);
+    }
+    else
+    {
+      sorted = prodList.sort((a, b) => a.price - b.price);
+    }
+    setProdList([...sorted]);
   }
-  const onSubmit = data => {setCategoriesbyprice(data)
-  };
+  const onSubmit = data => {setCategoriesbyprice(data)};
 
 
 
 
   return (
     <>
-
+    {console.log}
       <ModelCart show={show} onClick={handleClose} onHide={handleClose} />
       <Container fluid className='categories-container px-0 mt-3 mb-5'>
         <Container className='px-3 px-md-0'>
-          <div className='d-flex align-items-baseline categories-nav border-bottom pb-2'>
-            <Button variant='link' as={Link} className='p-0' to='/'>
-              <small>Home</small>
-            </Button>
-            <span className='mx-2 text-white'>
-              <ChevronRightIcon />
-            </span>
-            <Button variant='link' as={Link} className='p-0' to='/'>
-              <small>Mobiles & Tablets</small>
-            </Button>
-            <span className='mx-2 text-white'>
-              <ChevronRightIcon />
-            </span>
-            <Button variant='link' className='p-0' disabled>
-              <small> Mobiles</small>
-            </Button>
-          </div>
+          <Topbar />
           <Brand />
         </Container>
         <Container className='px-0 '>
@@ -240,7 +245,7 @@ console.log(categoriesbyprice)
                   <h1>loading...</h1>
                 ) : (
 
-                    data.products.map((product, key = product._id) => {
+                  prodList.map((product, key = product._id) => {
                       const alreadyAdded = inCart(product._id)
 
                       return (
@@ -297,9 +302,12 @@ console.log(categoriesbyprice)
                     })
                   )}
               </Row>
-              <div className="d-flex justify-content-center text-green-light">
+
+              {/* <div className="d-flex justify-content-center text-green-light pagination">
+            
                 <Pagination>
                   <Pagination.Prev />
+                  {}
                   <Pagination.Item active>{1}</Pagination.Item>
                   <Pagination.Item>{2}</Pagination.Item>
                   <Pagination.Item>{3}</Pagination.Item>
@@ -309,7 +317,7 @@ console.log(categoriesbyprice)
                   <Pagination.Item>{20}</Pagination.Item>
                   <Pagination.Next />
                 </Pagination>
-              </div>
+              </div> */}
             </Col>
           </Row>
         </Container>

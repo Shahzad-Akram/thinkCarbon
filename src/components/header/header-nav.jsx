@@ -22,7 +22,9 @@ import SearchIcon from '../../assets/svgs/search';
 import Cart3Icon from '../../assets/svgs/Cart3';
 import MenuItem from '../menu-item/menu-item';
 import { getSearchedProducts } from '../../actions/index';
-import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
+import axios from 'axios'
+
 
 
 const HeaderNav = ({ onChange, children }) => {
@@ -31,14 +33,16 @@ const HeaderNav = ({ onChange, children }) => {
   const [isItems1, setIsItems1] = useState(false);
   const [isItems2, setIsItems2] = useState(false);
   const [isLink1, setIsLink1] = useState(false);
-  const [inputValue, SetInputValue] = useState({})
-  const {data, status ,isLoading } = useQuery([ 'product', inputValue ], getSearchedProducts);
-
+  const [inputValue, SetInputValue] = useState({});
+  const [searchEnabled,setSearchEnabled] = useState(false);
+  const {data,isLoading } = useQuery([ 'product', inputValue ], getSearchedProducts
+  );
+ 
   
   const [option, SetOption] = useState([
-    { value: "Abe", label: "Abe", customAbbreviation: "A" },
-    { value: "John", label: "John", customAbbreviation: "J" },
-    { value: "Dustin", label: "Dustin", customAbbreviation: "D" }
+    // { value: "Abe", label: "Abe", customAbbreviation: "A" },
+    // { value: "John", label: "John", customAbbreviation: "J" },
+    // { value: "Dustin", label: "Dustin", customAbbreviation: "D" }
   ])
 
   const styles = {
@@ -72,19 +76,20 @@ const HeaderNav = ({ onChange, children }) => {
   }
  
  
+ 
     
     useEffect(() => {
 
-      if(data !== undefined && data !== null  ){
+      if(data !== undefined && data !== null && data.length > 0  ){
         const array = data.map(data=> ({
          label: data.name,
          price: data.price,
          stock: data.stockQuantity
         }))
         SetOption(array)
+ 
      }
      
-     console.log(data,option)
     },[inputValue])
     
   
@@ -94,27 +99,50 @@ const HeaderNav = ({ onChange, children }) => {
       i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
-  const loadOptions = (inputValue, callback) => {
-    setTimeout(() => {
-     
-      callback(filterOptions(inputValue));
-    }, 1000);
+
+
+  const formatSelectData = (products) => {
+    const formattedProducts = [];
+
+    if(products?.length > 0) {
+      products.map(product=> formattedProducts.push({
+        label: product.name,
+        value:product._id,
+        price: product.price,
+        stock: product.stockQuantity,
+        img:product.images[0]
+      }))
+    }
+
+    return formattedProducts;
+  }
+
+  const loadOptions = (inputValue) => {
+    return  axios
+		.get(`https://think-carbon-neutral-shop.herokuapp.com/product?text=${inputValue}`)
+		.then((res) => {
+			return formatSelectData(res.data.products);
+		})
+		.catch((err) => {
+			// handle error
+			console.log(err);
+		});
   };
   
   const formatOptionLabel = ({
-    value, label, customAbbreviation,
+    value, label, customAbbreviation,img
   }) => (
-    <div class='d-flex '>
+    <div class='d-flex col-md-12 w-100'>
       <div class='col-md-2 d-flex justify-content-center align-items-center'>
-        <span class='bg-info p-2 b-2px text-white'>
-          {value.charAt(0).toUpperCase()}
+        <span class='p-2 b-2px '>
+          <img className='w-100 h-100 img-thumbnail' src={img} alt={label}/>
         </span>
       </div>
       <div class='col-md-10'>
         <div class='flex-column'>
           <div class='d-flex justify-content-between'>
             <div>{label}</div>
-            <small>{label.toUpperCase()}</small>
+            <small>{label?.toUpperCase()}</small>
           </div>
           <div className='d-flex justify-content-between'>
             <div class=' small'>PKR {label}</div>
@@ -125,8 +153,7 @@ const HeaderNav = ({ onChange, children }) => {
     </div>
   );
   const handleInputChange = (newValue) => {
-    const newInput= newValue.replace(/\W/g, '')
-    SetInputValue(newInput)
+    SetInputValue(newValue)
   }
 
 
@@ -180,18 +207,24 @@ const HeaderNav = ({ onChange, children }) => {
             <Col
               xs={10}
               lg={8}
-              className='search-container d-flex align-items-center order-1 order-lg-0 px-0'
-            >
-            
-              <AsyncSelect
-              cacheOptions
-              defaultOptions
-            formatOptionLabel={formatOptionLabel}
-            loadOptions={loadOptions}
-             onInputChange={handleInputChange}
-             />
               
-              <Button
+            >
+            <Row>
+            <Col md={10}>
+              <AsyncSelect
+              menuPosition='sticky'
+              cacheOptions
+              isLoading={isLoading}
+              defaultOptions
+              formatOptionLabel={formatOptionLabel}
+              loadOptions={loadOptions}
+              onInputChange={handleInputChange}
+             />
+            </Col>
+            <Col md={2}>
+              <Row>
+
+            <Button
                 variant='success'
                 className='py-1 px-2 d-flex align-items-center rounded-0'
               >
@@ -200,6 +233,11 @@ const HeaderNav = ({ onChange, children }) => {
               <Button as={Link} to='/cart' variant='link' className='p-0 ml-4'>
                 <Cart3Icon />
               </Button>
+              </Row>
+              </Col>
+             
+            </Row>
+              
             </Col>
             
           </div>
