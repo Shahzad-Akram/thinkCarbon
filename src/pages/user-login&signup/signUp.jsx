@@ -100,14 +100,15 @@ const SignUp = () => {
                         </Form.Group>
                         {errors.county && (<p style={{ color: "red" }}>Oops. City Required.</p>)}
 
-
-                        <Button variant='success' block type='submit' className='mt-4 py-1' >
-                            <small className='text-uppercase font-weight-bold'>
-                                Sign Up
-                            </small>
-                        </Button>
                     </Col>
                 </Row>
+                <Col lg={5} className='mx-auto'>
+                    <Button variant='success' block type='submit' className='py-1' >
+                        <small className='text-uppercase font-weight-bold'>
+                            Sign Up
+                            </small>
+                    </Button>
+                </Col>
             </Form>
         </Col>
     )

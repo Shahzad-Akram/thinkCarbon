@@ -15,6 +15,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js'
 import Login from './pages/user-login&signup/login';
 import SignUp from './pages/user-login&signup/signUp';
+import Order from './pages/order/order';
 
 const stripePromise = loadStripe("pk_test_ZlweN3nPeZpk6GMsvEdprEJd00ao6w8ieU")
 
@@ -43,6 +44,7 @@ function App({ location }) {
           <Route exact path='/' component={Home} />
           <Route exact path='/items/:id' component={ItemsPage} />
           <Route exact path='/product-view/:id' component={ProductView} />
+          <Route exact path='/order' component={Order} />
           <Route exact path='/cart' component={Cart} />
           <Elements stripe={stripePromise}>
             <Route exact path='/cart-checkout' component={CartCheckout} />

@@ -24,7 +24,10 @@ const Login = () => {
                             <Form.Label className='small'>Phone Number or Email</Form.Label>
                             <Form.Control placeholder="Please enter your Phone Number or Email" />
                         </Form.Group>
-                        <Form.Group className='mb-0'>
+
+                    </Col>
+                    <Col>
+                        <Form.Group>
                             <Form.Label className='small'>Password</Form.Label>
                             <Form.Control placeholder="Please enter your password" />
                             <div className='text-right'>
@@ -34,14 +37,14 @@ const Login = () => {
                             </div>
                         </Form.Group>
                     </Col>
-                    <Col className='mt-auto mb-4'>
-                        <Button variant='success' block type='submit' className='mt-4 py-1'>
-                            <small className='text-uppercase font-weight-bold'>
-                                Login
-                            </small>
-                        </Button>
-                    </Col>
                 </Row>
+                <Col lg={5} className='mx-auto'>
+                    <Button variant='success' block type='submit' className='py-1' >
+                        <small className='text-uppercase font-weight-bold'>
+                            Login
+                            </small>
+                    </Button>
+                </Col>
             </Form>
         </Col>
     )
