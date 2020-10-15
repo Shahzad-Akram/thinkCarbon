@@ -78,19 +78,19 @@ const HeaderNav = ({ onChange, children }) => {
  
  
     
-    useEffect(() => {
+    // useEffect(() => {
 
-      if(data !== undefined && data !== null && data.length > 0  ){
-        const array = data.map(data=> ({
-         label: data.name,
-         price: data.price,
-         stock: data.stockQuantity
-        }))
-        SetOption(array)
+    //   if(data !== undefined && data !== null && data.length > 0  ){
+    //     const array = data.map(data=> ({
+    //      label: data.name,
+    //      price: data.price,
+    //      stock: data.stockQuantity,
+    //     }))
+    //     SetOption(array)
  
-     }
+    //  }
      
-    },[inputValue])
+    // },[inputValue])
     
   
 
@@ -132,6 +132,7 @@ const HeaderNav = ({ onChange, children }) => {
   const formatOptionLabel = ({
     value, label, customAbbreviation,img
   }) => (
+    <Link to= {`/product-view/${value}`}>
     <div class='d-flex col-md-12 w-100'>
       <div class='col-md-2 d-flex justify-content-center align-items-center'>
         <span class='p-2 b-2px '>
@@ -151,19 +152,14 @@ const HeaderNav = ({ onChange, children }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
   const handleInputChange = (newValue) => {
     SetInputValue(newValue)
   }
 
 
-  // useEffect(() => {
-  //   if(products !== null){
-  //     SetOption(products.data.products)
-  //     console.log(option)
-  //   }
-
-  // }, [products]);
+  
 
 
 

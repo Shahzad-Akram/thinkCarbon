@@ -15,9 +15,12 @@ export const getProducts = (dispatch) => {
 		});
 };
 
-export const getProductstype = (key, type, brand, price) => {
+export const getProductstype = (key, type, brand, price, paginate) => {
 	
-	const params = {}
+	const params = {
+		skip: paginate, 
+		limit: 5
+	}
 	
 	
 	if(brand === null && price === null) {

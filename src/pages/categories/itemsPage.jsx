@@ -47,6 +47,7 @@ const data1 = [
 const ItemsPage = () => {
   const { register, handleSubmit, watch, errors } = useForm();
   const [ page, setPage ] = useState( 1 );
+  const [paginate, setPaginate] = useState(0);
   const [show, setShow] = useState(false);
   const [prodList, setProdList] = useState([])
   const [loading, setLoading] = useState(false)
@@ -56,7 +57,9 @@ const ItemsPage = () => {
   const [categoriesbytype, setCategoriesbytype] =useState(param.id)
   const [categoriesbybrand, setCategoriesbybrand] =useState()
   const [categoriesbyprice, setCategoriesbyprice] =useState()
-  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand,categoriesbyprice, page ], getProductstype);
+  const {data, status ,isLoading } = useQuery([ 'product', categoriesbytype,categoriesbybrand,categoriesbyprice, paginate ], getProductstype);
+  const [pageNumber, setPageNumber] = useState()
+  const [pages, setPages] = useState([])
   const products = useSelector((state) => state.products);
   const { addItem, items, inCart } = useCart();
   const dispatch = useDispatch();
@@ -81,14 +84,24 @@ const ItemsPage = () => {
   useEffect(() => {
     setLoading(true)
     if (!isLoading) {
-      console.log(status)
+      
       setProdList(data.products)
-
+      setPageNumber(Math.ceil(data.count / 5 ))
     }
     setLoading(false)
-  }, [loading,isLoading,setCategoriesbybrand,setCategoriesbyprice,setCategoriesbytype])
+  }, [loading,isLoading,setCategoriesbybrand,setCategoriesbyprice,setCategoriesbytype, paginate])
 
-  console.log(prodList)
+  useEffect(()=> {
+    let x = [];
+    for( var i = 1; i <= pageNumber; i++)
+    {
+      x.push(i)
+      
+    }
+    setPages(x)
+    console.log(pages)
+  },[data, pageNumber])
+
 
   const handleClickCart = (product) => {
     toast.success('Product Added Successfully', {
@@ -105,9 +118,7 @@ const ItemsPage = () => {
   
 
 
-  useEffect(()=> {
-    console.log('object')
-  },[setProdList])
+  
 
   const handleClickPrice = (value) => {
    
@@ -123,12 +134,30 @@ const ItemsPage = () => {
   }
   const onSubmit = data => {setCategoriesbyprice(data)};
 
+  const incrementPage = () => {
+      if(page < pageNumber){
+        setPaginate(paginate + 5)
+        setPage(page + 1)
+        console.log(page,pageNumber )
+      }
+      else{
+        console.log('no more pages')
+      }
+    
+  }
+  const decrementPage = () => {
+    if(page > 1) {
+      setPaginate(paginate - 5)
+      setPage(page - 1)
+    }
+  }
+
 
 
 
   return (
     <>
-    {console.log}
+    {console.log(pages, pageNumber)}
       <ModelCart show={show} onClick={handleClose} onHide={handleClose} />
       <Container fluid className='categories-container px-0 mt-3 mb-5'>
         <Container className='px-3 px-md-0'>
@@ -302,22 +331,17 @@ const ItemsPage = () => {
                     })
                   )}
               </Row>
-
-              {/* <div className="d-flex justify-content-center text-green-light pagination">
+              
+              <div className="d-flex justify-content-center text-green-light pagination">
             
                 <Pagination>
-                  <Pagination.Prev />
-                  {}
-                  <Pagination.Item active>{1}</Pagination.Item>
-                  <Pagination.Item>{2}</Pagination.Item>
-                  <Pagination.Item>{3}</Pagination.Item>
-                  <Pagination.Item>{4}</Pagination.Item>
-                  <Pagination.Item>{5}</Pagination.Item>
-                  <Pagination.Ellipsis />
-                  <Pagination.Item>{20}</Pagination.Item>
-                  <Pagination.Next />
+                  <Pagination.Prev onClick = {decrementPage}/>
+                  {pages.map(pages => (
+                    <Pagination.Item active= {pages === page ? true : false}>{pages}</Pagination.Item>
+                  ))}
+                  <Pagination.Next onClick = {incrementPage} />
                 </Pagination>
-              </div> */}
+              </div>
             </Col>
           </Row>
         </Container>
