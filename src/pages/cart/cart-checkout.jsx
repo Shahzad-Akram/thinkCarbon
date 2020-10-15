@@ -13,8 +13,8 @@ import ChevronDownIcon from '../../assets/svgs/ChevronDown';
 import ChevronUpIcon from '../../assets/svgs/ChevronUp';
 import CartItems from './cart-items';
 import { useForm } from "react-hook-form";
-import {loadStripe} from '@stripe/stripe-js';
-import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +36,7 @@ const CartCheckout = () => {
   const [loading, setIsLoading] = useState(false)
   const { handleSubmit, register, errors } = useForm();
   const elements = useElements();
-  
+
   const onSubmit = async (data) => {
     setIsLoading(true)
     const {
@@ -50,35 +50,36 @@ const CartCheckout = () => {
       address,
       county
     } = data
-   
-    
-    
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-        type: 'card',
-        card: elements.getElement(CardElement)
-    })
-    if(!error) {
-      const {id} = paymentMethod;
 
-      try{
-        const response = await axios.post('https://think-carbon-neutral-shop.herokuapp.com/order',{total:cartTotal, name , email , number , county ,area,
-        city, voucher, address,  orderItem: items, stripeToken: id} ).then(
+
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardElement)
+    })
+    if (!error) {
+      const { id } = paymentMethod;
+
+      try {
+        const response = await axios.post('https://think-carbon-neutral-shop.herokuapp.com/order', {
+          total: cartTotal, name, email, number, county, area,
+          city, voucher, address, orderItem: items, stripeToken: id
+        }).then(
           emptyCart(),
           setIsLoading(false),
           toast.success('Purchase Successful', {
             autoClose: '1500',
-          })   
+          })
         ).catch(err => {
           setIsLoading(false);
           toast.danger('Purchase Successful', {
             autoClose: '1500',
-          })  
+          })
         })
       }
-      catch(error)
-      {
+      catch (error) {
         console.log(error)
-        
+
       }
     }
 
@@ -86,7 +87,7 @@ const CartCheckout = () => {
 
   return (
     <>
-    
+
       <Form onSubmit={handleSubmit(onSubmit)} className='container-cart container px-0 d-flex align-items-start justify-content-center  my-5'>
         <Row className='mx-0 my-3 w-100'>
           <Col>
@@ -126,21 +127,21 @@ const CartCheckout = () => {
                         <Form.Label>Full name</Form.Label>
                         <Form.Control
                           type='text'
-                          name = 'name'
-                          ref={register ({required: true, })}
+                          name='name'
+                          ref={register({ required: true, })}
                           placeholder='Enter your first and last name'
                         />
                         {errors.name && (
-        <p style={{ color: "red" }}>Oops. Name Required.</p>
-    )}
-                        
+                          <p style={{ color: "red" }}>Oops. Name Required.</p>
+                        )}
+
                       </Form.Group>
 
                       <Form.Group>
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control
-                         name = 'number'
-                         ref={register}
+                          name='number'
+                          ref={register}
                           type='text'
                           placeholder='Please enter your phone number'
                         />
@@ -149,12 +150,12 @@ const CartCheckout = () => {
                       <Form.Group>
                         <Form.Label>Address</Form.Label>
                         <Form.Control
-                        name = 'address'
-                        ref={register ({required: true, })}
+                          name='address'
+                          ref={register({ required: true, })}
                           type='text'
                           placeholder='For Example: House# 123, Street# 123, ABC Road'
                         />
-                       {errors.address && ( <p style={{ color: "red" }}>Oops. Address Required.</p>)}
+                        {errors.address && (<p style={{ color: "red" }}>Oops. Address Required.</p>)}
                       </Form.Group>
                     </Col>
 
@@ -162,38 +163,38 @@ const CartCheckout = () => {
                       <Form.Group>
                         <Form.Label>County</Form.Label>
                         <Form.Control
-                        name = 'county'
-                        ref={register({required: true})}
+                          name='county'
+                          ref={register({ required: true })}
                           type='text'
                           placeholder='For Example: House# 123, Street# 123, ABC Road'
                         />
-                          {errors.county && ( <p style={{ color: "red" }}>Oops. County Required.</p>)}
+                        {errors.county && (<p style={{ color: "red" }}>Oops. County Required.</p>)}
                       </Form.Group>
 
                       <Form.Group>
                         <Form.Label>City</Form.Label>
                         <Form.Control
-                        name = 'city'
-                        ref={register({required: true})}
+                          name='city'
+                          ref={register({ required: true })}
                           type='text'
                           placeholder='For Example: House# 123, Street# 123, ABC Road'
                         />
-                         {errors.city && ( <p style={{ color: "red" }}>Oops. City Required.</p>)}
+                        {errors.city && (<p style={{ color: "red" }}>Oops. City Required.</p>)}
                       </Form.Group>
 
                       <Form.Group>
                         <Form.Label>Area</Form.Label>
                         <Form.Control
-                        name = 'area'
-                        ref={register({required: true})}
+                          name='area'
+                          ref={register({ required: true })}
                           type='text'
                           placeholder='For Example: House# 123, Street# 123, ABC Road'
                         />
                       </Form.Group>
-                      {errors.county && ( <p style={{ color: "red" }}>Oops. City Required.</p>)}
+                      {errors.county && (<p style={{ color: "red" }}>Oops. City Required.</p>)}
                     </Col>
                   </Form.Row>
-                  
+
                 </div>
               </Collapse>
 
@@ -270,24 +271,24 @@ const CartCheckout = () => {
                 <span className='font-weight-bold text-success'>{cartTotal} &#36;</span>
               </small>
 
-             
+
             </section>
             <section className='bg-white rounded p-3 mt-3'>
               <Form>
                 <Form.Group>
                   <Form.Label className='small'>Email</Form.Label>
-                  <Form.Control type='email'name='email' ref={register({required: true})} />
-                  {errors.email && ( <p style={{ color: "red" }}>Oops. Email Required.</p>)}
+                  <Form.Control type='email' name='email' ref={register({ required: true })} />
+                  {errors.email && (<p style={{ color: "red" }}>Oops. Email Required.</p>)}
                 </Form.Group>
                 <Form.Label className='small'>Card Information</Form.Label>
-                <Form.Group className='mb-0'style={{maxWidht: '400px',  height: '33px', border: '1px solid #00000026', padding: '8px', borderRadius:'3px'}}>
-                  <CardElement 
-                   />
-                  
+                <Form.Group className='mb-0' style={{ maxWidht: '400px', height: '33px', border: '1px solid #00000026', padding: '8px', borderRadius: '3px' }}>
+                  <CardElement
+                  />
+
                 </Form.Group>
-               
-               
-                
+
+
+
                 <Form.Group>
                   <Form.Label className='small'>Name on card</Form.Label>
                   <Form.Control type='text' />
@@ -300,8 +301,8 @@ const CartCheckout = () => {
                     <option value='2'>Two</option>
                     <option value='3'>Three</option>
                   </Form.Control>
-                </Form.Group> 
-                <Button variant='success' block type='submit' disabled ={loading === true ? true: false}>
+                </Form.Group>
+                <Button variant='success' block type='submit' disabled={loading === true ? true : false}>
                   <small className='font-weight-bold'>Pay &#36;{cartTotal}</small>
                 </Button>
                 <ToastContainer />
@@ -310,7 +311,7 @@ const CartCheckout = () => {
           </Col>
         </Row>
       </Form>
-     
+
     </>
   );
 };

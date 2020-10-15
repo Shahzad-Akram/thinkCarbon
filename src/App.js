@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cart from './pages/cart/cart';
 import { getProducts } from './actions';
 import CartCheckout from './pages/cart/cart-checkout';
-import {loadStripe} from '@stripe/stripe-js';
-import {Elements} from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js'
+import Login from './pages/user-login&signup/login';
+import SignUp from './pages/user-login&signup/signUp';
 
 const stripePromise = loadStripe("pk_test_ZlweN3nPeZpk6GMsvEdprEJd00ao6w8ieU")
 
@@ -36,12 +38,14 @@ function App({ location }) {
       </HeaderNav>
       <div>
         <Switch>
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/login' component={Login} />
           <Route exact path='/' component={Home} />
           <Route exact path='/items/:id' component={ItemsPage} />
           <Route exact path='/product-view/:id' component={ProductView} />
           <Route exact path='/cart' component={Cart} />
-          <Elements stripe = {stripePromise}>
-          <Route exact path='/cart-checkout' component={CartCheckout} />
+          <Elements stripe={stripePromise}>
+            <Route exact path='/cart-checkout' component={CartCheckout} />
           </Elements>
         </Switch>
         <Footer />
