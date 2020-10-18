@@ -11,7 +11,8 @@ const Order = () => {
 
     return (
         <>
-            <Container className='py-5'>
+         <main className='bg-light'>
+         <Container className='py-5'>
                 <div className='d-flex align-items-baseline mb-2'>
                     <OrderIcon height={25} color='#fff' />
                     <h6 className='text-white ml-2'>My orders</h6>
@@ -133,6 +134,7 @@ const Order = () => {
                     </div>
                 </section>
             </Container>
+         </main>
         </>
     )
 }
