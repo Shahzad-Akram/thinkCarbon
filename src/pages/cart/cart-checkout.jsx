@@ -18,10 +18,13 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useSelector} from 'react-redux'
 
 
 
 const CartCheckout = () => {
+  const user = useSelector((state) => state.user);
+  console.log(user)
   const stripe = useStripe()
 
   const {
@@ -63,7 +66,7 @@ const CartCheckout = () => {
       try {
         const response = await axios.post('https://think-carbon-neutral-shop.herokuapp.com/order', {
           total: cartTotal, name, email, number, county, area,
-          city, voucher, address, orderItem: items, stripeToken: id
+          city, voucher, address, orderItem: items, stripeToken: id, orderBy : user.user._id
         }).then(
           emptyCart(),
           setIsLoading(false),
@@ -87,7 +90,6 @@ const CartCheckout = () => {
 
   return (
     <>
-
       <Form onSubmit={handleSubmit(onSubmit)} className='container-cart container px-0 d-flex align-items-start justify-content-center  my-5'>
         <Row className='mx-0 my-3 w-100'>
           <Col>

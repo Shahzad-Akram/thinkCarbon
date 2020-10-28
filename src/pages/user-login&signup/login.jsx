@@ -43,7 +43,6 @@ const Login = () => {
         
     }
     useEffect(() => {
-        console.log(isAuthenticated)
       if (isAuthenticated) {
         history.push('/cart-checkout');
       }
@@ -82,7 +81,10 @@ const Login = () => {
                           <p style={{ color: "red" }}>Oops. Email Required.</p>
                         )}
                         </Form.Group>
-                        <Form.Group className='mb-0'>
+
+                    </Col>
+                    <Col>
+                        <Form.Group>
                             <Form.Label className='small'>Password</Form.Label>
                             <Form.Control placeholder="Please enter your password" 
                             type = 'password'

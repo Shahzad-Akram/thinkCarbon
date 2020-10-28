@@ -2,6 +2,4 @@
 [0922/160602.093:ERROR:exception_snapshot_win.cc(99)] thread ID 4276 not found in process
 [0922/160602.093:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
 [0922/160602.218:ERROR:exception_snapshot_win.cc(99)] thread ID 8940 not found in process
-[1015/185213.705:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1019/123927.222:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1021/021724.764:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1015/222819.890:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

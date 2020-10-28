@@ -134,3 +134,16 @@ export const logOut = (dispatch) => {
 		
 };
 
+export const getOrders = (key,id) => {
+	console.log(id)
+	return axios
+		.get(`https://think-carbon-neutral-shop.herokuapp.com/order/${id}`)
+		.then((res) => {
+			return res.data;
+		})
+		.catch((err) => {
+			// handle error
+			console.log(err);	
+		});
+};
+

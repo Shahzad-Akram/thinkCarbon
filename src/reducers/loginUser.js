@@ -8,7 +8,7 @@ const initialState = {
  const loginUser = (state= initialState, action) => {
      let payload =null;
      if(localStorage.getItem('auth-admin') !== null){
-         payload = localStorage.getItem('auth-admin');
+         payload =JSON.parse(localStorage.getItem('auth-admin'));
         // const {token, user} = JSON.parse(payload);
      }
     
