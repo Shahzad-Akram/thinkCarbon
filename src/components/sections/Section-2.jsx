@@ -63,40 +63,6 @@ const SectionTwo = () => {
               />
             ))
           )}
-          {/* <SaleItem
-						photo="https://static-01.daraz.pk/p/fbfb1ecbb185f2bc0b2ed698676b0978.jpg"
-						itemName="Wiresto TWS Wireless Bluetooth V5.0 Headset for iPhone Xiaomi"
-						price="Rs.539"
-						priceMinus="Rs.11,445"
-						priceDiscount="-83%"
-					/>
-					<SaleItem
-						photo="https://static-01.daraz.pk/p/70baeaef1a49ccea09db030294efad3f.jpg"
-						itemName="Wiresto TWS Wireless Bluetooth V5.0 Headset for iPhone Xiaomi"
-						price="Rs.539"
-					/>
-
-					<SaleItem
-						photo="https://static-01.daraz.pk/p/35467a33bbf0085a99b6899d232134b3.jpg"
-						itemName="Wiresto TWS Wireless Bluetooth V5.0 Headset for iPhone Xiaomi"
-						price="Rs.539"
-						priceMinus="Rs.11,445"
-						priceDiscount="-83%"
-					/>
-					<SaleItem
-						photo="https://static-01.daraz.pk/p/35467a33bbf0085a99b6899d232134b3.jpg"
-						itemName="Wiresto TWS Wireless Bluetooth V5.0 Headset for iPhone Xiaomi"
-						price="Rs.539"
-						priceMinus="Rs.11,445"
-						priceDiscount="-83%"
-					/>
-					<SaleItem
-						photo="https://static-01.daraz.pk/p/35467a33bbf0085a99b6899d232134b3.jpg"
-						itemName="Wiresto TWS Wireless Bluetooth V5.0 Headset for iPhone Xiaomi"
-						price="Rs.539"
-						priceMinus="Rs.11,445"
-						priceDiscount="-83%"
-					/> */}
         </CardDeck>
       </div>
     </Container>

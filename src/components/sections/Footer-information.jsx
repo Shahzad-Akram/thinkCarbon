@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const FooterInformation = ({ location }) => {
-  let hideFooterInformation = location.pathname === '/cart';
+  let hideFooterInformation = location.pathname === '/cart' || '/donate-home';
 
   return (
     <>

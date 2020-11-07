@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SectionHero = () => {
   return (
-    <Container className='px-0 my-4'>
+    <Container className='px-0 my-4 Section-2'>
       <Row className='mx-0 bg-white flex-column-reverse flex-lg-row'>
         <Col lg={5} className='px-0'>
           <div
@@ -16,6 +17,8 @@ const SectionHero = () => {
             }}
           >
             <Col
+            as={Link}
+            to='/'
               xs={11}
               md={9}
               className='p-3 border  text-center text-white '
@@ -44,6 +47,8 @@ const SectionHero = () => {
             }}
           >
             <Col
+              as={Link}
+              to='/'
               xs={11}
               md={9}
               className='p-3 border border-light text-center text-white '
@@ -70,6 +75,8 @@ const SectionHero = () => {
             }}
           >
             <Col
+              as={Link}
+              to='/'
               xs={11}
               md={9}
               className='p-2 text-center text-white'

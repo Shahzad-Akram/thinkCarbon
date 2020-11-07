@@ -12,6 +12,7 @@ const SaleItem = ({
   priceDiscount,
   available,
   children,
+  stylePhoto
 }) => {
   return (
     <Card  className='Sale-item shadow-sm'>
@@ -20,6 +21,7 @@ const SaleItem = ({
         variant='top'
         height={200}
         className='Sale-item-image object-fit-contain'
+        style={stylePhoto}
         src={photo}
       />
       </Link>

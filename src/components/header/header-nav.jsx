@@ -6,7 +6,7 @@ import './switch.styles.css';
 import './menu-list.styles.css';
 import { useQuery } from 'react-query';
 import {getProductstype} from '../../actions';
-import { Button, Navbar, Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Navbar, Col, ListGroup, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {
   fadeIn,
@@ -20,16 +20,16 @@ import Radium, { StyleRoot } from 'radium';
 // Icons
 import SearchIcon from '../../assets/svgs/search';
 import Cart3Icon from '../../assets/svgs/Cart3';
+import OrderIcon from '../../assets/svgs/Order';
 import MenuItem from '../menu-item/menu-item';
 import { getSearchedProducts } from '../../actions/index';
 import {useSelector} from 'react-redux';
 import axios from 'axios'
 
 
-
 const HeaderNav = ({ onChange, children }) => {
   const products = useSelector((state) => state.products);
-
+  
   const [isItems1, setIsItems1] = useState(false);
   const [isItems2, setIsItems2] = useState(false);
   const [isLink1, setIsLink1] = useState(false);
@@ -37,6 +37,9 @@ const HeaderNav = ({ onChange, children }) => {
   const [searchEnabled,setSearchEnabled] = useState(false);
   const {data,isLoading } = useQuery([ 'product', inputValue ], getSearchedProducts
   );
+
+
+ 
  
   
   const [option, SetOption] = useState([
@@ -74,10 +77,7 @@ const HeaderNav = ({ onChange, children }) => {
       selected.push(categories[i]);
     }
   }
- 
- 
- 
-    
+  
     // useEffect(() => {
 
     //   if(data !== undefined && data !== null && data.length > 0  ){
@@ -164,10 +164,10 @@ const HeaderNav = ({ onChange, children }) => {
 
 
   return (
-    <StyleRoot className='bg-white'>
+    <StyleRoot className='z-index position-relative bg-white'>
       
       <Navbar
-        className='container px-0 mx-auto justify-content-between px-0 py-3 bg-white'
+        className='container px-0 mx-auto justify-content-between px-0 py-3 '
         expand='lg'
       >
         <Navbar.Brand as={Link} to='/' className='w-10 ml-2 ml-sm-5 mr-0'>
@@ -187,8 +187,7 @@ const HeaderNav = ({ onChange, children }) => {
 
         <Navbar.Collapse
           id='basic-navbar-nav'
-          className='bg-white position-relative py-2 py-lg-0 '
-        >
+          className='position-relative py-2 py-lg-0 bg-white'>
           <div
             className='row mx-0 px-2 px-sm-0 justify-content-sm-around align-items-center w-100'
             style={styles.fadeInRightBig}
@@ -201,12 +200,13 @@ const HeaderNav = ({ onChange, children }) => {
               <small> Categories</small>
             </Button>
             <Col
-              xs={10}
+              xs={12}
+              md={10}
               lg={8}
               
             >
             <Row>
-            <Col md={10}>
+            <Col className='px-0' xs={10} md={6}>
               <AsyncSelect
               menuPosition='sticky'
               cacheOptions
@@ -217,17 +217,37 @@ const HeaderNav = ({ onChange, children }) => {
               onInputChange={handleInputChange}
              />
             </Col>
-            <Col md={2}>
-              <Row>
-
+            <Col className='px-0' xs={1}>
             <Button
                 variant='success'
-                className='py-1 px-2 d-flex align-items-center rounded-0'
+                className='py-1 px-2 d-flex align-items-center rounded-0 sb-height'
               >
                 <SearchIcon />
               </Button>
-              <Button as={Link} to='/cart' variant='link' className='p-0 ml-4'>
+            </Col>
+            <Col xs={12} md={4} lg={5} className='py-4 py-md-0'>
+              <Row className='h-100  align-items-center justify-content-center'>
+              <OverlayTrigger
+    placement="bottom"
+    delay={{ show: 250, hide: 400 }}
+    overlay={CartTooltip}
+  >
+      <Button as={Link} to='/cart' variant='link' className='p-0 ml-4'>
                 <Cart3Icon />
+              </Button>
+  </OverlayTrigger>
+             
+              <OverlayTrigger
+    placement="bottom"
+    delay={{ show: 250, hide: 400 }}
+    overlay={OrderTooltip}
+  >
+      <Button as={Link} to='/order' variant='link' className='p-0 ml-4'>
+                <OrderIcon height={20} color='currentcolor' />
+              </Button>
+              </OverlayTrigger>
+              <Button as={Link} to='/donate-home' variant='outline-success' className='p-0 ml-4 px-2'>
+                 <small>Donate</small>
               </Button>
               </Row>
               </Col>
@@ -244,7 +264,7 @@ const HeaderNav = ({ onChange, children }) => {
           className='menu-list mx-0  col col-md-10 col-lg-9 col-xl-6'
           onMouseLeave={() => setIsItems1(false)}
         >
-          <Col xs={6} md={4} lg={3} xl={4} className='px-0'>
+          <Col xs={6} md={4} lg={3} xl={3} className='px-0'>
             <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
               <MenuItem
                 itemName='Electronic Devices 1'
@@ -255,7 +275,7 @@ const HeaderNav = ({ onChange, children }) => {
 
           {/* Menu-Col-1-End */}
           {/* Menu-Col-2 */}
-          <Col xs={6} md={4} lg={3} xl={4} className='px-0'>
+          <Col xs={6} md={4} lg={3} xl={3} className='px-0'>
             {isItems2 && (
               <ListGroup className='h-100 bg-white small rounded-0 nk-shadow-box-1'>
                 {selected.map((category) => (
@@ -270,7 +290,7 @@ const HeaderNav = ({ onChange, children }) => {
           </Col>
           {/* Menu-Col-2-End */}
           {/* Menu-Col-3 */}
-          <Col xs={6} md={4} lg={3} xl={4} className='px-0 mt-1 mt-md-0'>
+          <Col xs={6} md={4} lg={3} xl={3} className='px-0 mt-1 mt-md-0'>
             {isLink1 && (
               <ListGroup
                 className='h-100 bg-white small rounded-0 nk-shadow-box-1'
@@ -287,5 +307,19 @@ const HeaderNav = ({ onChange, children }) => {
     </StyleRoot>
   );
 };
+
+// TooltipName
+
+const CartTooltip = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    Cart List
+  </Tooltip>
+);
+
+const OrderTooltip = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    Order Box
+  </Tooltip>
+);
 
 export default HeaderNav;

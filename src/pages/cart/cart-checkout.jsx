@@ -240,6 +240,24 @@ const CartCheckout = () => {
             </section>
           </Col>
           <Col lg={4}>
+
+          <section className='bg-white rounded p-3 mb-3'>
+              <div className='mb-1 font-weight-bold'>Would you like to Donate</div>
+              
+              <Row className='mx-0 my-2'>
+                <Col className='px-0 d-flex align-items-center border rounded-lg'>
+                  <span className='px-2 text-black-50 small'>$</span>
+                  <Form.Control className='border-0' placeholder='Enter The Amount' name='donate' type='number' ref={register} />
+                </Col>
+                <Col xs={5} md={4} className=' pr-0'>
+                  <Button variant='success' type='submit' block className='py-1'>
+                    <small>Donate</small>
+                  </Button>
+                </Col>
+              </Row>
+
+            </section>
+
             <section className='bg-white rounded p-3'>
               <div className='mb-1 font-weight-bold'>Order Summary</div>
               <div className='d-flex justify-content-between px-1 small mb-2'>
@@ -284,8 +302,7 @@ const CartCheckout = () => {
                 </Form.Group>
                 <Form.Label className='small'>Card Information</Form.Label>
                 <Form.Group className='mb-0' style={{ maxWidht: '400px', height: '33px', border: '1px solid #00000026', padding: '8px', borderRadius: '3px' }}>
-                  <CardElement
-                  />
+                  <CardElement/>
 
                 </Form.Group>
 

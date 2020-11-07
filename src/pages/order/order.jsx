@@ -21,7 +21,7 @@ const Order = () => {
          <main className='bg-light'>
          <Container className='py-5'>
                 <div className='d-flex align-items-baseline mb-2'>
-                    <OrderIcon height={25} color='#fff' />
+                    <OrderIcon height={25} color='#000' />
                     <h6 className=' ml-2'>My orders</h6>
                 </div>
                 {isLoading ? <div>loading</div>:
@@ -88,7 +88,7 @@ const Order = () => {
                     </div>
                 </section>
                 ):
-                <div>No Orders</div>}
+                <div className='text-center jumbotron'>No Orders</div>}
                 {/* <section className='bg-white mb-3'>
                     <Row className='mx-0 small p-4 justify-content-between'>
                         <div className='mb-3 mr-5 mr-lg-0'>
