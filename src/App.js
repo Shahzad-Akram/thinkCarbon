@@ -19,6 +19,7 @@ import ProtectedRoutes from './HOC/protectedRoutes'
 import Order from './pages/order/order';
 import DonateHome from './pages/donate/donate-home';
 import DonateGallery from './pages/donate/donate-gallery';
+import DonateCard from './pages/donate/donate-card';
 const stripePromise = loadStripe("pk_test_ZlweN3nPeZpk6GMsvEdprEJd00ao6w8ieU")
 
 function App({ location }) {
@@ -48,6 +49,7 @@ function App({ location }) {
           <Route exact path='/product-view/:id' component={ProductView} />
           <Route exact path='/donate-home' component={DonateHome} />
           <Route exact path='/donate-gallery' component={DonateGallery} />
+          <Route exact path='/donate-card' component={DonateCard} />
           <Route exact path='/cart' component={Cart} />
           <ProtectedRoutes>
           <Elements stripe={stripePromise}>
