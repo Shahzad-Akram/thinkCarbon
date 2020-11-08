@@ -51,7 +51,7 @@ const DonateCard = () => {
     return (
         <section className='bg-light'>
             <Container className='px-0 py-5'>
-             <h2 className='font-weight-bold mb-4'>Orange County, CA Firefighters</h2>   
+             <h2 className='font-weight-bold mb-4 text-center text-lg-left'>Orange County, CA Firefighters</h2>   
             <Row className='mx-0 mb-4'>
               <Col className='mb-3 mb-lg-0'>
                   <img className='img-fluid rounded-lg mb-4' src='https://d2g8igdw686xgo.cloudfront.net/52181016_1603832127649987_r.jpeg' alt='image' />
@@ -89,12 +89,13 @@ const DonateCard = () => {
                          <Button block variant='outline-success' className='py-2'>Share</Button>
                          </Col>
                     </Row>
-                    <div>
-                        <h6>Comments</h6>
+                    <section>
+                    <h6>Comments</h6>
+                    <div className='scrollbox h-35vh'>
                         { commentArr.map((commentArr) => (
                          <div className='small border-top'> 
-                          <Row className='py-3'>
-                              <Col xs={1} className='mr-3'>
+                          <Row className='py-3 mx-0'>
+                              <Col xs={1} className='mr-4 mr-lg-3'>
                                {commentArr.icon}
                               </Col>
                               <Col>
@@ -106,10 +107,58 @@ const DonateCard = () => {
                          </div>
                     ))}
                     </div>
+                    </section>
                   </Col>
               </Col>
               <Col xs={12} lg={4}>
-               
+                <section className='shadow-sm bg-white p-3'>
+                  <div className='mb-2'> 
+                     <span><b>$700,275</b> <small className='text-muted'>raised of $1,000,000 target</small></span>
+                  </div>
+                 
+                      <div className='d-flex small mb-3'>
+                         <div  style={{lineHeight: '13px',}}>
+                             <b className='d-block'>6.6k</b>
+                             <small className='text-muted'>donors</small>
+                         </div>
+                         <div className='mx-3' style={{lineHeight: '13px',}}>
+                             <b className='d-block'>15.3k</b>
+                             <small className='text-muted'>shares</small>
+                         </div>
+                         <div style={{lineHeight: '13px',}}>
+                             <b className='d-block'>6.7k</b>
+                             <small className='text-muted'>followers</small>
+                         </div>
+                      </div>     
+             
+                    <div className='scrollbox h-35vh'>
+                        { commentArr.map((commentArr) => (
+                         <div className='small border-top'> 
+                          <Row className='py-3 mx-0'>
+                              <Col xs={1} className='mr-4'>
+                               {commentArr.icon}
+                              </Col>
+                              <Col>
+                              <div>{commentArr.name}</div>
+                               <div>
+                               <b>{commentArr.money}</b>
+                               <span className='mx-3'>-</span>
+                               <span className='text-black-50'>{commentArr.time}</span>
+                               </div>
+                              </Col>
+                          </Row>
+                         </div>
+                    ))}
+                    </div>
+                    <Row className='mt-4'>
+                        <Col xs={12} sm={6} lg={12}>
+                        <Button block variant='outline-success' className='py-2 mb-3'>Share</Button>
+                        </Col>
+                         <Col xs={12} sm={6} lg={12}>
+                         <Button block variant='success' className='py-2'>Donate Now</Button>
+                         </Col>
+                    </Row>
+                </section>
               </Col>
               <div className='d-flex flex-column flex-lg-row text-center text-lg-left justify-content-center w-100 border-top pt-4'>
                     { fundraiserArr.map((fundraiserArr) => (
