@@ -35,7 +35,7 @@ const CartCheckout = () => {
 
   } = useCart();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [loading, setIsLoading] = useState(false)
   const { handleSubmit, register, errors } = useForm();
   const elements = useElements();
@@ -297,20 +297,16 @@ const CartCheckout = () => {
               <Form>
                 <Form.Group>
                   <Form.Label className='small'>Email</Form.Label>
-                  <Form.Control type='email' name='email' ref={register({ required: true })} />
+                  <Form.Control placeholder='Please enter your email' type='email' name='email' ref={register({ required: true })} />
                   {errors.email && (<p style={{ color: "red" }}>Oops. Email Required.</p>)}
                 </Form.Group>
                 <Form.Label className='small'>Card Information</Form.Label>
-                <Form.Group className='mb-0' style={{ maxWidht: '400px', height: '33px', border: '1px solid #00000026', padding: '8px', borderRadius: '3px' }}>
+                <Form.Group className='mb-3' style={{ maxWidht: '400px', height: '33px', border: '1px solid #00000026', padding: '8px', borderRadius: '3px' }}>
                   <CardElement/>
-
                 </Form.Group>
-
-
-
                 <Form.Group>
                   <Form.Label className='small'>Name on card</Form.Label>
-                  <Form.Control type='text' />
+                  <Form.Control placeholder='Please enter your name' type='text' />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className='small'>Country or region</Form.Label>

@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import ModelDonate from '../../components/model/model-donate';
+import ModelShare from '../../components/model/model-share';
+
+// Icons
+import FutureIcon from '../../assets/svgs/Future';
+import LoveIcon from '../../assets/svgs/Love';
+import PersonLoveIcon from '../../assets/svgs/PersonLove';
 import ShieldIcon from '../../assets/svgs/Shield';
-import SuitHeart from '../../assets/svgs/SuitHeart';
+import TrophyIcon from '../../assets/svgs/Trophy';
+
 
 const textArr = [ 
     { text: 'Orange County Firefighters are raising money in support of 2 firefighters critically injured while protecting our community battling the Silverado Fire.'},
@@ -15,39 +23,41 @@ const textArr = [
 const commentArr = [ 
     {icon: 
     <Button variant='success' className='rounded-circle mr-n2' disabled>
-    <SuitHeart height={15}/>
+    <PersonLoveIcon height={15}/>
     </Button>, 
     name: 'Sandie & Ted McCann', money: '$100',  text: 'In our prayers to heal quickly and fully. Much love to our firefighters and their families.', time: '14 hours ago'},
     {icon: 
         <Button variant='success' className='rounded-circle mr-n2' disabled>
-        <SuitHeart height={15}/>
+        <PersonLoveIcon height={15}/>
         </Button>, 
         name: 'Sandie & Ted McCann', money: '$100',  text: 'In our prayers to heal quickly and fully. Much love to our firefighters and their families.', time: '14 hours ago'},
         {icon: 
             <Button variant='success' className='rounded-circle mr-n2' disabled>
-            <SuitHeart height={15}/>
+            <PersonLoveIcon height={15}/>
             </Button>, 
             name: 'Sandie & Ted McCann', money: '$100',  text: 'In our prayers to heal quickly and fully. Much love to our firefighters and their families.', time: '14 hours ago'},
             {icon: 
                 <Button variant='success' className='rounded-circle mr-n2' disabled>
-                <SuitHeart height={15}/>
+                <PersonLoveIcon height={15}/>
                 </Button>, 
                 name: 'Sandie & Ted McCann', money: '$100',  text: 'In our prayers to heal quickly and fully. Much love to our firefighters and their families.', time: '14 hours ago'},
                 {icon: 
                     <Button variant='success' className='rounded-circle mr-n2' disabled>
-                    <SuitHeart height={15}/>
+                    <PersonLoveIcon height={15}/>
                     </Button>, 
                     name: 'Sandie & Ted McCann', money: '$100',  text: 'In our prayers to heal quickly and fully. Much love to our firefighters and their families.', time: '14 hours ago'},
   ]
 
 
   const fundraiserArr = [ 
-    {icon: <SuitHeart height={30}/>,title: 'NO.1 FUNDRAISING PLATFORM', text: 'People have raised more money on GoFundMe than anywhere else.'},
-     {icon: <SuitHeart height={30}/>,title: 'GOFUNDME GUARANTEE', text: 'In the rare case that something is not right, we will refund your donation. '},
-         {icon: <SuitHeart height={30}/>,title: 'EXPERT ADVICE, 24/7', text: 'Contact us with your questions and we’ll answer, day or night!'},
+    {icon: <TrophyIcon height={30}/>,title: 'NO.1 FUNDRAISING PLATFORM', text: 'People have raised more money on GoFundMe than anywhere else.'},
+     {icon: <LoveIcon height={30}/>,title: 'GOFUNDME GUARANTEE', text: 'In the rare case that something is not right, we will refund your donation. '},
+         {icon: <FutureIcon height={30}/>,title: 'EXPERT ADVICE, 24/7', text: 'Contact us with your questions and we’ll answer, day or night!'},
      ]
 
 const DonateCard = () => { 
+    const [modalShare, setModalShare] = useState(false);
+    const [modalDonate, setModalDonate] = useState(false);
     return (
         <section className='bg-light'>
             <Container className='px-0 py-5'>
@@ -59,7 +69,7 @@ const DonateCard = () => {
                     <Row>
                     <Col xs={4} md={2} lg={4} xl={3}>
                     <Button variant='success' className='rounded-circle mr-n2' disabled>
-                     <SuitHeart height={15}/>
+                     <PersonLoveIcon height={15}/>
                      </Button>
                      <Button  variant='success' className='rounded-circle' disabled>
                      <ShieldIcon height={15} />
@@ -83,10 +93,10 @@ const DonateCard = () => {
                     ))}
                     <Row className='justify-content-between my-4'>
                         <Col xs={6}>
-                        <Button block variant='success' className='py-2'>Donate</Button>
+                        <Button block variant='success' className='py-2' onClick={() => setModalDonate(true)}>Donate</Button>
                         </Col>
                          <Col xs={6}>
-                         <Button block variant='outline-success' className='py-2'>Share</Button>
+                         <Button block variant='outline-success' className='py-2' onClick={() => setModalShare(true)}>Share</Button>
                          </Col>
                     </Row>
                     <section>
@@ -152,10 +162,10 @@ const DonateCard = () => {
                     </div>
                     <Row className='mt-4'>
                         <Col xs={12} sm={6} lg={12}>
-                        <Button block variant='outline-success' className='py-2 mb-3'>Share</Button>
+                        <Button block variant='outline-success' className='py-2 mb-3' onClick={() => setModalShare(true)}>Share</Button>
                         </Col>
                          <Col xs={12} sm={6} lg={12}>
-                         <Button block variant='success' className='py-2'>Donate Now</Button>
+                         <Button block variant='success' className='py-2' onClick={() => setModalDonate(true)}>Donate Now</Button>
                          </Col>
                     </Row>
                 </section>
@@ -177,6 +187,17 @@ const DonateCard = () => {
                     </div>
              </Row>
         </Container>
+
+        <ModelShare
+        show={modalShare}
+         onHide={() => setModalShare(false)}
+          />
+
+      <ModelDonate
+        show={modalDonate}
+         onHide={() => setModalDonate(false)}
+          /> 
+
         </section>
     );
 }
